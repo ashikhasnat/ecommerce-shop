@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
+import ProductDetails from './components/admin/product/ProductDetails.vue'
 require('./bootstrap')
 
 const app = new Vue({
@@ -8,5 +9,6 @@ const app = new Vue({
   components: {
     App,
     AdminNav,
+    ProductDetails,
   },
 })
