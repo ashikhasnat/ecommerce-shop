@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
-class CategoryFactory extends Factory
+class BrandFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Brand::class;
 
     /**
      * Define the model's default state.
@@ -25,6 +24,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->sentence(2),
             'slug' => Str::slug($this->faker->sentence(2)),
+            'brand_logo' => $this->faker->imageUrl(200, 25),
         ];
     }
 }

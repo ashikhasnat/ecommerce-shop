@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
-class CategoryFactory extends Factory
+class SubCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = SubCategory::class;
 
     /**
      * Define the model's default state.
@@ -25,6 +24,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->sentence(2),
             'slug' => Str::slug($this->faker->sentence(2)),
+            'category_id' => rand(1, 5),
         ];
     }
 }

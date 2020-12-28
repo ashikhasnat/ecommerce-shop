@@ -17,10 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('sku');
             $table->string('title');
+            $table->text('slug')->nullable();
             $table->unsignedBigInteger('price');
             $table->text('thumbnail');
-            $table->string('brand');
+            $table->foreignId('brand_id');
             $table->foreignId('category_id');
+            $table->foreignId('sub_category_id');
             $table->tinyInteger('stock_status')->default(0);
             $table->mediumText('short_details');
             $table->text('long_details');

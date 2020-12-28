@@ -8,7 +8,7 @@
                     <div class="">
                         <div class="">
                             <label for="title" class="text-sm font-medium leading-5 text-gray-700">Title</label>
-                            <input id="title" name="title" type="text" placeholder="Title"
+                            <input id="title" name="title" type="text" placeholder="Title" value="{{ old('title') }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             @error('title')
                             <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
@@ -16,22 +16,24 @@
                         </div>
                         <div class="">
                             <label for="price" class="text-sm font-medium leading-5 text-gray-700">Price</label>
-                            <input id="price" name="price" type="number" placeholder="$"
+                            <input id="price" name="price" type="number" placeholder="$" value="{{ old('price') }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             @error('price')
                             <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="">
-                            <label for="brand" class="text-sm font-medium leading-5 text-gray-700">Brand</label>
-                            <select id="brand" name="brand"
+                            <label for="brand_id" class="text-sm font-medium leading-5 text-gray-700">Brand</label>
+                            <select id="brand_id" name="brand_id"
                                 class="mt-1 form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                 <option value="null" selected>Select Brand</option>
-                                <option value="1">Brand</option>
+                                @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
                             </select>
                         </div>
-
-                        <div class="">
+                        <select-category></select-category>
+                        {{-- <div class="">
                             <label for="category_id"
                                 class="text-sm font-medium leading-5 text-gray-700">Category</label>
                             <select id="category_id" name="category_id"
@@ -40,6 +42,15 @@
                                 <option value="1">Category</option>
                             </select>
                         </div>
+                        <div class="">
+                            <label for="sub_category_id"
+                                class="text-sm font-medium leading-5 text-gray-700">Category</label>
+                            <select id="sub_category_id" name="sub_category_id"
+                                class="mt-1 form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option value="null" selected>Select SubCategory</option>
+                                <option value="1">SubCategory</option>
+                            </select>
+                        </div> --}}
                         <product-details></product-details>
                         <div class="">
                             @error(['short_details','long_details'])

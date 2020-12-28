@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +17,10 @@ class ProductController extends Controller
      */
     public function index(Product $product)
     {
-        $products = $product->latest()->paginate();
+        $products = $product
+            ->with(['category', 'brand'])
+            ->latest()
+            ->paginate();
         // dd($products);
         return view('dashboard.product.index', compact('products'));
     }
@@ -26,9 +30,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Brand $brand)
     {
-        return view('dashboard.product.create');
+        $brands = $brand->all('id', 'name');
+        // dd($brands);
+        return view('dashboard.product.create', compact('brands'));
     }
 
     /**
@@ -41,18 +47,30 @@ class ProductController extends Controller
     {
         $newProduct = $request->validate([
             'sku' => ['nullable'],
+            'slug' => ['nullable'],
             'title' => ['required', 'string', 'max:255', 'min:3'],
             'price' => ['numeric', 'required'],
             'thumbnail' => ['nullable'],
-            'brand' => ['nullable', 'required'],
+            'brand_id' => ['nullable', 'required'],
             'category_id' => ['required'],
+            'sub_category_id' => ['nullable'],
             'stock_status' => ['required'],
-            'short_details' => ['required'],
-            'long_details' => ['required'],
+            'short_details' => ['required', 'max:2000', 'min:100'],
+            'long_details' => ['required', 'max:2000', 'min:100'],
         ]);
+        if (request()->hasFile('thumbnail')) {
+            $thumbnail = request()
+                ->file('thumbnail')
+                ->getClientOriginalName();
+            $newProduct['thumbnail'] = request()
+                ->file('thumbnail')
+                ->storeAs('thumbnails', $thumbnail, 'public');
+            $product->update($newProduct);
+        }
         $product->create(
             array_merge($newProduct, [
                 'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
+                'slug' => Str::slug($newProduct['title']),
             ])
         );
         return redirect(route('product.index'))->with(
