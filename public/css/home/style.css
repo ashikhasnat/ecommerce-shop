@@ -1,0 +1,37 @@
+.subcategory {
+  transform: translateX(110%);
+  opacity: 0;
+  border: 1px solid rgba(0, 0, 0, 0.062);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+  transform-origin: left;
+  transition: all linear .1s;
+  transition-delay: .05s;
+  visibility: hidden;
+}
+
+.subcategory li {
+  color: black;
+}
+
+.subcategory li:hover {
+  color: #16bdca;
+}
+
+.category:hover {
+  color: #16bdca;
+}
+
+.category:hover i {
+  color: #16bdca;
+}
+
+.category:hover .subcategory {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.l {
+  background-size: contain;
+}
+/*# sourceMappingURL=style.css.map */

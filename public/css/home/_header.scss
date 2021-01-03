@@ -1,0 +1,34 @@
+.subcategory{
+    transform: translateX(110%);
+    opacity: 0;
+    border: 1px solid rgba(0, 0, 0, 0.062);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+    transform-origin: left;
+    transition: all linear .1s;
+    transition-delay: .05s;
+    visibility: hidden;
+    li{
+        color: black;
+        &:hover{
+            color: rgb(22, 189, 202);
+        }
+    }
+}
+.category{
+    &:hover{
+        color: rgb(22, 189, 202);
+        i{
+            color: rgb(22, 189, 202);
+        }
+        .subcategory{
+            // display: block;
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(100%);
+            
+        }
+    }
+}
+.l{
+    background-size: contain;
+}

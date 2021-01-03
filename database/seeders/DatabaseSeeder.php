@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'email' => 'nafishasnat.nh@gmail.com',
         ]);
-        Product::factory(10)->create();
-        Category::factory(5)->create();
-        SubCategory::factory(10)->create();
+        Product::factory(50)->create();
+        Category::factory(10)->create();
+        SubCategory::factory(5)->create();
         Brand::factory(5)->create();
     }
 }

@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('thumbnail');
             $table->foreignId('brand_id');
             $table->foreignId('category_id');
-            $table->foreignId('sub_category_id');
+            $table->foreignId('sub_category_id')->nullable();
             $table->tinyInteger('stock_status')->default(0);
             $table->mediumText('short_details');
             $table->text('long_details');
