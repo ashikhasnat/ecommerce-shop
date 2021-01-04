@@ -5,6 +5,7 @@ import SelectCategory from './components/admin/product/SelectCategory.vue'
 import ProductDetails from './components/admin/product/ProductDetails.vue'
 import Dropdown from './components/home/Dropdown.vue'
 import Slider from './components/home/Slider.vue'
+import CountDown from './components/home/CountDown.vue'
 require('./bootstrap')
 
 const app = new Vue({
@@ -16,5 +17,6 @@ const app = new Vue({
     SelectCategory,
     Dropdown,
     Slider,
+    CountDown,
   },
 })

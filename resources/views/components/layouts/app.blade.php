@@ -18,7 +18,7 @@
 </head>
 
 <body class="bg-gray-100 antialiased font-sans">
-    <div id="app" class="container mx-auto">
+    <div id="app" class="mx-auto">
         {{ $slot }}
     </div>
 </body>
