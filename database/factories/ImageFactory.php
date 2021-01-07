@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\SubCategory;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-class SubCategoryFactory extends Factory
+
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = SubCategory::class;
+    protected $model = Image::class;
 
     /**
      * Define the model's default state.
@@ -21,11 +21,9 @@ class SubCategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->sentence(2);
         return [
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'category_id' => rand(1, 5),
+            'image_path' => $this->faker->imageUrl(720, 720),
+            'product_id' => rand(1, 50),
         ];
     }
 }

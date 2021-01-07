@@ -7,7 +7,11 @@
         <i class="fas fa-bars mr-3"></i>
         <p @click="showDropdown()" class="py-4">Browse Accessories</p>
       </li>
-      <li v-if="show" class="relative" :class="[show ? '' : 'hidden']">
+      <li
+        v-if="show"
+        class="relative"
+        :class="[show ? 'visible' : 'invisible']"
+      >
         <slot name="dropdown-item"></slot>
       </li>
     </ul>

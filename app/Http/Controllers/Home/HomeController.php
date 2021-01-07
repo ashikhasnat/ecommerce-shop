@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('subcategories')->get();
+        // $categories = Category::with('subcategories')->get();
         $singleCategories = Category::where('id', 3)
             ->with('products')
             ->first();
@@ -20,10 +20,15 @@ class HomeController extends Controller
             ->latest()
             ->take(4)
             ->get();
+        $topProducts = Product::with('category')
+            ->with('brand')
+            ->latest()
+            ->take(6)
+            ->get();
         // dd($products);
         return view(
             'home.index',
-            compact('categories', 'products', 'singleCategories')
+            compact('products', 'singleCategories', 'topProducts')
         );
     }
 }

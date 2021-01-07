@@ -8,12 +8,20 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    public function brand()
+    public function images()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->hasMany(Image::class);
+    }
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 }

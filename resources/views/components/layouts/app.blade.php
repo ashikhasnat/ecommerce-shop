@@ -17,9 +17,12 @@
     <link href="{{ asset('css/home/style.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 antialiased font-sans">
+<body class="bg-white antialiased font-sans">
     <div id="app" class="mx-auto">
+        @include('inc.home.header')
         {{ $slot }}
+        @include('inc.footer-section.footer-nav')
+        @include('inc.footer-section.footer')
     </div>
 </body>
 

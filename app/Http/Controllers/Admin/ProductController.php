@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ProductController extends Controller
 {
@@ -45,12 +46,14 @@ class ProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
+        // dd(request()->all());
         $newProduct = $request->validate([
             'sku' => ['nullable'],
             'slug' => ['nullable'],
             'title' => ['required', 'string', 'max:255', 'min:3'],
             'price' => ['numeric', 'required'],
             'thumbnail' => ['nullable'],
+            // 'images' => ['nullable'],
             'brand_id' => ['nullable', 'required'],
             'category_id' => ['required'],
             'sub_category_id' => ['nullable'],
@@ -67,12 +70,27 @@ class ProductController extends Controller
                 ->storeAs('thumbnails', $thumbnail, 'public');
             $product->update($newProduct);
         }
-        $product->create(
+
+        $product = Product::create(
             array_merge($newProduct, [
                 'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
                 'slug' => Str::slug($newProduct['title']),
             ])
         );
+        if (request()->hasFile('images')) {
+            $images = request()->file('images');
+            foreach ($images as $file) {
+                $sample_images = $file->getClientOriginalName();
+                $newFile = $file->storeAs(
+                    'images',
+                    $sample_images . time(),
+                    'public'
+                );
+                $product->images()->create([
+                    'image_path' => $newFile,
+                ]);
+            }
+        }
         return redirect(route('product.index'))->with(
             'msg',
             'Successfully Created'

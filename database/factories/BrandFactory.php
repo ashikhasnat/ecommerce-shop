@@ -24,7 +24,7 @@ class BrandFactory extends Factory
         return [
             'name' => $this->faker->sentence(2),
             'slug' => Str::slug($this->faker->sentence(2)),
-            'brand_logo' => $this->faker->imageUrl(200, 25),
+            'brand_logo' => $this->faker->imageUrl(140, 60),
         ];
     }
 }

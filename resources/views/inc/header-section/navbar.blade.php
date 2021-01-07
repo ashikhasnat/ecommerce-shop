@@ -5,7 +5,7 @@
             @foreach ($categories as $category)
             <li
                 class="category border-b border-r border-l px-4 py-3 transition-colors duration-150 ease-linear relative">
-                <a href="#">
+                <a href="{{ route('home-category.show' , $category->slug) }}">
                     {{ $category->name }}
                 </a>
                 @if ($category->subcategories->count() > 0)
@@ -14,7 +14,8 @@
                 @if ($category->subcategories->count() > 0)
                 <ul class="subcategory absolute w-full right-0 top-0 px-2 py-1 bg-white">
                     @foreach ($category->subcategories as $subcategory)
-                    <li class="my-3 transition-colors duration-150 ease-linear"><a href="">{{ $subcategory->name }}</a>
+                    <li class="my-3 transition-colors duration-150 ease-linear"><a
+                            href="{{ route('home-subcategory.show' , $subcategory->slug) }}">{{ $subcategory->name }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -23,10 +24,10 @@
             @endforeach
         </ul>
     </Dropdown>
-    <ul class=" flex font-semibold uppercase text-sm">
-        <li class="py-4 px-5"><a href="">Home</a></li>
-        <li class="py-4 px-5"><a href="">Shop</a></li>
-        <li class="py-4 px-5"><a href="">Brands</a></li>
-        <li class="py-4 px-5"><a href="">Contact Us</a></li>
+    <ul class=" flex font-semibold uppercase text-sm text-white">
+        <li class="py-4 px-5 hover:text-gray-100"><a href="/">Home</a></li>
+        <li class="py-4 px-5 hover:text-gray-100"><a href="{{ route('shop.index') }}">Shop</a></li>
+        <li class="py-4 px-5 hover:text-gray-100"><a href="">Brands</a></li>
+        <li class="py-4 px-5 hover:text-gray-100"><a href="">Contact Us</a></li>
     </ul>
 </nav>

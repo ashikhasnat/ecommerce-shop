@@ -1,4 +1,4 @@
-<div class="lg:w-4/5 w-full">
+<div class=" col-span-full lg:col-span-6">
     <slider>
         @foreach ($products as $product)
         <div slot="slide" class="slide bg-white">
