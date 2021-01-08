@@ -29,15 +29,15 @@ class ProductFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'price' => $this->faker->numberBetween(100, 2000) . '.00',
-            'thumbnail' => $this->faker->imageUrl(720, 720),
+            'thumbnail' => $this->faker->imageUrl(1920, 1080),
             // 'thumbnail' =>
             //     'https://picsum.photos/1920/1080?random=' . rand(1, 50),
-            'brand_id' => rand(1, 5),
+            'brand_id' => rand(1, 10),
             'category_id' => rand(1, 10),
-            'sub_category_id' => rand(1, 10),
+            'sub_category_id' => rand(1, 20),
             'stock_status' => rand(0, 1),
-            'short_details' => $this->faker->sentence(20),
-            'long_details' => $this->faker->sentence(100),
+            'short_details' => $this->faker->sentence(40),
+            'long_details' => $this->faker->sentence(300),
         ];
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="timer absolute bg-white py-2 uppercase">
+  <div class="deal-timer absolute bg-white py-2 uppercase">
     <div>
       <div v-if="statusType !== 'expired'">
         <div class="day">
@@ -101,8 +101,8 @@
 }
 </script>
 
-<style>
-.timer {
+<style soped>
+.deal-timer {
   color: #fff;
   text-align: center;
   border: 1px solid turquoise;
@@ -110,54 +110,53 @@
   left: 15px;
   bottom: 20px;
 }
-.timer .day,
-.timer .hour,
-.timer .min,
-.timer .sec {
+.deal-timer .day,
+.deal-timer .hour,
+.deal-timer .min,
+.deal-timer .sec {
   display: inline-block;
   font-weight: 500;
   text-align: center;
   margin: 0 auto;
 }
-.timer .day .format,
-.timer .hour .format,
-.timer .min .format,
-.timer .sec .format {
+.deal-timer .day .format,
+.deal-timer .hour .format,
+.deal-timer .min .format,
+.deal-timer .sec .format {
   font-weight: 300;
   font-size: 12px;
   opacity: 0.8;
   width: 60px;
   color: rgba(65, 64, 64, 0.808);
 }
-.timer .number {
+.deal-timer .number {
   /* background: rgba(51, 51, 51, 0.53); */
-  padding: 0 5px;
   display: inline-block;
   width: 60px;
   text-align: center;
   color: #000;
   font-size: 15px;
 }
-.timer .message {
+.deal-timer .message {
   font-size: 14px;
   font-weight: 400;
   margin-top: 5px;
   color: #000;
 }
-.timer .status-tag {
+.deal-timer .status-tag {
   margin: 5px auto;
   padding: 2px 0;
   font-weight: 500;
   text-align: center;
   border-radius: 15px;
 }
-.timer .status-tag.upcoming {
+.deal-timer .status-tag.upcoming {
   color: lightGreen;
 }
-.timer .status-tag.running {
+.deal-timer .status-tag.running {
   color: gold;
 }
-.timer .status-tag.expired {
+.deal-timer .status-tag.expired {
   color: turquoise;
 }
 </style>

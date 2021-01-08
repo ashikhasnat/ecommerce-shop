@@ -16,7 +16,8 @@
                     </div>
                     <div class=" overflow-x-hidden">
                         <p class=" leading-4 break-words">
-                            <a href="" class=" text-sm text-gray-700 font-semibold">{{ $product->title }}</a>
+                            <a href="{{ route('home-product.show' , $product->slug) }}"
+                                class=" text-sm text-gray-700 font-semibold">{{ $product->title }}</a>
                         </p>
                         <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
                     </div>

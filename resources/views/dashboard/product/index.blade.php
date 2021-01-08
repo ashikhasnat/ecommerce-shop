@@ -25,10 +25,7 @@
                                 class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
                                 Excerpt
                             </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                created At
-                            </th>
+
                             <th
                                 class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
                                 Brand
@@ -36,6 +33,10 @@
                             <th
                                 class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
                                 Category
+                            </th>
+                            <th
+                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
+                                Availability
                             </th>
                             <th
                                 class="px-3 py-3 bg-gray-50 text-center text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
@@ -70,13 +71,7 @@
                                     {{ Str::limit($product->short_details, 30)  }}
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                {{-- created at --}}
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    {{ $product->created_at->format('F j, Y') }}
-                                </span>
-                            </td>
+
                             {{-- Brand --}}
                             <td class="px-3 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                 {{ $product->brand->name }}
@@ -85,7 +80,23 @@
                             <td class="px-3 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                 {{ $product->category->name }}
                             </td>
-                            {{-- Tags --}}
+                            <td class="px-3 py-4 whitespace-no-wrap">
+                                {{-- Stock --}}
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                    {{ $product->stock_status == 0 ? 'bg-red-100' : 'bg-green-100' }}
+                                     text-green-800">
+                                    @if ($product->stock_status == 0)
+                                    <p class="text-red-500"><i class="fas fa-exclamation-circle  mx-1"></i> Out Of
+                                        Stock
+                                    </p>
+                                    @else
+                                    <p class=""><i class="far fa-check-circle text-green-400 mx-1"></i> in
+                                        Stock</p>
+                                    @endif
+
+                                </span>
+                            </td>
+                            {{-- price --}}
                             <td class="text-sm leading-5 text-gray-600 ">
                                 <p class="bg-orange-100 text-center">
                                     ${{ $product->price }}

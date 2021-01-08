@@ -9,6 +9,8 @@ import CountDown from './components/home/CountDown.vue'
 import ProductCountDown from './components/home/product/ProductCountDown.vue'
 import ProductSlider from './components/home/product/ProductSlider.vue'
 import Quantity from './components/home/product/Quantity.vue'
+import OtherProductInfo from './components/home/product/OtherInfoTab.vue'
+import Ratings from './components/home/product/Rating.vue'
 require('./bootstrap')
 
 const app = new Vue({
@@ -24,5 +26,7 @@ const app = new Vue({
     ProductSlider,
     Quantity,
     ProductCountDown,
+    OtherProductInfo,
+    Ratings,
   },
 })

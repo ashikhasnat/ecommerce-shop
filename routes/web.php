@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
+use App\Http\Controllers\Home\ReviewController;
 use App\Http\Controllers\Home\ShopController;
 use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,10 @@ Route::group(['prefix' => 'shop'], function () {
     Route::get('/{product:slug}', [HomeProductController::class, 'show'])->name(
         'home-product.show'
     );
+    Route::post('review/{product:id}', [
+        ReviewController::class,
+        'store',
+    ])->name('review.store');
     Route::get('/category', function () {
         return redirect('/shop');
     });

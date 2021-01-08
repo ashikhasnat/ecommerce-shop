@@ -1,22 +1,45 @@
 <template>
-  <div class="timer bg-white py-2 uppercase">
+  <div class="product-timer bg-white py-2 uppercase">
     <div>
-      <div v-if="statusType !== 'expired'">
-        <div class="day">
-          <span class="number">{{ days }}</span>
-          <div class="format">{{ wordString.day }}</div>
+      <div
+        class="grid grid-cols-4 gap-x-4 justify-items-center items-center w-max-content"
+        v-if="statusType !== 'expired'"
+      >
+        <div class="product-day flex flex-col items-center">
+          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+            <span
+              class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+              >{{ days }}</span
+            >
+          </div>
+          <div class="product-format">{{ wordString.day }}</div>
         </div>
-        <div class="hour">
-          <span class="number">{{ hours }}</span>
-          <div class="format">{{ wordString.hours }}</div>
+        <div class="product-hour flex flex-col items-center">
+          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+            <span
+              class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+              >{{ hours }}</span
+            >
+          </div>
+          <div class="product-format">{{ wordString.hours }}</div>
         </div>
-        <div class="min">
-          <span class="number">{{ minutes }}</span>
-          <div class="format">{{ wordString.minutes }}</div>
+        <div class="product-min flex flex-col items-center">
+          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+            <span
+              class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+              >{{ minutes }}</span
+            >
+          </div>
+          <div class="product-format">{{ wordString.minutes }}</div>
         </div>
-        <div class="sec">
-          <span class="number">{{ seconds }}</span>
-          <div class="format">{{ wordString.seconds }}</div>
+        <div class="product-sec flex flex-col items-center">
+          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+            <span
+              class="product-number product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+              >{{ seconds }}</span
+            >
+          </div>
+          <div class="product-format">{{ wordString.seconds }}</div>
         </div>
       </div>
       <div v-else>
@@ -101,65 +124,28 @@
 }
 </script>
 
-<style>
-.timer {
-  color: #fff;
-  text-align: center;
-  border: none;
-  width: max-content;
-}
-.timer .day,
-.timer .hour,
-.timer .min,
-.timer .sec {
-  display: inline-block;
-  font-weight: 500;
-  text-align: center;
-  margin: 0 8px;
-}
-.timer .day .format,
-.timer .hour .format,
-.timer .min .format,
-.timer .sec .format {
-  font-weight: 500;
+<style scoped>
+.product-timer .product-format {
+  font-weight: 400;
   font-size: 12px;
   opacity: 0.8;
-  width: 60px;
   color: rgba(65, 64, 64, 0.808);
-}
-.timer .number {
-  /* background: rgba(51, 51, 51, 0.53); */
-  padding: 0 5px;
-  display: inline-block;
-  text-align: center;
-  color: #000;
-  padding: 15px 7px;
-  font-weight: bold;
-  font-size: 18px;
-  border-radius: 50%;
-  border: 1px solid turquoise;
-  margin-bottom: 5px;
-}
-.timer .message {
-  font-size: 14px;
-  font-weight: 400;
   margin-top: 5px;
-  color: #000;
 }
-.timer .status-tag {
+.product-timer .status-tag {
   margin: 5px auto;
   padding: 2px 0;
   font-weight: 500;
   text-align: center;
   border-radius: 15px;
 }
-.timer .status-tag.upcoming {
+.product-timer .status-tag.upcoming {
   color: lightGreen;
 }
-.timer .status-tag.running {
+.product-timer .status-tag.running {
   color: gold;
 }
-.timer .status-tag.expired {
+.product-timer .status-tag.expired {
   color: turquoise;
 }
 </style>

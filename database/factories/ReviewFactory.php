@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ImageFactory extends Factory
+class ReviewFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Image::class;
+    protected $model = Review::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,11 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'image_path' => $this->faker->imageUrl(720, 720),
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
             'product_id' => rand(1, 200),
+            'review_text' => $this->faker->sentence(15),
+            'ratings' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

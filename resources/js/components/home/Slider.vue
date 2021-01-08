@@ -54,9 +54,11 @@ import { VueAgile } from 'vue-agile'
 
 .slide {
   display: block;
-  height: 500px;
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
+}
+.home-slide {
+  height: 500px;
 }
 </style>

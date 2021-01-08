@@ -5,7 +5,7 @@
                 <p class=" hover:text-teal-500"><a href="/">Home</a></p>
                 <i style="font-size: 9px; transform: translateY(1px)"
                     class="fas fa-chevron-right text-gray-500 mx-2"></i>
-                <p class="hover:text-teal-500"><a href="">Shop</a></p>
+                <p class="hover:text-teal-500"><a href="{{ route('shop.index') }}">Shop</a></p>
                 <i style="font-size: 9px; transform: translateY(1px)"
                     class="fas fa-chevron-right text-gray-500 mx-2"></i>
                 <p class="hover:text-teal-500"><a
@@ -28,14 +28,42 @@
             </div>
         </div>
         <hr class=" mb-5 w-full h-px bg-gray-100 opacity-50">
-        <section class=" grid grid-cols-2 gap-x-4">
+        <section class=" grid grid-cols-1 lg:grid-cols-2 gap-x-4">
             <div class=" col-span-1">
-                {{-- <div class=" bg-cover bg-center bg-no-repeat h-96 "
-                    style="background-image: url({{ $product->thumbnail }})">
-            </div> --}}
-            <product-slider></product-slider>
+                @if ($product->images)
+                <product-slider inline-template>
+                    <div class="">
+                        <agile class="main" ref="main" :options="options1" :as-nav-for="asNavFor1">
+                            @foreach ($product->images as $image)
+                            <div class="slide product-slide" :class="`slide--${{ $loop->index }}`">
+                                <img src="{{ $image->image_path }}" />
+                            </div>
+                            @endforeach
+                        </agile>
+                        <agile class="thumbnails" ref="thumbnails" :options="options2" :as-nav-for="asNavFor2">
+                            @foreach ($product->images as $image)
+                            <div class="slide slide--thumbniail" :class="`slide--${{ $loop->index }}`"
+                                @click="$refs.thumbnails.goTo({{ $loop->index }})">
+                                <img src="{{ $image->image_path }}" />
+                            </div>
+                            @endforeach
+                        </agile>
+                    </div>
+                </product-slider>
+                @else
+                <div class=" flex flex-col">
+                    <div class=" bg-cover bg-center bg-no-repeat "
+                        style="background-image: url({{ $product->thumbnail }}) ; height: 450px;">
+                    </div>
+                    <div class=" bg-cover bg-center bg-no-repeat w-32 border-2 border-teal-400 h-20 mt-4"
+                        style="background-image: url({{ $product->thumbnail }}) ;">
+                    </div>
+
+                </div>
+                @endif
             </div>
-            <div class=" col-span-1">
+
+            <div class=" col-span-1 mt-4 lg:mt-0">
                 <div class=" font-bold">
                     <h1 class=" text-3xl">{{ $product->title }}</h1>
                     <p class=" text-teal-400 text-2xl my-2">${{ $product->price }}</p>
@@ -57,12 +85,12 @@
                     </div>
                     <div class=" text-sm font-normal text-gray-500">
                         <p>
-                            {{ $product->short_details }}
+                            {!! $product->short_details !!}
                         </p>
                     </div>
 
                     <div class=" my-3">
-                        <p class=" text-red-400 ml-3 text-lg my-1"><i class="far fa-clock mr-2"></i>Hungry up ! Deal end
+                        <p class=" text-red-400 ml-2 text-lg my-1"><i class="far fa-clock mr-2"></i>Hungry up ! Deal end
                             in :
                         </p>
                         <product-count-down starttime="Nov 5, 2018 15:37:25" endtime="Nov 8, 2021 16:37:25" trans='{  
@@ -96,5 +124,20 @@
                 </div>
             </div>
         </section>
+        <div class="my-20">
+            <Other-Product-Info>
+                <div slot="description" class="">
+                    <p>
+                        {!! $product->long_details !!}
+                    </p>
+                </div>
+                <div class="" slot="info"> info </div>
+                <div class="" slot="review">
+                    @include('inc.home.product.review')
+                </div>
+                <div class="" slot="more-product">more</div>
+            </Other-Product-Info>
+        </div>
     </main>
+    
 </x-layouts.app>

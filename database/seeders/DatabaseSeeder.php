@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,10 +23,11 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'email' => 'nafishasnat.nh@gmail.com',
         ]);
-        Product::factory(50)->create();
+        Product::factory(200)->create();
         Category::factory(10)->create();
-        SubCategory::factory(10)->create();
-        Brand::factory(5)->create();
-        Image::factory(100)->create();
+        SubCategory::factory(20)->create();
+        Brand::factory(10)->create();
+        Image::factory(1250)->create();
+        Review::factory(500)->create();
     }
 }

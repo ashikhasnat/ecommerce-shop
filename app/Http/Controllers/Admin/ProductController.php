@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
     /**
@@ -62,32 +62,44 @@ class ProductController extends Controller
             'long_details' => ['required', 'max:2000', 'min:100'],
         ]);
         if (request()->hasFile('thumbnail')) {
-            $thumbnail = request()
-                ->file('thumbnail')
-                ->getClientOriginalName();
-            $newProduct['thumbnail'] = request()
-                ->file('thumbnail')
-                ->storeAs('thumbnails', $thumbnail, 'public');
-            $product->update($newProduct);
+            $thumbnail_path =
+                'app/public/thumbnail/' . $newProduct['thumbnail']->hashName();
+            Image::make($newProduct['thumbnail'])
+                ->fit(620, 620)
+                ->save(storage_path($thumbnail_path));
         }
-
         $product = Product::create(
             array_merge($newProduct, [
                 'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
                 'slug' => Str::slug($newProduct['title']),
+                'thumbnail' => $thumbnail_path,
             ])
         );
         if (request()->hasFile('images')) {
             $images = request()->file('images');
             foreach ($images as $file) {
                 $sample_images = $file->getClientOriginalName();
-                $newFile = $file->storeAs(
-                    'images',
-                    $sample_images . time(),
+                // $newFile = $file->storeAs('images', $sample_images, 'public');
+                $newFile = $file->store(
+                    '/product-images/' . $product->id,
                     'public'
                 );
+                $storage_path_0f_imgs = 'storage/' . $newFile;
+                $new_path_to_save = 'app/public/product-images/' . $product->id;
+                if (!file_exists($new_path_to_save)) {
+                    mkdir($new_path_to_save, 0777, true);
+                }
+                $path_with_new_name =
+                    $new_path_to_save .
+                    '/' .
+                    hash('ripemd160', $product->id) .
+                    $sample_images;
+                Image::make($storage_path_0f_imgs)
+                    ->fit(620, 620)
+                    ->save(storage_path($path_with_new_name));
+                unlink($storage_path_0f_imgs);
                 $product->images()->create([
-                    'image_path' => $newFile,
+                    'image_path' => $path_with_new_name,
                 ]);
             }
         }
