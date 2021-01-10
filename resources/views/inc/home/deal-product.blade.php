@@ -23,11 +23,7 @@
                       }}'></count-down>
             </div>
             <div class="p-6 border border-t-0">
-                <p class=" leading-4 break-words my-1">
-                    <a href="{{ route('home-product.show' , $product->slug) }}"
-                        class="text-gray-700 font-semibold">{{ $product->title }}</a>
-                </p>
-                <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
+                @include('inc.home.product-details')
             </div>
         </div>
         @endforeach

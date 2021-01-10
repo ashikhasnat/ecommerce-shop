@@ -116,6 +116,7 @@
                             Add To
                             Cart</button>
                     </div>
+                    <Add-To-Wishlist :product-id="{{ $product->id }}"></Add-To-Wishlist>
                     <div class="text-sm font-medium text-gray-500">
                         <p><span class=" text-gray-700">SKU:</span> {{ $product->sku }}</p>
                         <hr class="my-1 opacity-50">
@@ -135,9 +136,27 @@
                 <div class="" slot="review">
                     @include('inc.home.product.review')
                 </div>
-                <div class="" slot="more-product">more</div>
+                <div class="" slot="more-product">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-8 mb-16">
+                        @forelse ($relatedProducts as $product)
+                        <div class="col-span-full sm:col-span-1">
+                            <div class=" h-60 w-full bg-cover bg-center bg-no-repeat"
+                                style="background-image: url({{ $product->thumbnail }});">
+                            </div>
+                            <div class="p-6 box-shadow" style="border: 1px solid rgba(102, 101, 101, 0.185);">
+                                @include('inc.home.product-details')
+                            </div>
+                        </div>
+                        @empty
+                        <div class="col-span-full sm:col-span-1">
+                            <h1 class=" text-2xl text-red-400">No Products</h1>
+                        </div>
+                        @endforelse
+
+                    </div>
+                </div>
             </Other-Product-Info>
         </div>
     </main>
-    
+
 </x-layouts.app>

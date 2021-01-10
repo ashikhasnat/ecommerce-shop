@@ -11,6 +11,7 @@ use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\ReviewController;
 use App\Http\Controllers\Home\ShopController;
 use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
+use App\Http\Controllers\Home\WishListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     ]);
 });
 
+Route::get('/wishlist', [WishListController::class, 'index'])->name('wishlist');
+Route::get('/api/wishlist', [WishListController::class, 'apiIndex']);
+Route::post('/api/wishlist', [WishListController::class, 'apiStore']);
+Route::delete('/api/wishlist/{id}', [WishListController::class, 'apiDestroy']);
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/{product:slug}', [HomeProductController::class, 'show'])->name(

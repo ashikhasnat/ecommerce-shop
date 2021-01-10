@@ -20,16 +20,12 @@
         <div class=" col-span-full lg:col-span-5 mt-6 lg:mt-0 lg:ml-5">
             <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-4">
                 @foreach ($singleCategories->products as $product)
-                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-72" style="max-height: 18rem;">
+                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-80" style="max-height: 20rem;">
                     <div class=" h-48 w-full bg-cover bg-center bg-no-repeat"
                         style="background-image: url({{ $product->thumbnail }});">
                     </div>
-                    <div class="p-6 box-shadow">
-                        <p class=" leading-4 text-sm break-words my-1">
-                            <a href="{{ route('home-product.show' , $product->slug) }}"
-                                class="text-gray-700 font-semibold">{{ $product->title }}</a>
-                        </p>
-                        <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
+                    <div class="px-4 py-2 box-shadow">
+                        @include('inc.home.product-details')
                     </div>
             </div>
             @endif

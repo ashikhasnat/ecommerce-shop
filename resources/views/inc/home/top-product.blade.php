@@ -19,11 +19,7 @@
                     <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
                 </div>
                 <div class="p-4 w-4/6" style="border: 1px solid rgba(92, 92, 92, 0.144);">
-                    <p class=" break-words">
-                        <a href="{{ route('home-product.show' , $product->slug) }}"
-                            class=" text-gray-700 font-semibold">{{ $product->title }}</a>
-                    </p>
-                    <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
+                    @include('inc.home.product-details')
                 </div>
             </div>
             @endforeach

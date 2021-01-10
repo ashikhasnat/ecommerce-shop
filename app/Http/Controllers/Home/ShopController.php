@@ -12,7 +12,9 @@ class ShopController extends Controller
     public function index()
     {
         $brands = Brand::all('name', 'id');
-        $products = Product::latest()->paginate(12);
+        $products = Product::latest()
+            ->with('reviews')
+            ->paginate(12);
         return view('home.shop.index', compact('brands', 'products'));
     }
 }

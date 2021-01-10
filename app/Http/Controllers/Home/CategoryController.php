@@ -12,7 +12,10 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $brands = Brand::all('name', 'id');
-        $products = $category->products()->paginate(12);
+        $products = $category
+            ->products()
+            ->with('reviews')
+            ->paginate(12);
         // dd($products);
         return view(
             'home.category.show',

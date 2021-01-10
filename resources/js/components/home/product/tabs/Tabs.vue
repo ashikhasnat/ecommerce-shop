@@ -6,7 +6,7 @@
           v-for="(tab, i) in tabs"
           :key="i"
           :class="{ ' text-teal-400': tab.isActive }"
-          class="mx-1 md:mx-5 mb-6"
+          class="mx-1 md:mx-5 mb-6 hover:text-teal-300 transition-colors duration-150 ease-linear"
         >
           <div class="cursor-pointer" @click="selectTab(tab)">
             {{ tab.name }}

@@ -37,11 +37,7 @@
                             style="background-image: url({{ $product->thumbnail }});">
                         </div>
                         <div class="p-6 box-shadow" style="border: 1px solid rgba(102, 101, 101, 0.185);">
-                            <p class=" leading-4 text-sm break-words my-1">
-                                <a href="{{ route('home-product.show' , $product->slug) }}"
-                                    class="text-gray-700 font-semibold">{{ $product->title }}</a>
-                            </p>
-                            <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
+                            @include('inc.home.product-details')
                         </div>
                     </div>
                     @endforeach

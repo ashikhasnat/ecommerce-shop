@@ -8,6 +8,14 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getAvgRatingAttribute()
+    {
+        $ratings = $this->reviews()
+            ->get()
+            ->avg('ratings');
+        return round($ratings);
+    }
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -27,5 +35,9 @@ class Product extends Model
     public function subcategory()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+    public function wishlist()
+    {
+        return $this->belongsTo(Wishlist::class);
     }
 }

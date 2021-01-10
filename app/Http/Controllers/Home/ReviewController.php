@@ -28,7 +28,7 @@ class ReviewController extends Controller
     public function store(Product $product)
     {
         $newReview = request()->validate([
-            'name' => ['required', 'string', 'max:255', 'min:10'],
+            'name' => ['required', 'string', 'max:255', 'min:5'],
             'review_text' => ['required', 'string', 'max:100', 'min:10'],
             'email' => ['email', 'required', 'unique:reviews'],
             'ratings' => ['required', 'max:5', 'min:1'],

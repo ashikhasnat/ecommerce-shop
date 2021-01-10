@@ -26,7 +26,7 @@
 
       <div class="" v-if="categoryId">
         <div class="" v-if="subcategories.length">
-          <h1 class="font-semibold my-1 p2">Select SubCetegory</h1>
+          <h1 class="font-semibold my-1 p2">Select SubCategory</h1>
           <select
             id="sub_category_id"
             name="sub_category_id"

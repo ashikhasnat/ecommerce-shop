@@ -8,10 +8,15 @@
                             " alt="profile image for user" class="object-cover w-20" />
             </div>
             <div class="rounded-lg text-sm w-full">
-                <p class="font-bold text-gray-600">
+                <p class="font-bold text-gray-600 flex items-center">
                     {{ $review->name }}
                     {{-- Name --}}
                     <span class="text-gray-400 text-xs font-normal">- {{ $review->created_at->format("M j, Y") }}</span>
+                    <span class=" ml-2">
+                        @foreach (range(1,$review->ratings) as $index)
+                        <i class="fas fa-star text-xs text-yellow-300 transform -translate-y-px"></i>
+                        @endforeach
+                    </span>
                 </p>
                 <p class="text-gray-500">
                     {{ $review->review_text }}
@@ -54,9 +59,9 @@
                 <textarea name="review_text" class=" border p-3 opacity-75 w-full h-40 focus:outline-none"
                     id="review_text" placeholder="Your Review*"></textarea>
                 <div class=" grid grid-cols-2 gap-x-2 my-4 opacity-75">
-                    <input class=" col-span-1 border p-3 focus:outline-none" type="text" name="name" id=""
+                    <input class=" col-span-1 border p-3 focus:outline-none" type="text" name="name" id="name"
                         placeholder="Name*" autocomplete="off">
-                    <input class=" col-span-1 border p-3 focus:outline-none" type="email" name="email" id=""
+                    <input class=" col-span-1 border p-3 focus:outline-none" type="email" name="email" id="email"
                         placeholder="Email*" autocomplete="false">
                 </div>
                 <button type="submit"

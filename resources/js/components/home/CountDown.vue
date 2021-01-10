@@ -105,7 +105,7 @@
 .deal-timer {
   color: #fff;
   text-align: center;
-  border: 1px solid turquoise;
+  border: 2px solid turquoise;
   right: 15px;
   left: 15px;
   bottom: 20px;
