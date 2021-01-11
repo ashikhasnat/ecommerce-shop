@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+
 <p class=" leading-4 break-words my-1">
     <a href="{{ route('home-product.show' , $product->slug) }}"
         class="text-gray-700 font-semibold">{{ $product->title }}</a>

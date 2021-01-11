@@ -23,7 +23,7 @@
     <div class="relative text-center mx-6">
       <span
         class="absolute bg-teal-400 text-white font-semibold text-xs w-5 h-5 right-0 rounded-full transform -translate-y-1 translate-x-3"
-        >{{ data.length }}</span
+        >{{ wishlistDataLength }}</span
       >
       <a href="/wishlist"><i class="far fa-heart hover:text-teal-400"></i></a>
     </div>
@@ -33,6 +33,7 @@
 
 <script>
 import Axios from 'axios'
+import { mapGetters } from 'vuex'
     export default {
         data() {
             return {
@@ -40,22 +41,18 @@ import Axios from 'axios'
                 data: ''
             }
         },
+        computed: {
+          ...mapGetters ({
+            wishlistDataLength: 'wishlistDataLength'
+          })
+        },
         mounted () {
-          this.fetchWishlistDataTotal();
+          this.$store.dispatch('fetchWishlistDataTotal')
         },
         methods: {
             showDropdown() {
                 this.show = !this.show
             },
-            fetchWishlistDataTotal() {
-              Axios.get('/api/wishlist')
-                  .then((res) => {
-                    this.data = res.data
-                  })
-            }
         },
     }
 </script>
-
-<style scoped>
-</style>

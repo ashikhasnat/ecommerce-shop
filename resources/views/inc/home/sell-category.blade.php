@@ -20,10 +20,19 @@
         <div class=" col-span-full lg:col-span-5 mt-6 lg:mt-0 lg:ml-5">
             <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-4">
                 @foreach ($singleCategories->products as $product)
-                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-80" style="max-height: 20rem;">
-                    <div class=" h-48 w-full bg-cover bg-center bg-no-repeat"
+                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-80 relative"
+                    style="max-height: 20rem;">
+                    <div class=" h-48 w-full bg-cover bg-center bg-no-repeat single-product-card"
                         style="background-image: url({{ $product->thumbnail }});">
+                        <div
+                            class=" single-product-child-card absolute bottom-1/2 right-1 flex flex-col items-center justify-center">
+                            <Add-To-Wishlist-Home :product-id="{{ $product->id }}"></Add-To-Wishlist-Home>
+                            <a href="{{ route('home-product.show',$product->id) }}"
+                                class="bg-white transform rounded-full text-center pt-2 pb-2 px-3 hover:bg-red-500 hover:text-white"><i
+                                    class="fas fa-long-arrow-alt-right text-lg"></i></a>
+                        </div>
                     </div>
+
                     <div class="px-4 py-2 box-shadow">
                         @include('inc.home.product-details')
                     </div>

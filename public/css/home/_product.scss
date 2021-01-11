@@ -1,1 +1,17 @@
+.single-product-card{
+    .single-product-child-card{
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s linear;
 
+    }
+    &:hover{
+        .single-product-child-card{
+            opacity: .85;
+            visibility: visible;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+}

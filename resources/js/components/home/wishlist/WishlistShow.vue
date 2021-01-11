@@ -1,11 +1,11 @@
 <template>
-  <div class="">
+  <div class="flex flex-col">
     <div
-      class="grid grid-cols-4 rounded-md text-xs sm:text-base"
+      class="grid grid-cols-4 rounded-md text-xs sm:text-base mb-6"
       v-for="(product, i) in products"
       :key="i"
     >
-      <div class="col-span-1 flex items-center justify-center">
+      <div class="col-span-1 flex items-center">
         <div class="mr-2 lg:mr-8">
           <i
             @click="DeleteProductFromWishlist(product.id)"
@@ -70,6 +70,7 @@ import Axios from 'axios'
                 .then(() => {
                     console.log('yes');
                     this.fetchWishlistData()
+                    this.$store.dispatch('fetchWishlistDataTotal')
                 })
             },
             fetchWishlistData(){

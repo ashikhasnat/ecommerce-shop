@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from './store/store.js'
 import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
@@ -13,6 +14,7 @@ import Quantity from './components/home/product/Quantity.vue'
 import OtherProductInfo from './components/home/product/OtherInfoTab.vue'
 import Ratings from './components/home/product/Rating.vue'
 import AddToWishlist from './components/home/wishlist/AddToWishlist.vue'
+import AddToWishlistHome from './components/home/wishlist/AddToWishlistHome.vue'
 import WishlistShow from './components/home/wishlist/WishlistShow.vue'
 require('./bootstrap')
 
@@ -33,6 +35,8 @@ const app = new Vue({
     OtherProductInfo,
     Ratings,
     AddToWishlist,
+    AddToWishlistHome,
     WishlistShow,
   },
+  store,
 })

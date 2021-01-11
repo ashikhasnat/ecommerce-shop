@@ -36,8 +36,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-8 mb-16">
                     @foreach ($products as $product)
                     <div class="col-span-full sm:col-span-1">
-                        <div class=" h-60 w-full bg-cover bg-center bg-no-repeat"
+                        <div class=" h-60 w-full bg-cover bg-center bg-no-repeat single-product-card relative"
                             style="background-image: url({{ $product->thumbnail }});">
+                            <div
+                                class=" single-product-child-card absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
+                                <Add-To-Wishlist-Home :product-id="{{ $product->id }}"></Add-To-Wishlist-Home>
+                                <a href="{{ route('home-product.show',$product->id) }}"
+                                    class="bg-white rounded-full text-center pt-2 pb-2 px-3 ml-2 hover:bg-red-500 hover:text-white"><i
+                                        class="fas fa-long-arrow-alt-right text-lg"></i></a>
+                            </div>
                         </div>
                         <div class="p-6 box-shadow" style="border: 1px solid rgba(102, 101, 101, 0.185);">
                             @include('inc.home.product-details')
@@ -47,6 +54,5 @@
                 </div>
                 <span class=" mb-8 flex justify-center">{{ $products->links() }}</span>
             </div>
-
     </main>
 </x-layouts.app>
