@@ -19,7 +19,7 @@
                     <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
                 </div>
                 <div class="p-4 w-4/6" style="border: 1px solid rgba(92, 92, 92, 0.144);">
-                    @include('inc.home.product-details')
+                    @include('inc.home.product-details-home')
                 </div>
             </div>
             @endforeach

@@ -36,6 +36,10 @@ class Product extends Model
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
+    public function cart()
+    {
+        return $this->belongsTo(Wishlist::class);
+    }
     public function wishlist()
     {
         return $this->belongsTo(Wishlist::class);

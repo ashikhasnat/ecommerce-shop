@@ -10,18 +10,21 @@ import Slider from './components/home/Slider.vue'
 import CountDown from './components/home/CountDown.vue'
 import ProductCountDown from './components/home/product/ProductCountDown.vue'
 import ProductSlider from './components/home/product/ProductSlider.vue'
-import Quantity from './components/home/product/Quantity.vue'
 import OtherProductInfo from './components/home/product/OtherInfoTab.vue'
 import Ratings from './components/home/product/Rating.vue'
 import AddToWishlist from './components/home/wishlist/AddToWishlist.vue'
 import AddToWishlistHome from './components/home/wishlist/AddToWishlistHome.vue'
 import WishlistShow from './components/home/wishlist/WishlistShow.vue'
+import CartShow from './components/home/cart/CartShow.vue'
+import AddToCart from './components/home/cart/AddToCart.vue'
+import Toastr from './components/home/header/Toastr.vue'
 require('./bootstrap')
 
 const app = new Vue({
   el: '#app',
   components: {
     App,
+    Toastr,
     AdminNav,
     ProductDetails,
     SelectCategory,
@@ -30,13 +33,14 @@ const app = new Vue({
     Slider,
     CountDown,
     ProductSlider,
-    Quantity,
     ProductCountDown,
     OtherProductInfo,
     Ratings,
     AddToWishlist,
     AddToWishlistHome,
     WishlistShow,
+    CartShow,
+    AddToCart,
   },
   store,
 })

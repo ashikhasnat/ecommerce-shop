@@ -8,70 +8,73 @@
       <i class="fas fa-heart mr-2"></i>
       <span>Add To Wishlist</span>
     </span>
-    <!-- <p class="mx-2" v-for="(da, i) in data" :key="i">{{ da.id }}</p> -->
-    <p
-      v-if="msg.length"
-      class="box-shadow absolute py-2 max-w-max-content pl-4 pr-10 border transition-all duration-200 ease-linear"
-      :class="msgClasses"
-    >
-      {{ msg }}
-    </p>
   </div>
 </template>
 
 <script>
-    import Axios from 'axios'
-    export default {
-        name: 'AddToWishlist',
-        props: ['product-id'],
-        data() {
-            return {
-                msg: '',
-                msgClasses: '',
-                data: '',
-                show: null
-            }
-        },
-        mounted () {
-            this.fetchWishlistData()
-        },
-        methods: {
-            postToWishlist() {
-                Axios.post('/api/wishlist',{
-                    'product_id': this.productId
-                })
-                    .then((res) => {
-                        this.msg = 'Product added to Wishlist'
-                        this.msgClasses = 'bg-green-200 border-green-400 text-green-600'
-                        setTimeout(() => {
-                                this.msg = ''
-                            }, 2000);
-                        this.show = true
-                        this.$store.dispatch('fetchWishlistDataTotal')
-                    })
-                    .catch((error) => {
-                        if (error.response.status == 500) {
-                        // Request made and server responded
-                            this.msg = 'Product already in Wishlist'
-                            this.msgClasses = 'bg-red-200 border-red-400 text-red-600'
-                            setTimeout(() => {
-                                this.msg = ''
-                            }, 2000);
-                        }
-                    })
-            },
-            fetchWishlistData(){
-                Axios.get('/api/wishlist')
-                    .then((res) => {
-                        this.data = res.data
-                    this.data.forEach(element => {
-                        if (element.product_id == this.productId) {
-                           return this.show = true
-                        }  
-                        });
-                    })
-            }
-            
-        },
+import Axios from 'axios'
+export default {
+  name: 'AddToWishlist',
+  props: {
+    product_id: Number,
+    auth_id: {
+      type: Number,
+      default: null,
+    },
+  },
+  data() {
+    return {
+      data: '',
+      show: null,
     }
+  },
+  mounted() {
+    this.fetchWishlistData()
+  },
+  methods: {
+    postToWishlist() {
+      Axios.post('/api/wishlist', {
+        product_id: this.product_id,
+      })
+        .then((res) => {
+          this.show = true
+          this.$store.dispatch('fetchWishlistDataTotal')
+          this.$store.commit('setClasses', 'success')
+          this.$store.commit('setToastrMsg', 'Added To Wishlist')
+          setTimeout(() => {
+            this.$store.commit('setToastrMsg', '')
+          }, 3000)
+        })
+        .catch((error) => {
+          if (this.auth_id == null) {
+            // Request made and server responded
+            this.$store.commit('setClasses', 'error')
+            this.$store.commit('setToastrMsg', 'Log In First')
+            setTimeout(() => {
+              this.$store.commit('setToastrMsg', '')
+            }, 5000)
+            return
+          }
+          if (error.response.status == 500) {
+            // Request made and server responded
+            this.$store.commit('setClasses', 'error')
+            this.$store.commit('setToastrMsg', 'Already in Wishlist')
+            setTimeout(() => {
+              this.$store.commit('setToastrMsg', '')
+            }, 5000)
+          }
+        })
+    },
+    fetchWishlistData() {
+      Axios.get('/api/wishlist').then((res) => {
+        this.data = res.data
+        this.data.forEach((element) => {
+          if (element.product_id == this.product_id) {
+            return (this.show = true)
+          }
+        })
+      })
+    },
+  },
+}
 </script>

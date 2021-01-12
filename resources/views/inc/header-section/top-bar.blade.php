@@ -1,4 +1,4 @@
-<div class=" flex justify-between my-8 items-center">
+<div class=" flex justify-between my-8 items-center mx-auto sm:w-full px-2 md:px-4 md:w-11/12">
     <div class="logo w-40">
         <a href="/">
             <img src="{{ asset('imgs/logo.png') }}" alt="" class=" object-cover">
@@ -9,15 +9,6 @@
             class="rounded-none border border-r-0 leading-5 text-base w-full focus:outline-none" placeholder="Search">
         <i class="fas fa-search py-3 text-xl px-7 bg-teal-400 text-white"></i>
     </div>
-    <account-details>
-        {{-- <div class="relative text-center mx-6">
-            <span
-                class="absolute bg-teal-400 text-white font-semibold text-xs w-5 h-5 right-0 rounded-full transform -translate-y-1 translate-x-3">0</span>
-            <a href="{{ route('wishlist') }}"><i class="far fa-heart hover:text-teal-400"></i></a>
-        </div> --}}
-        <div class="relative text-center">
-            <span
-                class="absolute bg-teal-400 text-white font-semibold text-xs w-5 h-5 right-0 rounded-full transform -translate-y-1 translate-x-3">0</span>
-            <i class="fas fa-shopping-cart"></i></div>
+    <account-details @auth :auth_id="true" @endauth>
     </account-details>
 </div>

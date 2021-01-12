@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
@@ -32,5 +33,6 @@ class DatabaseSeeder extends Seeder
         Image::factory(1250)->create();
         Review::factory(500)->create();
         Wishlist::factory(5)->create();
+        Cart::factory(5)->create();
     }
 }

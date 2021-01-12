@@ -1,5 +1,6 @@
 <x-layouts.app>
-    <div class="my-8 grid grid-cols-2 lg:grid-cols-8 container mx-auto">
+    <div class="my-8 grid grid-cols-2 lg:grid-cols-8 container mx-auto relative">
+
         @include('inc.home.slider')
         <div class=" col-span-full lg:col-span-2 lg:ml-7">
             <div class=" border-b-2 pb-2 relative mb-5">
@@ -15,7 +16,7 @@
                         <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
                     </div>
                     <div class=" overflow-x-hidden">
-                        @include('inc.home.product-details')
+                        @include('inc.home.product-details-home')
                     </div>
                 </div>
                 @endforeach

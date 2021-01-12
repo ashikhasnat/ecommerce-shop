@@ -19,6 +19,7 @@
 
 <body class="bg-white antialiased font-sans">
     <div id="app" class="mx-auto">
+        <Toastr text_msg="" text_classes=""></Toastr>
         @include('inc.home.header')
         {{ $slot }}
         @include('inc.footer-section.footer-nav')

@@ -107,16 +107,14 @@
                                    "upcoming":"Future"
                                   }}'></product-count-down>
                     </div>
-                    <div class=" flex mb-4">
-                        <div class="mr-3">
-                            <quantity></quantity>
-                        </div>
-                        <button
-                            class=" font-bold text-sm py-1 px-5 border bg-teal-400 text-white outline-none focus:outline-none">
-                            Add To
-                            Cart</button>
+
+                    <div class=" my-6">
+                        <Add-To-Cart :product_id="{{ $product->id }}" :cart_option="true" :price="{{ $product->price }}"
+                            @auth :auth_id="{{ auth()->id() }}" @endauth></Add-To-Cart>
                     </div>
-                    <Add-To-Wishlist :product-id="{{ $product->id }}"></Add-To-Wishlist>
+
+                    <Add-To-Wishlist :product_id="{{ $product->id }}" @auth :auth_id="{{ auth()->id() }}" @endauth>
+                    </Add-To-Wishlist>
                     <div class="text-sm font-medium text-gray-500">
                         <p><span class=" text-gray-700">SKU:</span> {{ $product->sku }}</p>
                         <hr class="my-1 opacity-50">

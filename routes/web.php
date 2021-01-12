@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
@@ -25,8 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
 Auth::routes();
+Route::get('/', [HomeController::class, 'index']);
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/product', ProductController::class);
@@ -45,9 +46,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 });
 
 Route::get('/wishlist', [WishListController::class, 'index'])->name('wishlist');
-Route::get('/api/wishlist', [WishListController::class, 'apiIndex']);
-Route::post('/api/wishlist', [WishListController::class, 'apiStore']);
-Route::delete('/api/wishlist/{id}', [WishListController::class, 'apiDestroy']);
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::group(['prefix' => '/api'], function () {
+    Route::get('/cart', [CartController::class, 'apiIndex']);
+    Route::get('/cart-total-amount', [CartController::class, 'totalAmount']);
+    Route::post('/cart/{id}', [CartController::class, 'apiStore']);
+    Route::put('/cart/{id}', [CartController::class, 'apiUpdate']);
+    Route::get('/wishlist', [WishListController::class, 'apiIndex']);
+    Route::post('/wishlist', [WishListController::class, 'apiStore']);
+    Route::delete('/cart/{id}', [CartController::class, 'apiDestroy']);
+    Route::delete('/wishlist/{id}', [WishListController::class, 'apiDestroy']);
+});
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/{product:slug}', [HomeProductController::class, 'show'])->name(

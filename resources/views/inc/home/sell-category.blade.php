@@ -25,16 +25,19 @@
                     <div class=" h-48 w-full bg-cover bg-center bg-no-repeat single-product-card"
                         style="background-image: url({{ $product->thumbnail }});">
                         <div
-                            class=" single-product-child-card absolute bottom-1/2 right-1 flex flex-col items-center justify-center">
-                            <Add-To-Wishlist-Home :product-id="{{ $product->id }}"></Add-To-Wishlist-Home>
+                            class=" single-product-child-card flex absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-90">
+                            <Add-To-Cart :product_id="{{ $product->id }}" :price="{{ $product->price }}"
+                                :cart_option="false" @auth :auth_id="{{ auth()->id() }}" @endauth></Add-To-Cart>
+                            <Add-To-Wishlist-Home :product_id="{{ $product->id }}" @auth :auth_id="{{ auth()->id() }}"
+                                @endauth></Add-To-Wishlist-Home>
                             <a href="{{ route('home-product.show',$product->id) }}"
-                                class="bg-white transform rounded-full text-center pt-2 pb-2 px-3 hover:bg-red-500 hover:text-white"><i
-                                    class="fas fa-long-arrow-alt-right text-lg"></i></a>
+                                class="bg-white rounded-full flex justify-center items-center w-10 h-10 hover:bg-red-500 hover:text-white ml-1"><i
+                                    class="fas fa-long-arrow-alt-right text-base"></i></a>
                         </div>
                     </div>
 
                     <div class="px-4 py-2 box-shadow">
-                        @include('inc.home.product-details')
+                        @include('inc.home.product-details-home')
                     </div>
             </div>
             @endif

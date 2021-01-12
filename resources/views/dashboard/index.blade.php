@@ -1,5 +1,6 @@
 <x-layouts.dashboard>
-    <main class="sm:container sm:mx-auto sm:mt-10">
+    <main class="sm:container sm:mx-auto sm:mt-10 relative">
+        
         <div class="w-full sm:px-6">
 
             @if (session('status'))
