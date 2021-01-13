@@ -30,14 +30,5 @@ export default {
       getTotalAmount: 'getTotalAmount',
     }),
   },
-  methods: {
-    convertToCurrency(price) {
-      //   price = price / 100
-      return price.toLocaleString('es-US', {
-        style: 'currency',
-        currency: 'USD',
-      })
-    },
-  },
 }
 </script>

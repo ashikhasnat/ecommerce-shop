@@ -1,29 +1,44 @@
 <main class=" bg-gray-200 mb-10">
-    <div class="container mx-auto bg-white px-5 py-20">
+    <div class="container mx-auto bg-white px-5 py-20 relative">
+        <div class=" absolute transform -translate-y-2">
+            <h1 class=" text-2xl font-bold uppercase">
+                Top Products
+            </h1>
+            <hr class=" bg-teal-400 h-1 w-20 absolute bottom-0 transform translate-y-1">
+        </div>
         <div class=" border-b-2 border-gray-200 pb-4 relative mb-10 flex justify-between items-center">
-            <div class="">
-                <h1 class=" text-2xl font-bold uppercase">
-                    Top Products
-                </h1>
-                <hr class=" bg-teal-400 h-1 w-20 absolute bottom-0 transform translate-y-1">
-            </div>
             <div class="font-semibold text-sm">
-                <a class=" py-1 px-3 text-gray-100 hover:text-teal-400 mx-2 bg-teal-400" href="">Latest Products</a>
-                <a class=" py-1 px-3 text-gray-700 hover:text-teal-400 mx-2" href="">Top Rating</a>
+                {{-- <a class=" py-1 px-3 text-gray-100 hover:text-teal-400 mx-2 bg-teal-400" href="">Latest Products</a>
+                <a class=" py-1 px-3 text-gray-700 hover:text-teal-400 mx-2" href="">Top Rated</a> --}}
+                <Top-Rated-And-Seller>
+                    <div slot="latest-products" class=" grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach ($topProducts as $product)
+                        <div class="mx-2 flex my-4 lg:my-1 col-span-1 h-32 ">
+                            <div class=" w-2/6">
+                                <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
+                            </div>
+                            <div class="p-4 w-4/6" style="border: 1px solid rgba(92, 92, 92, 0.144);">
+                                @include('inc.home.product-details-home')
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div slot="top-rated" class=" grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach ($latestProducts as $product)
+                        <div class="mx-2 flex my-4 lg:my-1 col-span-1 h-32 ">
+                            <div class=" w-2/6">
+                                <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
+                            </div>
+                            <div class="p-4 w-4/6" style="border: 1px solid rgba(92, 92, 92, 0.144);">
+                                @include('inc.home.product-details-home')
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </Top-Rated-And-Seller>
             </div>
         </div>
-        <div class=" grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($topProducts as $product)
-            <div class="mx-2 flex my-4 lg:my-1 col-span-1 h-32 ">
-                <div class=" w-2/6">
-                    <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
-                </div>
-                <div class="p-4 w-4/6" style="border: 1px solid rgba(92, 92, 92, 0.144);">
-                    @include('inc.home.product-details-home')
-                </div>
-            </div>
-            @endforeach
-        </div>
+
         <div class=" px-1">
             <div class=" bg-cover bg-center flex justify-center items-center flex-col py-12 my-20"
                 style="background-image: url({{ asset('imgs/top-product.jpg') }})">

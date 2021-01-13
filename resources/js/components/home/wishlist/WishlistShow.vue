@@ -26,7 +26,10 @@
         </a>
       </div>
       <div class="col-span-1 justify-self-center transform translate-y-7">
-        <p class="text-gray-700 font-semibold">${{ product.price }}</p>
+        <p
+          class="text-gray-700 font-semibold"
+          v-text="convertToCurrency(product.price)"
+        ></p>
       </div>
       <div class="col-span-1 justify-self-center">
         <div

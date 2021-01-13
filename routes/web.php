@@ -10,6 +10,7 @@ use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\ReviewController;
+use App\Http\Controllers\Home\SearchController;
 use App\Http\Controllers\Home\ShopController;
 use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
 use App\Http\Controllers\Home\WishListController;
@@ -49,6 +50,7 @@ Route::get('/wishlist', [WishListController::class, 'index'])->name('wishlist');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::group(['prefix' => '/api'], function () {
     Route::get('/cart', [CartController::class, 'apiIndex']);
+    Route::post('/search', [SearchController::class, 'apiIndex']);
     Route::get('/cart-total-amount', [CartController::class, 'totalAmount']);
     Route::post('/cart/{id}', [CartController::class, 'apiStore']);
     Route::put('/cart/{id}', [CartController::class, 'apiUpdate']);

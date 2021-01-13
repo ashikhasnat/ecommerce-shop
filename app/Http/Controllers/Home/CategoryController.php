@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $products = $category
             ->products()
             ->with('reviews')
-            ->paginate(12);
+            ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug']);
         // dd($products);
         return view(
             'home.category.show',

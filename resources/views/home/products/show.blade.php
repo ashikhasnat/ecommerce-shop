@@ -31,7 +31,7 @@
         <section class=" grid grid-cols-1 lg:grid-cols-2 gap-x-4">
             <div class=" col-span-1">
                 @if ($product->images)
-                <product-slider inline-template>
+                <product-slider inline-template :slider_image_to_show="{{ $product->images->count() }}">
                     <div class="">
                         <agile class="main" ref="main" :options="options1" :as-nav-for="asNavFor1">
                             @foreach ($product->images as $image)
@@ -66,7 +66,8 @@
             <div class=" col-span-1 mt-4 lg:mt-0">
                 <div class=" font-bold">
                     <h1 class=" text-3xl">{{ $product->title }}</h1>
-                    <p class=" text-teal-400 text-2xl my-2">${{ $product->price }}</p>
+                    <p class=" text-teal-400 text-2xl my-2" v-text="convertToCurrency({{ $product->price }})">
+                    </p>
                     <div class="flex justify-start items-center">
                         <p class="mr-1">Brand:</p>
                         <div class="">
@@ -142,7 +143,7 @@
                                 style="background-image: url({{ $product->thumbnail }});">
                             </div>
                             <div class="p-6 box-shadow" style="border: 1px solid rgba(102, 101, 101, 0.185);">
-                                @include('inc.home.product-details')
+                                @include('inc.home.product-details-home')
                             </div>
                         </div>
                         @empty

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import store from './store/store.js'
 import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
+import SearchBar from './components/home/header/Search.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
 import ProductDetails from './components/admin/product/ProductDetails.vue'
 import Dropdown from './components/home/header/Dropdown.vue'
@@ -15,17 +16,30 @@ import Ratings from './components/home/product/Rating.vue'
 import AddToWishlist from './components/home/wishlist/AddToWishlist.vue'
 import AddToWishlistHome from './components/home/wishlist/AddToWishlistHome.vue'
 import WishlistShow from './components/home/wishlist/WishlistShow.vue'
+import TopRatedAndSeller from './components/home/TopRatedAndLatest.vue'
 import CartShow from './components/home/cart/CartShow.vue'
 import AddToCart from './components/home/cart/AddToCart.vue'
 import Toastr from './components/home/header/Toastr.vue'
 require('./bootstrap')
 
+Vue.mixin({
+  methods: {
+    convertToCurrency(price) {
+      //   price = price / 100
+      return price.toLocaleString('es-US', {
+        style: 'currency',
+        currency: 'USD',
+      })
+    },
+  },
+})
 const app = new Vue({
   el: '#app',
   components: {
     App,
     Toastr,
     AdminNav,
+    SearchBar,
     ProductDetails,
     SelectCategory,
     Dropdown,
@@ -39,6 +53,7 @@ const app = new Vue({
     AddToWishlist,
     AddToWishlistHome,
     WishlistShow,
+    TopRatedAndSeller,
     CartShow,
     AddToCart,
   },

@@ -10,20 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class WishListController extends Controller
 {
-    public function index(Wishlist $wishlist)
+    public function index()
     {
-        $wishlistProduct = DB::table('wishlists')
-            ->join('products', 'wishlists.product_id', 'products.id')
-            ->select(
-                'products.*',
-                'wishlists.user_id',
-                'wishlists.id',
-                'wishlists.product_id'
-            )
-            ->where('wishlists.user_id', auth()->id())
-            ->get();
         // dd($wishlistProduct);
-        return view('home.wishlist', compact('wishlistProduct'));
+        return view('home.wishlist');
     }
     public function apiIndex(Wishlist $wishlist)
     {

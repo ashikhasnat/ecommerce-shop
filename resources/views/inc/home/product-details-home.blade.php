@@ -18,4 +18,4 @@
     <a href="{{ route('home-product.show' , $product->slug) }}"
         class="text-gray-700 font-semibold">{{ $product->title }}</a>
 </p>
-<p class=" text-teal-400 font-bold ">${{ $product->price }}</p>
+<p class=" text-teal-400 font-bold " v-text="convertToCurrency({{ $product->price }})"></p>

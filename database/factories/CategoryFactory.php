@@ -26,6 +26,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name),
+            'for_sale' => rand(0, 1),
         ];
     }
 }

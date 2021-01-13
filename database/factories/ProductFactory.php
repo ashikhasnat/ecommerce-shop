@@ -36,6 +36,9 @@ class ProductFactory extends Factory
             'category_id' => rand(1, 10),
             'sub_category_id' => rand(1, 20),
             'stock_status' => rand(0, 1),
+            'top_rated' => rand(0, 1),
+            'best_seller' => rand(0, 1),
+            'weekly_deal' => rand(0, 1),
             'short_details' => $this->faker->sentence(40),
             'long_details' => $this->faker->sentence(300),
         ];

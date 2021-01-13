@@ -10,7 +10,7 @@
                 <hr class=" bg-teal-400 h-1 w-16 absolute bottom-0 transform translate-y-1">
             </div>
             <div class="">
-                @foreach ($products as $product)
+                @foreach ($bestSeller as $product)
                 <div class="p-3 border mx-2 flex my-4 lg:my-1 ">
                     <div class=" w-24 h-24 lg:w-20 lg:h-20 border mr-2" style="min-width: 6rem">
                         <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">

@@ -6,7 +6,7 @@
             :auth_id="{{ auth()->id() }}" @endauth></Add-To-Cart>
         <Add-To-Wishlist-Home :product_id="{{ $product->id }}" @auth :auth_id="{{ auth()->id() }}" @endauth>
         </Add-To-Wishlist-Home>
-        <a href="{{ route('home-product.show',$product->id) }}"
+        <a href="{{ route('home-product.show',$product->slug) }}"
             class="bg-white rounded-full text-center pt-2 pb-2 px-3 ml-2 hover:bg-red-500 hover:text-white"><i
                 class="fas fa-long-arrow-alt-right text-lg"></i></a>
     </div>
@@ -33,5 +33,5 @@
         <a href="{{ route('home-product.show' , $product->slug) }}"
             class="text-gray-700 font-semibold">{{ $product->title }}</a>
     </p>
-    <p class=" text-teal-400 font-bold">${{ $product->price }}</p>
+    <p class=" text-teal-400 font-bold" v-text="convertToCurrency({{ $product->price }})"></p>
 </div>

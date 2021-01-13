@@ -1,20 +1,22 @@
 <template>
-  <div v-show="isActive" class="mt-6">
+  <div v-show="isActive">
     <slot></slot>
   </div>
 </template>
 
 <script>
-    export default { 
+export default {
   props: {
     name: { required: true },
-    selected: { default: false } },
+    selected: { default: false },
+  },
   data() {
     return {
-      isActive: false };
+      isActive: false,
+    }
   },
   mounted() {
-    this.isActive = this.selected;
-  } 
-    }
+    this.isActive = this.selected
+  },
+}
 </script>

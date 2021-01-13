@@ -27,6 +27,9 @@ class CreateProductsTable extends Migration
                 ->nullable()
                 ->default(0);
             $table->tinyInteger('stock_status')->default(0);
+            $table->tinyInteger('top_rated')->default(0);
+            $table->tinyInteger('best_seller')->default(0);
+            $table->tinyInteger('weekly_deal')->default(0);
             $table->mediumText('short_details');
             $table->text('long_details');
             $table->timestamps();

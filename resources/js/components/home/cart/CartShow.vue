@@ -102,13 +102,6 @@ export default {
         console.log('ok')
       })
     },
-    convertToCurrency(price) {
-      //   price = price / 100
-      return price.toLocaleString('es-US', {
-        style: 'currency',
-        currency: 'USD',
-      })
-    },
     DeleteProductFromCart(id) {
       axios.delete(`/api/cart/${id}`).then(() => {
         this.$store.dispatch('fetchCartItemTotal')

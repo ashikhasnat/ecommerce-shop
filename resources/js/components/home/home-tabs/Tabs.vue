@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="flex justify-center">
-      <ul class="flex text-base lg:text-xl font-bold uppercase">
+    <div class="flex justify-end">
+      <ul class="flex font-bold uppercase">
         <li
           v-for="(tab, i) in tabs"
           :key="i"
-          :class="{ 'text-teal-400': tab.isActive }"
-          class="mx-1 md:mx-5 mb-6 hover:text-teal-300 transition-colors duration-150 ease-linear"
+          :class="{ 'text-white bg-teal-400  hover:text-white': tab.isActive }"
+          class="mx-1 py-1 px-3 md:mx-5 mb-8 hover:opacity-75 transition-colors duration-150 ease-linear"
         >
           <div class="cursor-pointer" @click="selectTab(tab)">
             {{ tab.name }}

@@ -6,10 +6,15 @@
 
 <script>
 import { VueAgile } from 'vue-agile'
-    export default {
-  components: {
-    agile: VueAgile 
+export default {
+  props: {
+    slider_image_to_show: {
+      type: Number,
     },
+  },
+  components: {
+    agile: VueAgile,
+  },
   data() {
     return {
       asNavFor1: [],
@@ -17,27 +22,34 @@ import { VueAgile } from 'vue-agile'
       options1: {
         dots: false,
         fade: true,
-        navButtons: false },
-    options2: {
+        navButtons: false,
+      },
+      options2: {
         dots: false,
         infinite: true,
         navButtons: false,
         responsive: [
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 5 } },
-        {
-          breakpoint: 1000,
-          settings: {
-            navButtons: false } }] },
-      };
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: this.slider_image_to_show,
+            },
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              navButtons: false,
+            },
+          },
+        ],
+      },
+    }
   },
   mounted() {
-    this.asNavFor1.push(this.$refs.thumbnails);
-    this.asNavFor2.push(this.$refs.main);
-  } 
-    }
+    this.asNavFor1.push(this.$refs.thumbnails)
+    this.asNavFor2.push(this.$refs.main)
+  },
+}
 </script>
 
 <style>

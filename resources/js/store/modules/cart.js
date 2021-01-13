@@ -53,11 +53,7 @@ const getters = {
   getTotalAmount: (state) => {
     return state.totalAmount
   },
-  // CartItemLoop2: (state) => {
-  //   return Object.entries(state.cartItems).forEach(([key, value]) =>
-  //     console.log(key, value),
-  //   )
-  // },
+
 }
 
 export default {

@@ -16,7 +16,7 @@ class SubCategoryController extends Controller
         $products = $subCategory
             ->products()
             ->with('reviews')
-            ->paginate();
+            ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug']);
         // dd($products);
         return view(
             'home.subcategory.show',

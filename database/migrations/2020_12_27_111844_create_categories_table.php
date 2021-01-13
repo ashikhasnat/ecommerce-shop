@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('slug')->nullable();
+            $table->tinyInteger('for_sale')->default(0);
             $table->timestamps();
         });
     }

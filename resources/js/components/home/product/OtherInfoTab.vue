@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tabs class="">
+    <tabs>
       <tab name="Description">
         <slot name="description"></slot>
       </tab>
@@ -20,11 +20,9 @@
 <script>
 import Tab from './tabs/Tab.vue'
 import Tabs from './tabs/Tabs.vue'
-    export default {
+export default {
   components: { Tab, Tabs },
-        
-    }
+}
 </script>
 
-<style>
-</style>
+<style></style>

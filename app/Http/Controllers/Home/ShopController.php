@@ -14,7 +14,8 @@ class ShopController extends Controller
         $brands = Brand::all('name', 'id');
         $products = Product::latest()
             ->with('reviews')
-            ->paginate(12);
+            ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug']);
+        // dd($products);
         return view('home.shop.index', compact('brands', 'products'));
     }
 }
