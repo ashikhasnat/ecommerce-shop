@@ -18,19 +18,21 @@ class HomeController extends Controller
             ->get(['id', 'name', 'slug'])
             ->random(2);
         $weeklyProducts = Product::where('weekly_deal', 1)
-            ->with('reviews')
             ->get(['id', 'title', 'price', 'slug', 'thumbnail'])
             ->random(4);
         $bestSeller = Product::where('best_seller', 1)
-            ->with('reviews')
             ->get(['id', 'title', 'price', 'slug', 'thumbnail'])
             ->random(4);
+        $mainSlider = Product::where('main_slider', 1)
+            ->with('brand')
+            ->with('category')
+            ->latest()
+            ->take(4)
+            ->get();
         $topProducts = Product::where('top_rated', 1)
-            ->with('reviews')
             ->get() //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
             ->random(6);
         $latestProducts = Product::latest()
-            ->with('reviews')
             ->take(6)
             ->get(['id', 'title', 'price', 'slug', 'thumbnail']);
         // dd($products);
@@ -41,7 +43,8 @@ class HomeController extends Controller
                 'saleCategories',
                 'topProducts',
                 'bestSeller',
-                'latestProducts'
+                'latestProducts',
+                'mainSlider'
             )
         );
     }

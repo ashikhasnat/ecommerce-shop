@@ -1,6 +1,6 @@
 <div class=" col-span-full lg:col-span-6">
     <slider>
-        @foreach ($topProducts as $product)
+        @foreach ($mainSlider as $product)
         <div slot="slide" class="slide bg-white home-slide">
             <section class="w-full h-full relative" style="background-image: url({{ $product->thumbnail }});       background-position: center;
                 background-size: cover;background-repeat: no-repeat;">

@@ -12,10 +12,11 @@ class Product extends Model
     public function getAvgRatingAttribute()
     {
         $ratings = $this->reviews()
-            ->get()
+            ->get('ratings')
             ->avg('ratings');
         return round($ratings);
     }
+    
     public function brand()
     {
         return $this->belongsTo(Brand::class);

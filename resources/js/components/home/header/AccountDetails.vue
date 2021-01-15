@@ -13,7 +13,9 @@
         ]"
         class="text-sm z-50 absolute left-0 bg-white w-36 px-3 box-shadow mt-2 transition-all duration-200 ease-linear rounded-sm"
       >
-        <li class="py-2 hover:text-teal-400"><a href="">My Account</a></li>
+        <li class="py-2 hover:text-teal-400">
+          <a href="/shop/my-account">My Account</a>
+        </li>
         <li class="py-2 border-t border-b border-gray-100 hover:text-teal-400">
           <a href="/wishlist">Wishlist</a>
         </li>

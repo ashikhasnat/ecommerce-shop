@@ -14,15 +14,29 @@
             </div>
             <p class="text-xl font-extrabold uppercase">{{ $subCategory->name }}</p>
         </div>
+        <div class=" flex justify-between items-center mb-5">
+            <div class="relative">
+                <h1 class=" text-xl font-bold uppercase">
+                    BRANDS
+                </h1>
+                <hr class=" bg-teal-400 h-px w-16 absolute bottom-0 transform translate-y-1">
+            </div>
+            <div class="">
+                <Sort-By>
+                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?sort=asc">Sort By Name: A-Z</a>
+                    </li>
+                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?sort=desc">Sort By Name: Z-A</a>
+                    </li>
+                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?price=asc">Sort By Price: Low To
+                            High</a></li>
+                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?price=desc">Sort By Price: High To
+                            Low</a></li>
+                </Sort-By>
+            </div>
+        </div>
         <div class=" grid grid-cols-4">
             <div class=" col-span-1">
                 <div class="">
-                    <div class=" border-b-2 pb-2 relative mb-5">
-                        <h1 class=" text-xl font-bold uppercase">
-                            BRANDS
-                        </h1>
-                        <hr class=" bg-teal-400 h-1 w-16 absolute bottom-0 transform translate-y-1">
-                    </div>
                     <ul class=" text-sm text-gray-600">
                         @foreach ($brands as $brand)
                         <li class=" my-2 hover:text-teal-400"><a href=""><i
@@ -42,5 +56,6 @@
                 </div>
                 <span class=" mb-8 flex justify-center">{{ $products->links() }}</span>
             </div>
+        </div>
     </main>
 </x-layouts.app>

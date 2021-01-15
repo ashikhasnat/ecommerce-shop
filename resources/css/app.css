@@ -3,7 +3,11 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
 
+#app{
+    font-family: 'Rubik', sans-serif;
+}
 .grid-auto-fit{
     grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) ); 
 }

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Home\AccountController;
+use App\Http\Controllers\Home\BrandController as HomeBrandController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\HomeController;
@@ -47,6 +49,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 });
 
 Route::get('/wishlist', [WishListController::class, 'index'])->name('wishlist');
+Route::get('/search-result', [SearchController::class, 'index']);
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::group(['prefix' => '/api'], function () {
     Route::get('/cart', [CartController::class, 'apiIndex']);
@@ -61,9 +64,16 @@ Route::group(['prefix' => '/api'], function () {
 });
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-    Route::get('/{product:slug}', [HomeProductController::class, 'show'])->name(
-        'home-product.show'
+    Route::get('/my-account', [AccountController::class, 'index'])->name(
+        'my-account'
     );
+    Route::get('/brands', [HomeBrandController::class, 'index'])->name(
+        'home-brand.index'
+    );
+    Route::get('/brands/{brand:slug}', [
+        HomeBrandController::class,
+        'show',
+    ])->name('home-brand.show');
     Route::post('review/{product:id}', [
         ReviewController::class,
         'store',
@@ -79,4 +89,7 @@ Route::group(['prefix' => 'shop'], function () {
         HomeSubCategoryController::class,
         'show',
     ])->name('home-subcategory.show');
+    Route::get('/{product:slug}', [HomeProductController::class, 'show'])->name(
+        'home-product.show'
+    );
 });

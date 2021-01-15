@@ -13,15 +13,6 @@
                 </p>
                 <i style="font-size: 9px; transform: translateY(1px)"
                     class="fas fa-chevron-right text-gray-500 mx-2"></i>
-
-                @if ($product->subcategory)
-                <p class="hover:text-teal-500"><a
-                        href="{{ route('home-subcategory.show', $product->subcategory->slug) }}">{{ $product->subcategory->name }}</a>
-                </p>
-                <i style="font-size: 9px; transform: translateY(1px)"
-                    class="fas fa-chevron-right text-gray-500 mx-2"></i>
-                @endif
-
                 @if (request()->is('shop/*'))
                 <p class=" text-teal-400">{{ $product->title }}</p>
                 @endif
@@ -89,7 +80,7 @@
                             {!! $product->short_details !!}
                         </p>
                     </div>
-
+                    @if ($product->weekly_deal == 1)
                     <div class=" my-3">
                         <p class=" text-red-400 ml-2 text-lg my-1"><i class="far fa-clock mr-2"></i>Hungry up ! Deal end
                             in :
@@ -108,7 +99,7 @@
                                    "upcoming":"Future"
                                   }}'></product-count-down>
                     </div>
-
+                    @endif
                     <div class=" my-6">
                         <Add-To-Cart :product_id="{{ $product->id }}" :cart_option="true" :price="{{ $product->price }}"
                             @auth :auth_id="{{ auth()->id() }}" @endauth></Add-To-Cart>

@@ -6,6 +6,7 @@ import SearchBar from './components/home/header/Search.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
 import ProductDetails from './components/admin/product/ProductDetails.vue'
 import Dropdown from './components/home/header/Dropdown.vue'
+import SortBy from './components/home/SortBy.vue'
 import AccountDetails from './components/home/header/AccountDetails.vue'
 import Slider from './components/home/Slider.vue'
 import CountDown from './components/home/CountDown.vue'
@@ -43,6 +44,7 @@ const app = new Vue({
     ProductDetails,
     SelectCategory,
     Dropdown,
+    SortBy,
     AccountDetails,
     Slider,
     CountDown,

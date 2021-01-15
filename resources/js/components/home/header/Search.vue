@@ -12,9 +12,23 @@
         class="rounded-none border border-r-0 leading-5 text-base w-full focus:outline-none"
         placeholder="Search"
       />
-      <button type="submit">
-        <i class="fas fa-search py-3 text-xl px-7 bg-teal-400 text-white"></i>
-      </button>
+      <form action="/search-result" method="get">
+        <input
+          autocomplete="off"
+          type="hidden"
+          name="searchQuery"
+          id="searchQuery"
+          v-model="searchString"
+        />
+        <button
+          :type="[searchString == null ? 'reset' : 'submit']"
+          class="focus:outline-none"
+        >
+          <i
+            class="fas fa-search py-3 text-xl px-7 bg-teal-400 text-white hover:bg-teal-500"
+          ></i>
+        </button>
+      </form>
     </div>
     <div
       class="w-full bg-white box-shadow absolute z-50 flex items-center justify-center flex-col"
@@ -35,7 +49,7 @@
             />
           </div>
           <div class="">
-            <a :href="'shop/' + product.slug" class="mt-1 mb-2">
+            <a :href="'/shop/' + product.slug" class="mt-1 mb-2">
               <h1 class="text-gray-700 hover:text-teal-400">
                 {{ product.title }}
               </h1>
@@ -67,9 +81,6 @@
 import axios from 'axios'
 import _ from 'lodash'
 export default {
-  mounted() {
-    // this.fetchProducts(this.searchString)
-  },
   data() {
     return {
       products: null,

@@ -1,7 +1,7 @@
 <template>
   <div class="fixed top-5 right-5 box-shadow-xl rounded" :class="getClasses">
     <div
-      class="py-2 w-72 flex justify-between items-center"
+      class="py-2 w-80 flex justify-between items-center"
       v-if="getToastrMsg.length > 0"
     >
       <p class="ml-2">{{ getToastrMsg }}</p>
@@ -11,7 +11,7 @@
       ></i>
     </div>
     <div
-      class="py-2 w-72 flex justify-between items-center"
+      class="py-2 w-80 flex justify-between items-center"
       :class="text_classes"
       v-if="(text_msg.length > 0) & (remove_msg.length != 0)"
     >

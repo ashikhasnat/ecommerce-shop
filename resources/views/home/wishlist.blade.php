@@ -11,11 +11,7 @@
             </div>
             <p class="text-xl font-extrabold uppercase">Wishlist</p>
         </div>
-        <div class=" grid grid-cols-4 justify-items-center bg-gray-100 py-3 rounded-md font-normal lg:font-bold mb-6">
-            <p class=" col-span-1">PRODUCT NAME</p>
-            <p class=" col-span-1">UNIT PRICE</p>
-            <p class=" col-span-1">STOCK STATUS</p>
-        </div>
+        
         <Wishlist-Show>
         </Wishlist-Show>
     </x-container>

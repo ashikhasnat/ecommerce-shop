@@ -60,6 +60,10 @@ class ProductController extends Controller
             'stock_status' => ['required'],
             'short_details' => ['required', 'max:2000', 'min:100'],
             'long_details' => ['required', 'max:2000', 'min:100'],
+            'top_rated' => [''],
+            'weekly_deal' => [''],
+            'best_dealer' => [''],
+            'main_slider' => [''],
         ]);
         if (request()->hasFile('thumbnail')) {
             $thumbnail_path =
@@ -72,6 +76,10 @@ class ProductController extends Controller
             array_merge($newProduct, [
                 'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
                 'slug' => Str::slug($newProduct['title']),
+                'weekly_deal' => $newProduct['weekly_deal'] ?? 0,
+                'top_rated' => $newProduct['top_rated'] ?? 0,
+                'best_seller' => $newProduct['best_seller'] ?? 0,
+                'main_slider' => $newProduct['main_slider'] ?? 0,
                 'thumbnail' => $thumbnail_path,
             ])
         );

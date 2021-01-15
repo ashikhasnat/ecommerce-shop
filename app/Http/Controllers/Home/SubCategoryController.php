@@ -13,11 +13,21 @@ class SubCategoryController extends Controller
     public function show(SubCategory $subCategory)
     {
         $brands = Brand::all('name', 'id');
-        $products = $subCategory
-            ->products()
-            ->with('reviews')
-            ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug']);
-        // dd($products);
+        if (request()->has('sort')) {
+            $products = Product::where('category_id', $subCategory->id)
+                ->orderBy('title', request('sort'))
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        } elseif (request()->has('price')) {
+            $products = Product::where('category_id', $subCategory->id)
+                ->orderBy('price', request('price'))
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        } else {
+            $products = Product::where('category_id', $subCategory->id)
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        }
         return view(
             'home.subcategory.show',
             compact('subCategory', 'brands', 'products')

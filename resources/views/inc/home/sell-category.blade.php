@@ -1,8 +1,8 @@
 @foreach ($saleCategories as $category)
 
 
-<div class=" bg-gray-200 py-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-9 p-5 mb-8 container mx-auto bg-white">
+<div class=" bg-gray-200 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-9 p-5 container mx-auto bg-white">
         <div class="col-span-1 lg:col-span-2 p-6">
             <h1 class="text-xl font-bold uppercase pb-2">
                 {{ $category->name }}
@@ -28,9 +28,9 @@
         </div>
         @endif
         <div class=" col-span-full lg:col-span-5 mt-6 lg:mt-0 lg:ml-5">
-            <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-8">
                 @foreach ($category->products as $product)
-                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-80 relative"
+                @if ($loop->index < 6) <div class="col-span-full sm:col-span-1 h-72 relative"
                     style="max-height: 20rem;">
                     <div class=" h-48 w-full bg-cover bg-center bg-no-repeat single-product-card"
                         style="background-image: url({{ $product->thumbnail }});">

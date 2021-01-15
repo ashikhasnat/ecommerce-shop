@@ -12,10 +12,20 @@ class ShopController extends Controller
     public function index()
     {
         $brands = Brand::all('name', 'id');
-        $products = Product::latest()
-            ->with('reviews')
-            ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug']);
-        // dd($products);
+
+        if (request()->has('sort')) {
+            $products = Product::orderBy('title', request('sort'))
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        } elseif (request()->has('price')) {
+            $products = Product::orderBy('price', request('price'))
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        } else {
+            $products = Product::latest()
+                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->withQueryString();
+        }
         return view('home.shop.index', compact('brands', 'products'));
     }
 }

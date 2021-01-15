@@ -17,7 +17,7 @@
     <link href="{{ asset('css/home/style.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-white antialiased font-sans">
+<body class="bg-white antialiased">
     <div id="app" class="mx-auto">
         <Toastr text_msg="" text_classes=""></Toastr>
         @include('inc.home.header')
