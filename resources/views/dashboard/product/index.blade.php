@@ -23,7 +23,7 @@
                             </th>
                             <th
                                 class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Excerpt
+                                Avg Ratings
                             </th>
 
                             <th
@@ -55,20 +55,14 @@
                             </td>
                             <td class="px-3 py-4 whitespace-no-wrap">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="{{ $product->thumbnail  }}"
-                                            alt="Thumbnail">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-xs leading-5 font-medium text-gray-900">
-                                            {{ $product->title }}
-                                        </div>
+                                    <div class="text-xs leading-5 font-medium text-gray-900">
+                                        {{ $product->title }}
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td class="px-3 py-4 whitespace-no-wrap text-center">
                                 <div class="text-xs break-words leading-5 text-gray-900">
-                                    {{ Str::limit($product->short_details, 30)  }}
+                                    {{ $product->AvgRating }}
                                 </div>
                             </td>
 
@@ -98,8 +92,7 @@
                             </td>
                             {{-- price --}}
                             <td class="text-sm leading-5 text-gray-600 ">
-                                <p class="bg-orange-100 text-center">
-                                    ${{ $product->price }}
+                                <p class="bg-orange-100 text-center" v-text="convertToCurrency({{ $product->price }})">
                                 </p>
                             </td>
                             <td class="px-3 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">

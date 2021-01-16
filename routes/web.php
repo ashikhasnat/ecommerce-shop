@@ -9,6 +9,8 @@ use App\Http\Controllers\Home\AccountController;
 use App\Http\Controllers\Home\BrandController as HomeBrandController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
+use App\Http\Controllers\Home\Customer\BillingAddressController;
+use App\Http\Controllers\Home\Customer\ShippingAddressController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\ReviewController;
@@ -64,9 +66,29 @@ Route::group(['prefix' => '/api'], function () {
 });
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-    Route::get('/my-account', [AccountController::class, 'index'])->name(
-        'my-account'
-    );
+    Route::group(['prefix' => '/my-account'], function () {
+        Route::get('/', [AccountController::class, 'info'])->name('my-account');
+        Route::get('/address', [AccountController::class, 'address'])->name(
+            'account-address'
+        );
+        Route::resource(
+            '/address/billing',
+            BillingAddressController::class
+        )->except(['index', 'show', 'destroy']);
+        Route::resource(
+            '/address/shipping',
+            ShippingAddressController::class
+        )->except(['index', 'show', 'destroy']);
+        Route::get('/account-details', [
+            AccountController::class,
+            'account_details',
+        ])->name('account-details');
+        Route::patch('/account-details/{id}', [
+            AccountController::class,
+            'account_details_update',
+        ])->name('account-details-update');
+        // Route::get('/', [AccountController::class, 'info'])->name('my-account');
+    });
     Route::get('/brands', [HomeBrandController::class, 'index'])->name(
         'home-brand.index'
     );

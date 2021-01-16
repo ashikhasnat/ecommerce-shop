@@ -1,5 +1,8 @@
 <x-layouts.app>
     <x-container>
+        @if (session('msg'))
+        <Toastr text_msg="{{ session('msg') }}" text_classes="success"></Toastr>
+        @endif
         <div class=" flex justify-between mt-6">
             <div class=" flex text-sm items-center justify-center">
                 <p class=" hover:text-teal-500"><a href="/">Home</a></p>
@@ -19,11 +22,18 @@
                         <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
                                 href="{{ route('my-account') }}">Info</a></li>
                         <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a href="">Orders</a></li>
-                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a href="">Addresses</a>
+                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
+                                href="{{ route('account-address') }}">Addresses</a>
                         </li>
-                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a href="">Account
+                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
+                                href="{{ route('account-details') }}">Account
                                 details</a></li>
-                        <li class=" py-3 mt-3 hover:text-teal-400"><a href="">Logout</a></li>
+                        <li class=" py-3 mt-3 hover:text-teal-400">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class=" focus:outline-none" type="submit">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

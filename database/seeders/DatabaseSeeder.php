@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Customer\BillingAddress;
+use App\Models\Customer\ShippingAddress;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Review;
@@ -34,5 +36,8 @@ class DatabaseSeeder extends Seeder
         Review::factory(500)->create();
         Wishlist::factory(5)->create();
         Cart::factory(5)->create();
+        BillingAddress::factory()->create();
+        ShippingAddress::factory()->create();
+        $this->call(CountrySeeder::class);
     }
 }

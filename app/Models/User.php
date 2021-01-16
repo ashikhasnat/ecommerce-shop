@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Customer\BillingAddress;
+use App\Models\Customer\ShippingAddress;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,5 +38,13 @@ class User extends Authenticatable
     public function wishlist()
     {
         return $this->hasOne(Wishlist::class);
+    }
+    public function billing_address()
+    {
+        return $this->hasOne(BillingAddress::class);
+    }
+    public function shipping_address()
+    {
+        return $this->hasOne(ShippingAddress::class);
     }
 }
