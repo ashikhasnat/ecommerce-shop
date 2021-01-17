@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
             'title' => $title,
             'slug' => Str::slug($title),
-            'price' => $this->faker->numberBetween(100, 2000) . '.00',
+            'price' => $this->faker->numberBetween(10000, 200000) . '.00',
             'thumbnail' => $this->faker->imageUrl(1920, 1080),
             // 'thumbnail' =>
             //     'https://picsum.photos/1920/1080?random=' . rand(1, 50),

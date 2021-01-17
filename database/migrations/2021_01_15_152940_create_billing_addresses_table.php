@@ -23,7 +23,7 @@ class CreateBillingAddressesTable extends Migration
             $table->string('street_address');
             $table->string('city');
             $table->string('post_code');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('email');
             $table->timestamps();
         });

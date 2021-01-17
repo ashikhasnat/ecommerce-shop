@@ -16,7 +16,7 @@ class Product extends Model
             ->avg('ratings');
         return round($ratings);
     }
-    
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -40,6 +40,10 @@ class Product extends Model
     public function cart()
     {
         return $this->belongsTo(Wishlist::class);
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
     }
     public function wishlist()
     {

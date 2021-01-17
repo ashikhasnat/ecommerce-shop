@@ -20,13 +20,14 @@ import WishlistShow from './components/home/wishlist/WishlistShow.vue'
 import TopRatedAndSeller from './components/home/TopRatedAndLatest.vue'
 import CartShow from './components/home/cart/CartShow.vue'
 import AddToCart from './components/home/cart/AddToCart.vue'
+import CheckOut from './components/home/checkout/CheckOut.vue'
 import Toastr from './components/home/header/Toastr.vue'
 require('./bootstrap')
 
 Vue.mixin({
   methods: {
     convertToCurrency(price) {
-      //   price = price / 100
+      price = price / 100
       return price.toLocaleString('es-US', {
         style: 'currency',
         currency: 'USD',
@@ -57,6 +58,7 @@ const app = new Vue({
     WishlistShow,
     TopRatedAndSeller,
     CartShow,
+    CheckOut,
     AddToCart,
   },
   store,

@@ -13,7 +13,7 @@
             <div class="border border-gray-100 p-4">
                 <p class=" my-1">{{ $billingAddress->first_name }} {{ $billingAddress->last_name }}</p>
                 <p class=" my-1">{{ $billingAddress->company_name ?? '' }}</p>
-                <p class=" my-1">{{ $billingCountry->country_name}}</p>
+                <p class=" my-1">{{ $billingAddress->country_name}}</p>
                 <p class=" my-1">{{ $billingAddress->street_address}}</p>
                 <p class=" my-1">{{ $billingAddress->city }}</p>
                 <p class=" my-1">{{ $billingAddress->post_code }}</p>
@@ -34,7 +34,7 @@
             <div class="border border-gray-100 p-4">
                 <p class=" my-1">{{ $shippingAddress->first_name }} {{ $shippingAddress->last_name }}</p>
                 <p class=" my-1">{{ $shippingAddress->company_name ?? '' }}</p>
-                <p class=" my-1">{{ $shippingCountry->country_name}}</p>
+                <p class=" my-1">{{ $shippingAddress->country_name}}</p>
                 <p class=" my-1">{{ $shippingAddress->street_address}}</p>
                 <p class=" my-1">{{ $shippingAddress->city }}</p>
                 <p class=" my-1">{{ $shippingAddress->post_code }}</p>

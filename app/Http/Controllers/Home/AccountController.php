@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer\BillingAddress;
-use App\Models\Customer\Country;
-use App\Models\Customer\ShippingAddress;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -21,40 +19,21 @@ class AccountController extends Controller
     }
     public function address()
     {
-        $billingAddress = BillingAddress::where(
-            'user_id',
-            auth()->id()
-        )->first();
-        if ($billingAddress) {
-            $billingCountry = Country::where('id', $billingAddress->country_id)
-                ->get('country_name')
-                ->first();
-        } else {
-            $billingCountry = '';
-        }
-
-        $shippingAddress = ShippingAddress::where(
-            'user_id',
-            auth()->id()
-        )->first();
-        if ($shippingAddress) {
-            $shippingCountry = Country::where(
-                'id',
-                $shippingAddress->country_id
-            )
-                ->get('country_name')
-                ->first();
-        } else {
-            $shippingCountry = '';
-        }
+        $billingAddress = DB::table('billing_addresses')
+            ->join('countries', 'billing_addresses.country_id', 'countries.id')
+            ->select('countries.*', 'billing_addresses.*')
+            ->where('billing_addresses.user_id', auth()->id())
+            ->get()
+            ->first();
+        $shippingAddress = DB::table('shipping_addresses')
+            ->join('countries', 'shipping_addresses.country_id', 'countries.id')
+            ->select('countries.*', 'shipping_addresses.*')
+            ->where('shipping_addresses.user_id', auth()->id())
+            ->get()
+            ->first();
         return view(
             'home.account.addresses',
-            compact(
-                'billingAddress',
-                'billingCountry',
-                'shippingAddress',
-                'shippingCountry'
-            )
+            compact('billingAddress', 'shippingAddress')
         );
     }
     public function account_details()

@@ -16,6 +16,11 @@
         ></p>
       </div>
     </div>
+    <div
+      class="bg-gray-700 text-white w-max-content py-2 px-6 mt-6 rounded-sm font-semibold uppercase hover:bg-gray-900"
+    >
+      <a href="/checkout">Proceed to checkout</a>
+    </div>
   </div>
 </template>
 

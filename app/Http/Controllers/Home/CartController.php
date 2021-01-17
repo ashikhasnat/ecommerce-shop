@@ -31,7 +31,6 @@ class CartController extends Controller
             ->select('products.*', 'carts.*')
             ->where('carts.user_id', auth()->id())
             ->get();
-
         return $cartsProduct;
     }
     public function apiStore()
