@@ -17,9 +17,18 @@
       </div>
     </div>
     <div
-      class="bg-gray-700 text-white w-max-content py-2 px-6 mt-6 rounded-sm font-semibold uppercase hover:bg-gray-900"
+      class="bg-gray-700 text-white w-max-content py-2 px-6 mt-6 rounded-sm hover:bg-gray-900"
     >
-      <a href="/checkout">Proceed to checkout</a>
+      <button
+        class="uppercase font-semibold cursor-not-allowed"
+        disabled
+        v-if="CartItemLength == 0"
+      >
+        Proceed to checkout
+      </button>
+      <button v-else class="uppercase font-semibold">
+        <a href="/checkout">Proceed to checkout</a>
+      </button>
     </div>
   </div>
 </template>
@@ -33,6 +42,7 @@ export default {
   computed: {
     ...mapGetters({
       getTotalAmount: 'getTotalAmount',
+      CartItemLength: 'CartItemLength',
     }),
   },
 }

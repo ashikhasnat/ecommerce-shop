@@ -7,16 +7,14 @@ use App\Models\Cart;
 use App\Models\Customer\BillingAddress;
 use App\Models\Customer\Country;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
+        // dd($cartsProduct);
         return view('home.checkout');
     }
     public function apiIndex()
@@ -62,13 +60,18 @@ class CheckoutController extends Controller
                     'carts.product_id',
                     'products.id'
                 )
-                    ->select('products.id', 'carts.quantity')
+                    ->select(
+                        'products.id',
+                        'carts.quantity',
+                        'carts.id as cart_id'
+                    )
                     ->where('carts.user_id', auth()->id())
                     ->get();
                 foreach ($cartsProduct as $product) {
                     $order->products()->attach($product['id'], [
                         'quantity' => $product['quantity'],
                     ]);
+                    Cart::where('id', $product->cart_id)->delete();
                 }
                 return $order;
             } catch (\Throwable $th) {
@@ -119,6 +122,7 @@ class CheckoutController extends Controller
                     $order->products()->attach($product->id, [
                         'quantity' => $product->quantity,
                     ]);
+                    Cart::where('id', $product->cart_id)->delete();
                 }
 
                 $order->load('products');

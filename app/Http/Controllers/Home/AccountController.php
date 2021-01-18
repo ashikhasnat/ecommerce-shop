@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,22 @@ class AccountController extends Controller
             'home.account.addresses',
             compact('billingAddress', 'shippingAddress')
         );
+    }
+    public function account_orders()
+    {
+        $orderedProducts = Order::where('user_id', auth()->id())->get();
+        return view('home.account.orders', compact('orderedProducts'));
+    }
+    public function account_orders_details($id)
+    {
+        $orderedProducts = Order::where('id', $id)
+            ->with([
+                'products' => function ($query) {
+                    $query->get(['title', 'quantity', 'price']);
+                },
+            ])
+            ->first();
+        return view('home.account.order-details', compact('orderedProducts'));
     }
     public function account_details()
     {

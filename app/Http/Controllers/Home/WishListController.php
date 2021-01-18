@@ -20,7 +20,10 @@ class WishListController extends Controller
         $wishlistProduct = $wishlist
             ->join('products', 'wishlists.product_id', 'products.id')
             ->select(
-                'products.*',
+                'products.title',
+                'products.slug',
+                'products.thumbnail',
+                'products.price',
                 'wishlists.user_id',
                 'wishlists.id',
                 'wishlists.product_id'

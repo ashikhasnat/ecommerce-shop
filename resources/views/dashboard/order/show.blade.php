@@ -1,27 +1,18 @@
-<x-layouts.app>
-    <x-container>
-        <div class=" w-full py-3 border-2 border-dashed text-center my-8 border-red-500 text-red-500 font-semibold ">
-            <h1>Thank You , Your order has been received.</h1>
+<x-layouts.dashboard>
+    <div class=" sm:mx-20 sm:mt-20">
+        <div class="">
+            <p class="ml-2 my-4">Order # <span class=" bg-yellow-100 px-px">{{ $orderedProducts->id }}</span> was placed
+                on
+                <span class=" bg-yellow-100 px-px">{{ $orderedProducts->created_at->format('F j, Y') }}</span></p>
+            <h1 class=" font-bold text-xl mb-4 ml-2 uppercase">Order details</h1>
         </div>
-        <div class=" flex justify-evenly text-gray-500 text-sm mb-12">
-            <p>Order number: <span class=" text-gray-600 font-semibold">#{{ $userOrder->id }}</span></p>
-            <p>Date: <span class=" text-gray-600 font-semibold">{{ $userOrder->created_at->format('F j, Y') }}</span>
-            </p>
-            <p>Email: <span class=" text-gray-600 font-semibold">{{ auth()->user()->email}}</span></p>
-            <p>Total: <span class=" text-gray-600 font-semibold"
-                    v-text="convertToCurrency({{ $userOrder->total }})"></span>
-            </p>
-            <p>Payment Transaction ID: <span class=" text-gray-600 font-semibold">{{ $userOrder->transaction_id}}</span>
-            </p>
-        </div>
-        <h1 class=" font-bold text-xl mb-4 ml-2 uppercase">Order details</h1>
         <div class="w-full p-6 flex justify-center items-center box-shadow mb-16">
             <div class="bg-white w-full p-2">
                 <div class="flex font-semibold py-4 text-sm border-b border-gray-200">
                     <h1 class="ml-4 flex-1">Product</h1>
                     <h1 class="ml-4 flex-1">Sub Total</h1>
                 </div>
-                @foreach ($orderedProducts as $products)
+                @foreach ($orderedProducts->products as $products)
                 <div class="grid grid-cols-2 text-sm text-gray-500">
                     <div class="col-span-1 ml-4 my-2">
                         <p class="">
@@ -40,10 +31,10 @@
                 <div class="flex text-xl mt-20 mb-2">
                     <p class="flex-1 ml-4">Total :</p>
                     <p class="flex-1 ml-4 text-teal-500 font-semibold"
-                        v-text="convertToCurrency({{ $userOrder->total }})"></p>
+                        v-text="convertToCurrency({{ $orderedProducts->total }})">
+                    </p>
                 </div>
             </div>
         </div>
-
-    </x-container>
-</x-layouts.app>
+    </div>
+</x-layouts.dashboard>

@@ -2948,13 +2948,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.$store.dispatch('fetchTotalAmount');
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    getTotalAmount: 'getTotalAmount'
+    getTotalAmount: 'getTotalAmount',
+    CartItemLength: 'CartItemLength'
   }))
 });
 
@@ -2974,7 +2984,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @stripe/stripe-js */ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -3258,6 +3275,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3315,6 +3345,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       paymentProcessing: false
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])({
+    AllCartItem: 'AllCartItem'
+  })),
   methods: {
     processPayment: function processPayment() {
       var _this2 = this;
@@ -3433,6 +3466,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -42934,28 +42969,32 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
+    _c(
       "div",
       {
         staticClass:
-          "bg-gray-700 text-white w-max-content py-2 px-6 mt-6 rounded-sm font-semibold uppercase hover:bg-gray-900"
+          "bg-gray-700 text-white w-max-content py-2 px-6 mt-6 rounded-sm hover:bg-gray-900"
       },
       [
-        _c("a", { attrs: { href: "/checkout" } }, [
-          _vm._v("Proceed to checkout")
-        ])
+        _vm.CartItemLength == 0
+          ? _c(
+              "button",
+              {
+                staticClass: "uppercase font-semibold cursor-not-allowed",
+                attrs: { disabled: "" }
+              },
+              [_vm._v("\n      Proceed to checkout\n    ")]
+            )
+          : _c("button", { staticClass: "uppercase font-semibold" }, [
+              _c("a", { attrs: { href: "/checkout" } }, [
+                _vm._v("Proceed to checkout")
+              ])
+            ])
       ]
     )
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42980,7 +43019,7 @@ var render = function() {
   return _c("div", { staticClass: "grid grid-cols-8 gap-x-6 mt-10 mb-20" }, [
     _c("div", { staticClass: "col-span-5" }, [
       _vm.customer != null
-        ? _c("div", { staticClass: "flex flex-col" }, [
+        ? _c("div", { staticClass: "flex flex-col px-8" }, [
             _c("h1", { staticClass: "text-xl uppercase mb-6 font-bold" }, [
               _vm._v("Billing Address")
             ]),
@@ -43036,14 +43075,14 @@ var render = function() {
                 [
                   _c(
                     "option",
-                    { attrs: { value: "null", disabled: "", selected: "" } },
-                    [_vm._v("\n            Select Country\n          ")]
+                    { attrs: { value: "null", selected: "", disabled: "" } },
+                    [_vm._v("Selected")]
                   ),
                   _vm._v(" "),
                   _c(
                     "option",
                     {
-                      attrs: { disabled: "", selected: "" },
+                      attrs: { selected: "" },
                       domProps: {
                         value:
                           _vm.customer != null ? _vm.customer.country_id : ""
@@ -43060,23 +43099,8 @@ var render = function() {
                           "\n          "
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.countries, function(country, i) {
-                    return _c(
-                      "option",
-                      { key: i, domProps: { value: country.id } },
-                      [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(country.country_name) +
-                            "\n          "
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
+                  )
+                ]
               )
             ]),
             _vm._v(" "),
@@ -43144,7 +43168,7 @@ var render = function() {
               })
             ])
           ])
-        : _c("div", { staticClass: "flex flex-col" }, [
+        : _c("div", { staticClass: "flex flex-col px-8" }, [
             _c("h1", { staticClass: "text-xl uppercase mb-6 font-bold" }, [
               _vm._v("Billing Address")
             ]),
@@ -43439,30 +43463,71 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "bg-gray-100 h-96 px-8 flex justify-center items-center"
+          staticClass: "bg-gray-100 w-full p-6 flex justify-center items-center"
         },
         [
-          _c("div", { staticClass: "bg-white h-80 w-full" }, [
-            _c(
-              "div",
-              { staticClass: "grid grid-cols-2 font-semibold text-xl" },
-              [
-                _c("p", { staticClass: "col-span-1" }, [_vm._v("Total :")]),
+          _c(
+            "div",
+            { staticClass: "bg-white w-full p-2" },
+            [
+              _vm._m(16),
+              _vm._v(" "),
+              _vm._l(_vm.AllCartItem, function(product, i) {
+                return _c(
+                  "div",
+                  {
+                    key: i,
+                    staticClass: "grid grid-cols-2 text-sm text-gray-500"
+                  },
+                  [
+                    _c("div", { staticClass: "col-span-1 ml-4 my-2" }, [
+                      _c("p", {}, [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(product.title) +
+                            " x\n              "
+                        ),
+                        _c("span", { staticClass: "text-gray-700" }, [
+                          _vm._v(_vm._s(product.quantity))
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-span-1 ml-4 my-2 text-gray-900" },
+                      [
+                        _c("p", {
+                          domProps: {
+                            textContent: _vm._s(
+                              _vm.convertToCurrency(product.sub_total)
+                            )
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex text-xl mt-20 mb-2" }, [
+                _c("p", { staticClass: "flex-1 ml-4" }, [_vm._v("Total :")]),
                 _vm._v(" "),
                 _c("p", {
-                  staticClass: "col-span-1",
+                  staticClass: "flex-1 ml-4 text-teal-500 font-semibold",
                   domProps: {
                     textContent: _vm._s(_vm.convertToCurrency(_vm.totalAmount))
                   }
                 })
-              ]
-            )
-          ])
+              ])
+            ],
+            2
+          )
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "bg-gray-100 p-3" }, [
-        _vm._m(16),
+      _c("div", { staticClass: "bg-gray-100 p-4" }, [
+        _vm._m(17),
         _vm._v(" "),
         _c("div", { staticClass: "mt-4" }, [
           _c("button", {
@@ -43629,6 +43694,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "flex font-semibold py-4 text-sm border-b border-gray-200"
+      },
+      [
+        _c("h1", { staticClass: "ml-4 flex-1" }, [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("h1", { staticClass: "ml-4 flex-1" }, [_vm._v("Sub Total")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", {}, [
       _c("div", {}, [
         _c("label", { attrs: { for: "card-element" } }, [
@@ -43766,7 +43847,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "py-2 hover:text-teal-400" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("CheckOut")])
+      _c("a", { attrs: { href: "/checkout" } }, [_vm._v("CheckOut")])
     ])
   },
   function() {

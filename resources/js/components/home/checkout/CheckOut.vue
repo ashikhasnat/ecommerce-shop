@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-8 gap-x-6 mt-10 mb-20">
     <div class="col-span-5">
-      <div class="flex flex-col" v-if="customer != null">
+      <div class="flex flex-col px-8" v-if="customer != null">
         <h1 class="text-xl uppercase mb-6 font-bold">Billing Address</h1>
         <div class="mb-3">
           <label for="first_name">
@@ -45,22 +45,12 @@
             class="w-full border py-1 px-2 focus:outline-none cursor-pointer"
             name="country_id"
           >
-            <option value="null" disabled selected>
-              Select Country
-            </option>
+            <option value="null" selected disabled>Selected</option>
             <option
               :value="customer != null ? customer.country_id : ''"
-              disabled
               selected
             >
               {{ customer != null ? customer.country_name : '' }}
-            </option>
-            <option
-              v-for="(country, i) in countries"
-              :key="i"
-              :value="country.id"
-            >
-              {{ country.country_name }}
             </option>
           </select>
         </div>
@@ -126,7 +116,7 @@
           />
         </div>
       </div>
-      <div class="flex flex-col" v-else>
+      <div class="flex flex-col px-8" v-else>
         <h1 class="text-xl uppercase mb-6 font-bold">Billing Address</h1>
 
         <div class="mb-3">
@@ -249,15 +239,37 @@
       </div>
     </div>
     <div class="col-span-3">
-      <div class="bg-gray-100 h-96 px-8 flex justify-center items-center">
-        <div class="bg-white h-80 w-full">
-          <div class="grid grid-cols-2 font-semibold text-xl">
-            <p class="col-span-1">Total :</p>
-            <p class="col-span-1" v-text="convertToCurrency(totalAmount)"></p>
+      <div class="bg-gray-100 w-full p-6 flex justify-center items-center">
+        <div class="bg-white w-full p-2">
+          <div class="flex font-semibold py-4 text-sm border-b border-gray-200">
+            <h1 class="ml-4 flex-1">Product</h1>
+            <h1 class="ml-4 flex-1">Sub Total</h1>
+          </div>
+          <div
+            class="grid grid-cols-2 text-sm text-gray-500"
+            v-for="(product, i) in AllCartItem"
+            :key="i"
+          >
+            <div class="col-span-1 ml-4 my-2">
+              <p class="">
+                {{ product.title }} x
+                <span class="text-gray-700">{{ product.quantity }}</span>
+              </p>
+            </div>
+            <div class="col-span-1 ml-4 my-2 text-gray-900">
+              <p class="" v-text="convertToCurrency(product.sub_total)"></p>
+            </div>
+          </div>
+          <div class="flex text-xl mt-20 mb-2">
+            <p class="flex-1 ml-4">Total :</p>
+            <p
+              class="flex-1 ml-4 text-teal-500 font-semibold"
+              v-text="convertToCurrency(totalAmount)"
+            ></p>
           </div>
         </div>
       </div>
-      <div class="bg-gray-100 p-3">
+      <div class="bg-gray-100 p-4">
         <div class="">
           <div class="">
             <label for="card-element">Credit Card Information</label>
@@ -279,6 +291,7 @@
 <script>
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   async mounted() {
     this.stripe = await loadStripe(
@@ -316,6 +329,11 @@ export default {
       totalAmount: null,
       paymentProcessing: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      AllCartItem: 'AllCartItem',
+    }),
   },
   methods: {
     async processPayment() {

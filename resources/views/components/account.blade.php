@@ -21,7 +21,8 @@
                     <ul>
                         <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
                                 href="{{ route('my-account') }}">Info</a></li>
-                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a href="">Orders</a></li>
+                        <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
+                                href="{{ route('account_orders') }}">Orders</a></li>
                         <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
                                 href="{{ route('account-address') }}">Addresses</a>
                         </li>

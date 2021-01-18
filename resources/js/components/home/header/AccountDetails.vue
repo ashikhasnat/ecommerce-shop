@@ -19,7 +19,9 @@
         <li class="py-2 border-t border-b border-gray-100 hover:text-teal-400">
           <a href="/wishlist">Wishlist</a>
         </li>
-        <li class="py-2 hover:text-teal-400"><a href="">CheckOut</a></li>
+        <li class="py-2 hover:text-teal-400">
+          <a href="/checkout">CheckOut</a>
+        </li>
         <li
           v-if="auth_id"
           @click="logout()"

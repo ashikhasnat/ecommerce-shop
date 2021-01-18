@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Home\AccountController;
@@ -51,6 +52,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         'show',
         'destroy',
     ]);
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name(
+        'admin-order.index'
+    );
+    Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name(
+        'admin-order.show'
+    );
 });
 
 // Home section
@@ -106,6 +113,18 @@ Route::group(['prefix' => 'shop'], function () {
             AccountController::class,
             'account_details',
         ])->name('account-details');
+
+        // account Orders route
+        Route::get('/orders', [
+            AccountController::class,
+            'account_orders',
+        ])->name('account_orders');
+        Route::get('/orders/{order:id}', [
+            AccountController::class,
+            'account_orders_details',
+        ])->name('account_orders_details');
+
+        // account details route
         Route::patch('/account-details/{id}', [
             AccountController::class,
             'account_details_update',

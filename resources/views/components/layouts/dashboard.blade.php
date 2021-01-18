@@ -10,6 +10,12 @@
                          "><a href="{{ route('dashboard') }}"><i class="fas fa-chart-line mr-2"></i></i>Dashboard</a>
                     </li>
                     <li class="pl-4 mb-1 py-2 w-60
+                        @if (request()->is('dashboard/orders*'))
+                         bg-gray-600 rounded
+                         @endif
+                        "><a href="{{ route('admin-order.index') }}"><i class="fas fa-warehouse mr-2"></i>Orders</a>
+                    </li>
+                    <li class="pl-4 mb-1 py-2 w-60
                         @if (request()->is('dashboard/product*'))
                          bg-gray-600 rounded
                          @endif
