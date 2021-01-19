@@ -3,7 +3,7 @@
         <div class=" w-full py-3 border-2 border-dashed text-center my-8 border-red-500 text-red-500 font-semibold ">
             <h1>Thank You , Your order has been received.</h1>
         </div>
-        <div class=" flex justify-evenly text-gray-500 text-sm mb-12">
+        <div class=" flex flex-col p-4 sm:flex-row justify-evenly text-gray-500 text-sm mb-12">
             <p>Order number: <span class=" text-gray-600 font-semibold">#{{ $userOrder->id }}</span></p>
             <p>Date: <span class=" text-gray-600 font-semibold">{{ $userOrder->created_at->format('F j, Y') }}</span>
             </p>

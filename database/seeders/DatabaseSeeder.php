@@ -24,10 +24,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'email' => 'nafishasnat.nh@gmail.com',
-        ]);
-        User::factory()->create();
         Product::factory(200)->create();
         Category::factory(10)->create();
         SubCategory::factory(20)->create();
@@ -39,5 +35,11 @@ class DatabaseSeeder extends Seeder
         BillingAddress::factory()->create();
         ShippingAddress::factory()->create();
         $this->call(CountrySeeder::class);
+        $this->call(LaratrustSeeder::class);
+        $user = User::factory()->create([
+            'email' => 'nafishasnat.nh@gmail.com',
+        ]);
+        $user->attachRole('superadministrator');
+        User::factory()->create();
     }
 }

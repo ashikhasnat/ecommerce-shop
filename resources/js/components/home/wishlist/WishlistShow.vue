@@ -64,7 +64,7 @@
         <div class="col-span-1 justify-self-center transform translate-y-6">
           <button
             @click="postToCart(product.id, product.price)"
-            class="text-white bg-teal-400 py-1 px-5 text-xs sm:text-sm w-max-content uppercase focus:outline-none"
+            class="text-white bg-teal-400 py-1 hover:bg-teal-500 hover:shadow px-5 text-xs sm:text-sm w-max-content uppercase focus:outline-none"
           >
             add to cart
           </button>

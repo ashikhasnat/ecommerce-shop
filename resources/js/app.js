@@ -2,6 +2,7 @@ import Vue from 'vue'
 import store from './store/store.js'
 import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
+import ProductDataTable from './components/admin/product/ProductDatatable.vue'
 import SearchBar from './components/home/header/Search.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
 import ProductDetails from './components/admin/product/ProductDetails.vue'
@@ -23,7 +24,6 @@ import AddToCart from './components/home/cart/AddToCart.vue'
 import CheckOut from './components/home/checkout/CheckOut.vue'
 import Toastr from './components/home/header/Toastr.vue'
 require('./bootstrap')
-
 Vue.mixin({
   methods: {
     convertToCurrency(price) {
@@ -42,6 +42,7 @@ const app = new Vue({
     Toastr,
     AdminNav,
     SearchBar,
+    ProductDataTable,
     ProductDetails,
     SelectCategory,
     Dropdown,

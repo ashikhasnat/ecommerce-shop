@@ -6,6 +6,7 @@
             New product</a>
     </div>
     @include('inc.session-msgs')
+    <Product-Data-Table></Product-Data-Table>
     <div class="flex flex-col px-4 mb-6">
         {{-- <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"> --}}
         <div class="py-2 align-middle inline-block min-w-full sm:px-3 lg:px-8">
@@ -95,10 +96,7 @@
                                 <p class="bg-orange-100 text-center" v-text="convertToCurrency({{ $product->price }})">
                                 </p>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="{{ route('product.show', $product->id) }}" target="_blank"
-                                    class="text-indigo-600 hover:text-indigo-900">View</a>
-                            </td>
+
                             <td class="px-3 py-2 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                                 <a href="{{ route('product.edit', $product->id) }}"
                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
