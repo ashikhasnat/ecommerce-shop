@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="flex justify-end">
-      <ul class="flex font-bold uppercase">
+    <div class="flex justify-center sm:justify-end">
+      <ul class="flex text-xs sm:text-base font-semibold uppercase">
         <li
           v-for="(tab, i) in tabs"
           :key="i"

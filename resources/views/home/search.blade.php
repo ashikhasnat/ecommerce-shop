@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <main class=" container mx-auto">
+    <x-container>
         <div class=" flex justify-between my-6">
             <div class=" flex text-sm items-center justify-center">
                 <p class=" hover:text-teal-500"><a href="/">Home</a></p>
@@ -50,5 +50,6 @@
             </div>
 
         </div>
-    </main>
+    </x-container>
+
 </x-layouts.app>

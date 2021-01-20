@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <main class=" container mx-auto">
+    <x-container>
         <div class=" flex my-5">
             <div class=" flex text-sm items-center justify-center">
                 <p class=" hover:text-teal-500"><a href="/">Home</a></p>
@@ -12,9 +12,9 @@
                         href="{{ route('home-category.show', $product->category->slug) }}">{{ $product->category->name }}</a>
                 </p>
                 <i style="font-size: 9px; transform: translateY(1px)"
-                    class="fas fa-chevron-right text-gray-500 mx-2"></i>
+                    class="hidden sm:block fas fa-chevron-right text-gray-500 mx-2"></i>
                 @if (request()->is('shop/*'))
-                <p class=" text-teal-400">{{ $product->title }}</p>
+                <p class="hidden sm:block text-teal-400">{{ $product->title }}</p>
                 @endif
             </div>
         </div>
@@ -147,6 +147,6 @@
                 </div>
             </Other-Product-Info>
         </div>
-    </main>
+    </x-container>
 
 </x-layouts.app>

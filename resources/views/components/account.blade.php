@@ -12,11 +12,11 @@
                 <p class=" text-teal-400">My Account</p>
                 @endif
             </div>
-            <p class="text-xl font-extrabold uppercase">My Account</p>
+            <p class=" text-sm sm:text-xl font-extrabold uppercase">My Account</p>
         </div>
         <hr class=" h-px w-full bg-gray-200 my-8 opacity-25">
-        <div class=" grid grid-cols-8 gap-x-8">
-            <div class=" col-span-3 bg-gray-100">
+        <div class=" grid col-span-1 sm:grid-cols-8 gap-x-8">
+            <div class=" col-span-full sm:col-span-3 bg-gray-100">
                 <div class=" p-6">
                     <ul>
                         <li class=" py-3 my-3 border-b border-gray-200 hover:text-teal-400"><a
@@ -38,7 +38,7 @@
                     </ul>
                 </div>
             </div>
-            <div class=" col-span-5">
+            <div class="col-span-full mt-6 sm:col-span-5 sm:mt-0">
                 {{ $slot }}
             </div>
         </div>

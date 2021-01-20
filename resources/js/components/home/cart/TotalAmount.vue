@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-3">
+  <div class="col-span-full md:col-span-3">
     <div class="flex flex-col shadow">
       <h1
         class="bg-gray-100 text-center w-full py-3 rounded-md font-normal lg:font-bold"
@@ -10,7 +10,7 @@
       <div
         class="border h-44 border-t-0 border-gray-100 flex items-center justify-around"
       >
-        <p class="font-normal text-xl lg:font-bold">Grand Total</p>
+        <p class="font-normal text-base sm:text-xl lg:font-bold">Grand Total</p>
         <p
           class="text-gray-600 font-semibold"
           v-text="convertToCurrency(getTotalAmount)"

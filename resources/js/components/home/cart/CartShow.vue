@@ -1,10 +1,10 @@
 <template>
-  <div class="grid grid-cols-8 gap-x-6">
-    <main class="col-span-5">
+  <div class="grid grid-cols-1 md:grid-cols-8 gap-x-6">
+    <main class="col-span-full md:col-span-5">
       <div class="">
         <div
           v-if="CartItemLength != 0"
-          class="grid grid-cols-4 justify-items-center rounded-md font-normal lg:font-bold mb-6"
+          class="grid grid-cols-4 justify-items-center text-xs sm:text-base rounded-md font-normal lg:font-bold mb-6"
         >
           <p class="col-span-1 bg-gray-100 w-full py-3 rounded-md text-center">
             PRODUCT NAME
@@ -82,7 +82,7 @@
       <div
         v-if="coupon_code != null"
         slot="session_coupon"
-        class="grid grid-cols-2 mt-10 ml-4 text-gray-600 text-xl justify-items-center"
+        class="grid grid-cols-2 mt-10 ml-4 text-gray-600 text-base sm:text-xl justify-items-center"
       >
         <p class="col-span-1">
           Coupon: ({{ coupon_code }})

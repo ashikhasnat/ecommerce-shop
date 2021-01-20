@@ -2,7 +2,7 @@
   <div class="">
     <div
       v-if="wishlistDataLength != 0"
-      class="grid grid-cols-4 justify-items-center bg-gray-100 py-3 rounded-md font-normal lg:font-bold mb-6"
+      class="grid grid-cols-4 justify-items-center text-xs sm:text-base bg-gray-100 py-3 rounded-md font-normal lg:font-bold mb-6"
     >
       <p class="col-span-1">PRODUCT NAME</p>
       <p class="col-span-1">UNIT PRICE</p>
@@ -51,12 +51,15 @@
             class="text-xs sm:text-sm font-medium text-gray-500 my-4 max-w-max-content transform translate-y-2"
           >
             <p
-              class="px-4 py-1 border text-red-400 border-red-400"
+              class="px-1 sm:px-4 py-1 border text-red-400 border-red-400"
               v-if="product.stock_status == 0"
             >
               Out Of Stock
             </p>
-            <p v-else class="px-4 py-1 border text-green-400 border-green-400">
+            <p
+              v-else
+              class="px-1 sm:px-4 py-1 border text-green-400 border-green-400"
+            >
               in Stock
             </p>
           </div>
@@ -64,7 +67,7 @@
         <div class="col-span-1 justify-self-center transform translate-y-6">
           <button
             @click="postToCart(product.id, product.price)"
-            class="text-white bg-teal-400 py-1 hover:bg-teal-500 hover:shadow px-5 text-xs sm:text-sm w-max-content uppercase focus:outline-none"
+            class="text-white bg-teal-400 py-1 hover:bg-teal-500 hover:shadow px-2 sm:px-5 text-xs sm:text-sm w-max-content uppercase focus:outline-none"
           >
             add to cart
           </button>

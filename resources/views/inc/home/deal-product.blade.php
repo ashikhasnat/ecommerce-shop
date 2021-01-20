@@ -1,4 +1,4 @@
-<div class=" mb-10 container mx-auto">
+<div class=" mb-10 container mx-auto px-3 sm:px-0">
     <div class=" border-b-2 relative">
         <h1 class="py-2 text-base font-light  sm:text-xl sm:font-bold uppercase">WEEKLY DEAL PRODUCT</h1>
         <hr class="bg-teal-400 w-20 h-1 absolute bottom-0 transform translate-y-1 ">

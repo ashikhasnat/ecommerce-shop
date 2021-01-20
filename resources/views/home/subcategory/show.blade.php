@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <main class=" container mx-auto">
+    <x-container>
         <div class=" flex justify-between my-6">
             <div class=" flex text-sm items-center justify-center">
                 <p class=" hover:text-teal-500"><a href="/">Home</a></p>
@@ -12,7 +12,8 @@
                 <p class=" text-teal-400">{{ $subCategory->name }}</p>
                 @endif
             </div>
-            <p class="text-xl font-extrabold uppercase">{{ $subCategory->name }}</p>
+            <p class="hidden sm:block text-sm sm:text-xl font-normal sm:font-extrabold uppercase">
+                {{ $subCategory->name }}</p>
         </div>
         <div class=" flex justify-between items-center mb-5">
             <div class="relative">
@@ -35,7 +36,7 @@
             </div>
         </div>
         <div class=" grid grid-cols-4">
-            <div class=" col-span-1">
+            <div class=" col-span-full lg:col-span-1">
                 <div class="">
                     <ul class=" text-sm text-gray-600">
                         @foreach ($brands as $brand)
@@ -57,5 +58,5 @@
                 <span class=" mb-8 flex justify-center">{{ $products->links() }}</span>
             </div>
         </div>
-    </main>
+    </x-container>
 </x-layouts.app>

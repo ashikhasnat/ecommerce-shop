@@ -1,6 +1,11 @@
 <template>
-  <div class="text-xl flex">
+  <div
+    class="text-base sm:text-xl flex items-center justify-center ml-4 sm:ml-0"
+  >
     <div class="relative">
+      <!-- <i
+      class="fas fa-search block sm:hidden absolute right-1 text-base hover:text-teal-400 transform -translate-y-2"
+    ></i> -->
       <i
         class="fas fa-user-alt cursor-pointer hover:text-teal-400"
         @click="showDropdown()"
