@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ApiProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -57,6 +58,7 @@ Route::group(
             'show',
             'destroy',
         ]);
+        Route::resource('/coupon', CouponController::class);
         Route::get('/orders', [AdminOrderController::class, 'index'])->name(
             'admin-order.index'
         );
@@ -83,6 +85,11 @@ Route::group(['prefix' => '/api'], function () {
     Route::get('/cart', [CartController::class, 'apiIndex']);
     Route::post('/search', [SearchController::class, 'apiIndex']);
     Route::get('/cart-total-amount', [CartController::class, 'totalAmount']);
+    Route::post('/set-session', [CartController::class, 'setCouponSession']);
+    Route::delete('/destroy-session', [
+        CartController::class,
+        'destroyCouponSession',
+    ]);
     Route::post('/cart/{id}', [CartController::class, 'apiStore']);
     Route::put('/cart/{id}', [CartController::class, 'apiUpdate']);
     Route::get('/wishlist', [WishListController::class, 'apiIndex']);

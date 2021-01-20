@@ -71,6 +71,11 @@ class ProductController extends Controller
             Image::make($newProduct['thumbnail'])
                 ->fit(620, 620)
                 ->save(storage_path($thumbnail_path));
+            $replacePath = str_replace(
+                'app/public',
+                'storage',
+                $thumbnail_path
+            );
         }
         $product = Product::create(
             array_merge($newProduct, [
@@ -80,7 +85,7 @@ class ProductController extends Controller
                 'top_rated' => $newProduct['top_rated'] ?? 0,
                 'best_seller' => $newProduct['best_seller'] ?? 0,
                 'main_slider' => $newProduct['main_slider'] ?? 0,
-                'thumbnail' => $thumbnail_path,
+                'thumbnail' => $replacePath,
             ])
         );
         if (request()->hasFile('images')) {
@@ -106,8 +111,13 @@ class ProductController extends Controller
                     ->fit(620, 620)
                     ->save(storage_path($path_with_new_name));
                 unlink($storage_path_0f_imgs);
+                $replacePath = str_replace(
+                    'app/public',
+                    '/storage',
+                    $path_with_new_name
+                );
                 $product->images()->create([
-                    'image_path' => $path_with_new_name,
+                    'image_path' => $replacePath,
                 ]);
             }
         }

@@ -37,6 +37,11 @@
                          bg-gray-600 rounded 
                          @endif
                         "><a href="{{ route('brand.index') }}"><i class="fas fa-building mr-2"></i>Brand</a></li>
+                    <li class="pl-4 py-2 mb-1 w-60
+                        @if (request()->is('dashboard/coupon*'))
+                         bg-gray-600 rounded 
+                         @endif
+                        "><a href="{{ route('coupon.index') }}"><i class="fas fa-building mr-2"></i>Coupon</a></li>
                 </ul>
 
             </nav>

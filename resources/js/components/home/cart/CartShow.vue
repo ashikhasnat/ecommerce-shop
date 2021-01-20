@@ -78,7 +78,23 @@
         </div>
       </div>
     </main>
-    <total-amount></total-amount>
+    <total-amount>
+      <div
+        v-if="coupon_code != null"
+        slot="session_coupon"
+        class="grid grid-cols-2 mt-10 ml-4 text-gray-600 text-xl justify-items-center"
+      >
+        <p class="col-span-1">
+          Coupon: ({{ coupon_code }})
+          <span class="text-gray-900 p-px"></span>
+          <i
+            @click="deleteCoupon()"
+            class="far fa-times-circle text-sm text-red-400 opacity-50 hover:opacity-100 cursor-pointer"
+          ></i>
+        </p>
+        <p class="col-span-1">{{ discount }}%</p>
+      </div>
+    </total-amount>
   </div>
 </template>
 
@@ -95,10 +111,31 @@ export default {
       CartItemLength: 'CartItemLength',
     }),
   },
+  props: {
+    coupon_code: {
+      default: null,
+    },
+    discount: {
+      default: null,
+    },
+  },
   methods: {
     updateCartItems(id, value) {
       axios.put(`/api/cart/${id}`).then((res) => {
         this.$store.dispatch('fetchTotalAmount')
+        console.log('ok')
+      })
+    },
+    deleteCoupon() {
+      axios.delete('/api/destroy-session').then((res) => {
+        this.$store.dispatch('fetchTotalAmount')
+        this.$store.commit('setClasses', 'error')
+        this.$store.commit('setToastrMsg', res.data)
+        this.$store.dispatch('fetchTotalAmount')
+        location.reload()
+        setTimeout(() => {
+          this.$store.commit('setToastrMsg', '')
+        }, 5000)
         console.log('ok')
       })
     },

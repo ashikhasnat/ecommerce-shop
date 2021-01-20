@@ -260,11 +260,14 @@
               <p class="" v-text="convertToCurrency(product.sub_total)"></p>
             </div>
           </div>
-          <div class="flex text-xl mt-20 mb-2">
+          <div class="">
+            <slot name="session_coupon"></slot>
+          </div>
+          <div class="flex text-xl mt-6 mb-2">
             <p class="flex-1 ml-4">Total :</p>
             <p
               class="flex-1 ml-4 text-teal-500 font-semibold"
-              v-text="convertToCurrency(totalAmount)"
+              v-text="convertToCurrency(getTotalAmount)"
             ></p>
           </div>
         </div>
@@ -305,7 +308,7 @@ export default {
           'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out',
       },
     })
-
+    this.$store.dispatch('fetchTotalAmount')
     this.cardElement.mount('#card-element')
     this.fetchAddressAndAmount()
   },
@@ -326,12 +329,12 @@ export default {
         post_code: '',
         phone: '',
       },
-      totalAmount: null,
       paymentProcessing: false,
     }
   },
   computed: {
     ...mapGetters({
+      getTotalAmount: 'getTotalAmount',
       AllCartItem: 'AllCartItem',
     }),
   },
@@ -378,7 +381,7 @@ export default {
       } else {
         if (this.customer != null) {
           this.customer.payment_method_id = paymentMethod.id
-          this.customer.amount = this.totalAmount
+          this.customer.amount = this.getTotalAmount
 
           axios
             .post('/api/purchase', this.customer)
@@ -398,7 +401,7 @@ export default {
             })
         } else {
           this.newCustomer.payment_method_id = paymentMethod.id
-          this.newCustomer.amount = this.totalAmount
+          this.newCustomer.amount = this.getTotalAmount
 
           axios
             .post('/api/purchase', this.newCustomer)
@@ -422,8 +425,7 @@ export default {
     fetchAddressAndAmount() {
       axios.get('/api/checkout').then((res) => {
         this.customer = res.data[0]
-        this.totalAmount = res.data[1]
-        this.countries = res.data[2]
+        this.countries = res.data[1]
       })
     },
   },

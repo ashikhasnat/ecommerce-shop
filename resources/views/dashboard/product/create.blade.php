@@ -33,7 +33,8 @@
                             </select>
                         </div>
                         <select-category></select-category>
-                        <product-details></product-details>
+                        <product-details>
+                        </product-details>
                         <div class="">
                             @error(['short_details','long_details'])
                             <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>

@@ -11,7 +11,10 @@
             </div>
             <p class="text-xl font-extrabold uppercase">Wishlist</p>
         </div>
-        <Cart-Show>
+
+        <Cart-Show @if (session()->has('coupon_code')) coupon_code="{{  session('coupon_code')->coupon_code }}"
+            discount="{{ session('coupon_code')->discount }}" @endif>
         </Cart-Show>
+
     </x-container>
 </x-layouts.app>

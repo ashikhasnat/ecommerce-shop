@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         // dd($cartsProduct);
         return view('home.checkout');
     }
-    public function apiIndex()
+    public function apiIndex(Request $request)
     {
         $billingAddress = DB::table('billing_addresses')
             ->join('countries', 'billing_addresses.country_id', 'countries.id')
@@ -25,14 +25,8 @@ class CheckoutController extends Controller
             ->where('billing_addresses.user_id', auth()->id())
             ->get()
             ->first();
-        $totalAmount = DB::table('carts')
-            ->join('products', 'carts.product_id', 'products.id')
-            ->select('carts.sub_total')
-            ->where('carts.user_id', auth()->id())
-            ->get()
-            ->sum('sub_total');
         $countries = Country::all(['id', 'country_name']);
-        return response()->json([$billingAddress, $totalAmount, $countries]);
+        return response()->json([$billingAddress, $countries]);
     }
     public function purchase(User $user)
     {
@@ -47,7 +41,7 @@ class CheckoutController extends Controller
             try {
                 $user->createOrGetStripeCustomer();
                 $payment = $user->charge(
-                    request('amount'),
+                    floor(request('amount')),
                     request('payment_method_id')
                 );
                 $payment = $payment->asStripePaymentIntent();
@@ -100,7 +94,7 @@ class CheckoutController extends Controller
             try {
                 $user->createOrGetStripeCustomer();
                 $payment = $user->charge(
-                    request('amount'),
+                    floor(request('amount')),
                     request('payment_method_id')
                 );
 
