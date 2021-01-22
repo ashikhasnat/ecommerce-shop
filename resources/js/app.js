@@ -4,7 +4,6 @@ import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
 import SearchBar from './components/home/header/Search.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
-import ProductDetails from './components/admin/product/ProductDetails.vue'
 import Dropdown from './components/home/header/Dropdown.vue'
 import SortBy from './components/home/SortBy.vue'
 import AccountDetails from './components/home/header/AccountDetails.vue'
@@ -41,7 +40,6 @@ const app = new Vue({
     Toastr,
     AdminNav,
     SearchBar,
-    ProductDetails,
     SelectCategory,
     Dropdown,
     SortBy,

@@ -1,3 +1,6 @@
+@section('ckeditor-top-js')
+<script src="{{ asset('js/admin/ckeditor/ckeditor.js') }}"></script>
+@endsection
 <x-layouts.dashboard>
     <div class="flex mx-auto flex-col mt-10 py-8 sm:px-12">
         @include('inc.session-msgs')
@@ -6,7 +9,7 @@
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <div class="">
-                        <div class="">
+                        <div class="mb-3">
                             <label for="title" class="text-sm font-medium leading-5 text-gray-700">Title</label>
                             <input id="title" name="title" type="text" placeholder="Title" value="{{ old('title') }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
@@ -14,7 +17,7 @@
                             <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="">
+                        <div class="mb-3">
                             <label for="price" class="text-sm font-medium leading-5 text-gray-700">Price</label>
                             <input id="price" name="price" type="number" placeholder="$" value="{{ old('price') }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
@@ -22,7 +25,7 @@
                             <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="">
+                        <div class="mb-3">
                             <label for="brand_id" class="text-sm font-medium leading-5 text-gray-700">Brand</label>
                             <select id="brand_id" name="brand_id"
                                 class="mt-1 form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
@@ -33,14 +36,22 @@
                             </select>
                         </div>
                         <select-category></select-category>
-                        <product-details>
-                        </product-details>
-                        <div class="">
-                            @error(['short_details','long_details'])
-                            <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
-                            @enderror
+                        <div class="my-3">
+                            <div class="">
+                                <label for="short_details" class="font-medium mb-3 leading-5 text-gray-700">
+                                    Short Description
+                                </label>
+                                <textarea class=" form-textarea" id="short_details" name="short_details"></textarea>
+
+                            </div>
+                            <div class="my-3">
+                                <label for="long_details" class="font-medium leading-5 text-gray-700 mb-3">
+                                    Long Description
+                                </label>
+                                <textarea class=" form-textarea" id="long_details" name="long_details"></textarea>
+                            </div>
                         </div>
-                        <div class="">
+                        <div class="mb-3">
                             <label for="stock_status" class="text-sm font-medium leading-5 text-gray-700">Stock
                                 Status</label>
                             <select id="stock_status" name="stock_status"
@@ -140,4 +151,9 @@
         </div>
         @endif
     </div>
+
 </x-layouts.dashboard>
+
+@section('ckeditor-bottom-js')
+
+@endsection

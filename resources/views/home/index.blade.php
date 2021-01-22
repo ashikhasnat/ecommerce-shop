@@ -5,6 +5,7 @@
             @include('inc.home.slider')
             <div class=" col-span-full lg:col-span-2 lg:ml-7">
                 <div class=" border-b-2 pb-2 relative mb-5">
+                    
                     <h1 class=" text-xl font-bold uppercase">
                         Best Seller
                     </h1>

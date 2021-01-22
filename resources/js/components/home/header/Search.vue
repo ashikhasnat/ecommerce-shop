@@ -27,7 +27,6 @@
             autocomplete="off"
             type="hidden"
             name="searchQuery"
-            id="searchQuery"
             v-model="searchString"
           />
           <button

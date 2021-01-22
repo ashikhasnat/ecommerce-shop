@@ -83,6 +83,7 @@ Route::get('/order-summary', [OrderController::class, 'index'])
 // Api Routes
 Route::group(['prefix' => '/api'], function () {
     Route::get('/cart', [CartController::class, 'apiIndex']);
+    Route::get('/categories', [HomeController::class, 'apiCategories']);
     Route::post('/search', [SearchController::class, 'apiIndex']);
     Route::get('/cart-total-amount', [CartController::class, 'totalAmount']);
     Route::post('/set-session', [CartController::class, 'setCouponSession']);

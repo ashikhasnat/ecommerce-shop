@@ -76,7 +76,7 @@
                         @endif
                     </div>
                     <div class=" text-sm font-normal text-gray-500">
-                        <p>
+                        <p class="trix-content">
                             {!! $product->short_details !!}
                         </p>
                     </div>
@@ -118,7 +118,7 @@
         <div class="my-20">
             <Other-Product-Info>
                 <div slot="description" class="">
-                    <p>
+                    <p class="trix-content">
                         {!! $product->long_details !!}
                     </p>
                 </div>

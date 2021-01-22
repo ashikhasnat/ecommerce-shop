@@ -24,11 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share(
-            'categories',
-            Category::with('subcategories')
-                ->latest()
-                ->get()
-        );
+        //
     }
 }

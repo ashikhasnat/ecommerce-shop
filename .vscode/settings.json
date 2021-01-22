@@ -5,9 +5,12 @@
         "Dordoy",
         "datas",
         "endtime",
+        "linecap",
         "mdash",
         "ripemd",
         "starttime",
-        "thumbniail"
+        "thumbniail",
+        "trix",
+        "xclockwise"
     ]
 }

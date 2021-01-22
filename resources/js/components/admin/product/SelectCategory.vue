@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="flex flex-col" v-if="datas">
@@ -25,7 +24,7 @@
       <!-- genres -->
 
       <div class="" v-if="categoryId">
-        <div class="" v-if="subcategories.length">
+        <div class="" v-if="subcategories">
           <h1 class="font-semibold my-1 p2">Select SubCategory</h1>
           <select
             id="sub_category_id"
@@ -51,36 +50,32 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from 'axios'
 export default {
   data() {
     return {
       datas: null,
-      categoryId:'',
+      categoryId: '',
       subcategories: null,
     }
   },
-    mounted () {
-      this.fetchData()
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      Axios.get('/api/dashboard/category').then((res) => {
+        this.datas = res.data
+      })
     },
-    methods: {
-        fetchData() {
-            Axios.get('/api/dashboard/category')
-                .then((res) => {
-                  this.datas = res.data
-                })
-        },
-        categoryData() {
-          if (this.categoryId) {
-            Axios.get(`/api/dashboard/category/${this.categoryId}`)
-                  .then((res) => {
-                      this.subcategories = res.data
-                    console.log(res.data);
-                    this.$forceUpdate()
-                  })
-          }
-        }
+    categoryData() {
+      if (this.categoryId) {
+        Axios.get(`/api/dashboard/category/${this.categoryId}`).then((res) => {
+          this.subcategories = res.data
+          this.$forceUpdate()
+        })
+      }
     },
+  },
 }
 </script>
-

@@ -21,7 +21,7 @@
                         You are logged in!
                         <a href="/" target="_blank">home</a>
                     </p>
-                    <App></App>
+                    
                 </div>
             </section>
         </div>

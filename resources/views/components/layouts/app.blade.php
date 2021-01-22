@@ -19,12 +19,14 @@
 
 <body class="bg-white antialiased">
     <div id="app" class="">
+        <App></App>
         <Toastr text_msg="" text_classes=""></Toastr>
         @include('inc.home.header')
         {{ $slot }}
         @include('inc.footer-section.footer-nav')
         @include('inc.footer-section.footer')
     </div>
+
 </body>
 
 </html>

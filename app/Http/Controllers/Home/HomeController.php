@@ -30,7 +30,7 @@ class HomeController extends Controller
             ->take(4)
             ->get();
         $topProducts = Product::where('top_rated', 1)
-            ->get() //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
+            ->get(['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']) //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
             ->random(6);
         $latestProducts = Product::latest()
             ->take(6)
@@ -47,5 +47,12 @@ class HomeController extends Controller
                 'mainSlider'
             )
         );
+    }
+    public function apiCategories()
+    {
+        $categories = Category::with('subcategories')
+            ->latest()
+            ->get(['name', 'slug', 'id']);
+        return $categories;
     }
 }

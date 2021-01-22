@@ -6,7 +6,6 @@
             New product</a>
     </div>
     @include('inc.session-msgs')
-    <Product-Data-Table></Product-Data-Table>
     <div class="flex flex-col px-4 mb-6">
         {{-- <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"> --}}
         <div class="py-2 align-middle inline-block min-w-full sm:px-3 lg:px-8">

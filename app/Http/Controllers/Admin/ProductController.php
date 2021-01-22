@@ -73,7 +73,7 @@ class ProductController extends Controller
                 ->save(storage_path($thumbnail_path));
             $replacePath = str_replace(
                 'app/public',
-                'storage',
+                '/storage',
                 $thumbnail_path
             );
         }
@@ -116,6 +116,9 @@ class ProductController extends Controller
                     '/storage',
                     $path_with_new_name
                 );
+                rmdir($new_path_to_save);
+                rmdir('app/public/product-images/');
+                rmdir('app/public/');
                 $product->images()->create([
                     'image_path' => $replacePath,
                 ]);
