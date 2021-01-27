@@ -32,10 +32,10 @@
           @click="logout()"
           class="py-2 hover:text-teal-400 cursor-pointer"
         >
-          Log Out
+          Logout
         </li>
         <li v-else class="py-2 hover:text-teal-400 cursor-pointer">
-          <a href="/login">Log in</a>
+          <a href="/login">Login</a>
         </li>
       </ul>
     </div>

@@ -1,5 +1,9 @@
 <div class=" h-60 w-full bg-cover bg-center bg-no-repeat relative single-product-card"
     style="background-image: url({{ $product->thumbnail }});">
+    @if (!$product->discount == null)
+    <span
+        class=" absolute top-3 left-3 text-sm text-red-500 py-px px-2 border border-red-500 ">-{{ $product->discount }}%</span>
+    @endif
     <div
         class=" single-product-child-card absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
         <Add-To-Cart :product_id="{{ $product->id }}" :price="{{ $product->price }}" :cart_option="false" @auth
@@ -33,5 +37,14 @@
         <a href="{{ route('home-product.show' , $product->slug) }}"
             class="text-gray-700 font-semibold">{{ $product->title }}</a>
     </p>
-    <p class=" text-teal-400 font-bold" v-text="convertToCurrency({{ $product->price }})"></p>
+    @if ($product->discount)
+    <div class=" flex items-center">
+        <p class=" text-gray-400 text-sm font-semibold line-through mr-2"
+            v-text="convertToCurrency({{ $product->old_price }})">
+        </p>
+        <p class=" text-teal-400 font-bold " v-text="convertToCurrency({{ $product->price }})"></p>
+    </div>
+    @else
+    <p class=" text-teal-400 font-bold " v-text="convertToCurrency({{ $product->price }})"></p>
+    @endif
 </div>

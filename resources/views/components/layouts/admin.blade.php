@@ -14,6 +14,7 @@
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <title>{{ config('app.name') }}</title>
 </head>
 
@@ -21,6 +22,7 @@
     <div id="app">
         {{ $slot }}
     </div>
+    @if (request()->is('dashboard/product/create'))
     <script>
         setTimeout(function(){
         CKEDITOR.replace( 'short_details' ); //Your selector must match the textarea ID
@@ -29,6 +31,7 @@
         CKEDITOR.replace( 'long_details' ); //Your selector must match the textarea ID
         },100);
     </script>
+    @endif
 </body>
 
 </html>

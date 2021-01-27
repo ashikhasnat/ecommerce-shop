@@ -49,11 +49,7 @@
                         <Ratings></Ratings>
                     </section>
                     @if (session('msg'))
-                    <div class="absolute right-0" style="width: 300px;">
-                        <p class="leading-tight text-sm text-green-600 bg-green-100 font-medium py-1 px-3"
-                            id="session-msg">
-                            {{ session('msg') }}</p>
-                    </div>
+                    <Toastr text_msg="{{ session('msg') }}" text_classes="success"></Toastr>
                     @endif
                 </div>
                 <textarea name="review_text" class=" border p-3 opacity-75 w-full h-40 focus:outline-none"

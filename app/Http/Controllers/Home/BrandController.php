@@ -21,16 +21,40 @@ class BrandController extends Controller
         if (request()->has('sort')) {
             $products = Product::where('brand_id', $brand->id)
                 ->orderBy('title', request('sort'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } elseif (request()->has('price')) {
             $products = Product::where('brand_id', $brand->id)
                 ->orderBy('price', request('price'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } else {
             $products = Product::where('brand_id', $brand->id)
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         }
         return view('home.brand.show', compact('products', 'brands', 'brand'));

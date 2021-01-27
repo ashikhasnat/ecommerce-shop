@@ -27,24 +27,18 @@
                             </th>
                         </tr>
                     </thead>
-                    @foreach ($categories as $cat)
                     <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($categories as $cat)
                         <tr>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-xs leading-5 font-medium text-gray-900">
-                                            {{ $cat->name }}
-                                        </div>
-                                    </div>
-                                </div>
+                            <td data-label="Name" class="px-3 py-4 whitespace-no-wrap">
+                                {{ $cat->name }}
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Total Products" class="px-3 py-4 whitespace-no-wrap">
                                 <div class="text-xs break-words leading-5 text-gray-900">
                                     {{ $cat->products->count() }}
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Created At" class="px-3 py-4 whitespace-no-wrap">
                                 {{-- created at --}}
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -56,8 +50,8 @@
                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
-                    @endforeach
                 </table>
             </div>
         </div>

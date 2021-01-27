@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('sku');
             $table->string('title');
             $table->text('slug')->nullable();
-            $table->unsignedBigInteger('price');
+            $table->integer('price');
+            $table->integer('discount')->nullable();
+            $table->integer('old_price')->nullable();
             $table->text('thumbnail');
             $table->foreignId('brand_id');
             $table->foreignId('category_id');

@@ -26,6 +26,16 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="discount" class="text-sm font-medium leading-5 text-gray-700">Discount
+                                (Optional)</label>
+                            <input id="discount" name="discount" type="number" placeholder="$"
+                                value="{{ old('discount') }}"
+                                class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            @error('discount')
+                            <p class=" text-red-600 text-sm mt-4">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="brand_id" class="text-sm font-medium leading-5 text-gray-700">Brand</label>
                             <select id="brand_id" name="brand_id"
                                 class="mt-1 form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">

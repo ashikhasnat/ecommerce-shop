@@ -26,12 +26,10 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($coupons as $coupon)
                         <tr>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="text-xs break-words leading-5 text-gray-900">
-                                    {{ $coupon->coupon_code }}
-                                </div>
+                            <td data-label="Code" class="px-3 py-4 whitespace-no-wrap">
+                                {{ $coupon->coupon_code }}
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Discounts" class="px-3 py-4 whitespace-no-wrap">
                                 {{-- created at --}}
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

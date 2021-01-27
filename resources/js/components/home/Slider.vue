@@ -14,11 +14,11 @@
 
 <script>
 import { VueAgile } from 'vue-agile'
-    export default {
-        components: {
-        agile: VueAgile
-      }
-    }
+export default {
+  components: {
+    agile: VueAgile,
+  },
+}
 </script>
 
 <style>
@@ -59,6 +59,6 @@ import { VueAgile } from 'vue-agile'
   width: 100%;
 }
 .home-slide {
-  height: 500px;
+  height: 530px;
 }
 </style>

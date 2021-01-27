@@ -41,7 +41,7 @@
                         @if (request()->is('dashboard/coupon*'))
                          bg-gray-600 rounded 
                          @endif
-                        "><a href="{{ route('coupon.index') }}"><i class="fas fa-building mr-2"></i>Coupon</a></li>
+                        "><a href="{{ route('coupon.index') }}"><i class="fas fa-receipt mr-2"></i>Coupon</a></li>
                 </ul>
 
             </nav>

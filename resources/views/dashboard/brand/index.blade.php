@@ -29,6 +29,7 @@
                                 class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
                                 Created At
                             </th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach ($brands as $brand)
@@ -39,20 +40,15 @@
                                     <img class="h-10 w-10 rounded-full" src="{{ $brand->brand_logo  }}" alt="Logo">
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="text-xs leading-5 font-medium text-gray-900">
-                                        {{ $brand->name }}
-                                    </div>
-                                </div>
+                            <td data-label="Name" class="px-3 py-4 whitespace-no-wrap">
+                                {{ $brand->name }}
                             </td>
 
-                            <td class="px-3 py-4 whitespace-no-wrap text-center">
-                                <div class="text-xs break-words leading-5 text-gray-900">
-                                    {{ $brand->products->count() }}
-                                </div>
+                            <td data-label="Total Product" class="px-3 py-4 whitespace-no-wrap">
+                                {{ $brand->products->count() }}
+
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Created At" class="px-3 py-4 whitespace-no-wrap">
                                 {{-- created at --}}
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

@@ -2986,7 +2986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      coupon: ''
+      coupon: null
     };
   },
   mounted: function mounted() {
@@ -2996,33 +2996,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkCoupon: function checkCoupon() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/set-session', {
-        coupon_code: this.coupon
-      }).then(function (res) {
-        _this.coupon = '';
+      if (this.coupon != null) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/set-session', {
+          coupon_code: this.coupon
+        }).then(function (res) {
+          _this.coupon = '';
 
-        _this.$store.commit('setClasses', 'success');
+          _this.$store.commit('setClasses', 'success');
 
-        _this.$store.commit('setToastrMsg', res.data);
+          _this.$store.commit('setToastrMsg', res.data);
 
+          setTimeout(function () {
+            _this.$store.commit('setToastrMsg', '');
+          }, 3000);
+
+          _this.$store.dispatch('fetchTotalAmount');
+
+          location.reload();
+        })["catch"](function (e) {
+          _this.coupon = '';
+
+          _this.$store.commit('setClasses', 'error');
+
+          _this.$store.commit('setToastrMsg', 'Coupon No Found');
+
+          setTimeout(function () {
+            _this.$store.commit('setToastrMsg', '');
+          }, 3000);
+        });
+      }
+
+      if (this.coupon == null) {
+        this.$store.commit('setClasses', 'error');
+        this.$store.commit('setToastrMsg', 'No Coupon Added');
         setTimeout(function () {
           _this.$store.commit('setToastrMsg', '');
         }, 3000);
-
-        _this.$store.dispatch('fetchTotalAmount');
-
-        location.reload();
-      })["catch"](function (e) {
-        _this.coupon = '';
-
-        _this.$store.commit('setClasses', 'error');
-
-        _this.$store.commit('setToastrMsg', 'Coupon No Found');
-
-        setTimeout(function () {
-          _this.$store.commit('setToastrMsg', '');
-        }, 3000);
-      });
+      }
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -4972,7 +4982,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".agile__dots {\n  bottom: 10px;\n  flex-direction: column;\n  right: 30px;\n  position: absolute;\n}\n.agile__dot {\n  margin: 5px 0;\n}\n.agile__dot button {\n  background-color: #fff;\n  border: 1px solid #fff;\n  cursor: pointer;\n  display: block;\n  height: 10px;\n  font-size: 0;\n  line-height: 0;\n  margin: 0;\n  padding: 0;\n  transition-duration: 0.5s;\n  width: 10px;\n  border-radius: 5px;\n}\n.agile__dot--current button,\r\n.agile__dot:hover button {\n  background-color: #fff;\n  height: 30px;\n  border-radius: 5px;\n}\n.slide {\n  display: block;\n  -o-object-fit: cover;\n  object-fit: cover;\n  width: 100%;\n}\n.home-slide {\n  height: 500px;\n}\r\n", ""]);
+exports.push([module.i, ".agile__dots {\n  bottom: 10px;\n  flex-direction: column;\n  right: 30px;\n  position: absolute;\n}\n.agile__dot {\n  margin: 5px 0;\n}\n.agile__dot button {\n  background-color: #fff;\n  border: 1px solid #fff;\n  cursor: pointer;\n  display: block;\n  height: 10px;\n  font-size: 0;\n  line-height: 0;\n  margin: 0;\n  padding: 0;\n  transition-duration: 0.5s;\n  width: 10px;\n  border-radius: 5px;\n}\n.agile__dot--current button,\r\n.agile__dot:hover button {\n  background-color: #fff;\n  height: 30px;\n  border-radius: 5px;\n}\n.slide {\n  display: block;\n  -o-object-fit: cover;\n  object-fit: cover;\n  width: 100%;\n}\n.home-slide {\n  height: 530px;\n}\r\n", ""]);
 
 // exports
 
@@ -30439,12 +30449,12 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Log Out\n      ")]
+                  [_vm._v("\n        Logout\n      ")]
                 )
               : _c(
                   "li",
                   { staticClass: "py-2 hover:text-teal-400 cursor-pointer" },
-                  [_c("a", { attrs: { href: "/login" } }, [_vm._v("Log in")])]
+                  [_c("a", { attrs: { href: "/login" } }, [_vm._v("Login")])]
                 )
           ]
         )
@@ -30594,13 +30604,19 @@ var render = function() {
                           "category border-b border-r border-l px-4 py-3 transition-colors duration-150 ease-linear relative"
                       },
                       [
-                        _c("a", { attrs: { href: "" } }, [
-                          _vm._v(
-                            "\n            " +
-                              _vm._s(category.name) +
-                              "\n          "
-                          )
-                        ]),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "/shop/category/" + category.slug }
+                          },
+                          [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(category.name) +
+                                "\n          "
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         category.subcategories.length > 0
                           ? _c("i", {
@@ -30629,13 +30645,23 @@ var render = function() {
                                       "my-3 transition-colors duration-150 ease-linear"
                                   },
                                   [
-                                    _c("a", { attrs: { href: "" } }, [
-                                      _vm._v(
-                                        "\n                " +
-                                          _vm._s(subcategory.name) +
-                                          "\n              "
-                                      )
-                                    ])
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: {
+                                          href:
+                                            "/shop/subcategory/" +
+                                            subcategory.slug
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(subcategory.name) +
+                                            "\n              "
+                                        )
+                                      ]
+                                    )
                                   ]
                                 )
                               }),

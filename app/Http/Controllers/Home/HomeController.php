@@ -18,10 +18,26 @@ class HomeController extends Controller
             ->get(['id', 'name', 'slug'])
             ->random(2);
         $weeklyProducts = Product::where('weekly_deal', 1)
-            ->get(['id', 'title', 'price', 'slug', 'thumbnail'])
+            ->get([
+                'id',
+                'title',
+                'price',
+                'old_price',
+                'discount',
+                'slug',
+                'thumbnail',
+            ])
             ->random(4);
         $bestSeller = Product::where('best_seller', 1)
-            ->get(['id', 'title', 'price', 'slug', 'thumbnail'])
+            ->get([
+                'id',
+                'title',
+                'price',
+                'old_price',
+                'discount',
+                'slug',
+                'thumbnail',
+            ])
             ->random(4);
         $mainSlider = Product::where('main_slider', 1)
             ->with('brand')
@@ -30,11 +46,27 @@ class HomeController extends Controller
             ->take(4)
             ->get();
         $topProducts = Product::where('top_rated', 1)
-            ->get(['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']) //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
+            ->get([
+                'id',
+                'title',
+                'price',
+                'old_price',
+                'discount',
+                'slug',
+                'thumbnail',
+            ]) //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
             ->random(6);
         $latestProducts = Product::latest()
             ->take(6)
-            ->get(['id', 'title', 'price', 'slug', 'thumbnail']);
+            ->get([
+                'id',
+                'title',
+                'price',
+                'old_price',
+                'discount',
+                'slug',
+                'thumbnail',
+            ]);
         // dd($products);
         return view(
             'home.index',

@@ -16,16 +16,40 @@ class CategoryController extends Controller
         if (request()->has('sort')) {
             $products = Product::where('category_id', $category->id)
                 ->orderBy('title', request('sort'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } elseif (request()->has('price')) {
             $products = Product::where('category_id', $category->id)
                 ->orderBy('price', request('price'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } else {
             $products = Product::where('category_id', $category->id)
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         }
         return view(

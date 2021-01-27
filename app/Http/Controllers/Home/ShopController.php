@@ -15,15 +15,39 @@ class ShopController extends Controller
 
         if (request()->has('sort')) {
             $products = Product::orderBy('title', request('sort'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } elseif (request()->has('price')) {
             $products = Product::orderBy('price', request('price'))
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         } else {
             $products = Product::latest()
-                ->paginate(12, ['id', 'title', 'price', 'thumbnail', 'slug'])
+                ->paginate(12, [
+                    'id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'discount',
+                    'slug',
+                    'thumbnail',
+                ])
                 ->withQueryString();
         }
         return view('home.shop.index', compact('brands', 'products'));

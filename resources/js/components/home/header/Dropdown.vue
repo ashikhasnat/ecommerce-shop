@@ -23,7 +23,7 @@
             :key="i"
             class="category border-b border-r border-l px-4 py-3 transition-colors duration-150 ease-linear relative"
           >
-            <a href="">
+            <a :href="'/shop/category/' + category.slug">
               {{ category.name }}
             </a>
 
@@ -42,7 +42,7 @@
                 :key="i"
                 class="my-3 transition-colors duration-150 ease-linear"
               >
-                <a href="">
+                <a :href="'/shop/subcategory/' + subcategory.slug">
                   {{ subcategory.name }}
                 </a>
               </li>

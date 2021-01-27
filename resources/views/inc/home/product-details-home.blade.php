@@ -18,4 +18,13 @@
     <a href="{{ route('home-product.show' , $product->slug) }}"
         class="text-gray-700 font-semibold">{{ $product->title }}</a>
 </p>
+@if ($product->discount)
+<div class=" flex items-center">
+    <p class=" text-gray-400 text-sm font-semibold line-through mr-2"
+        v-text="convertToCurrency({{ $product->old_price }})">
+    </p>
+    <p class=" text-teal-400 font-bold " v-text="convertToCurrency({{ $product->price }})"></p>
+</div>
+@else
 <p class=" text-teal-400 font-bold " v-text="convertToCurrency({{ $product->price }})"></p>
+@endif

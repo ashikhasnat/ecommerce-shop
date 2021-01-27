@@ -1,9 +1,9 @@
 <x-layouts.dashboard>
-    <section style="width: 900px" class="mx-auto mt-20">
+    <section style="max-width: 900px" class="mx-auto mt-20">
         @include('inc.session-msgs')
         <form action="{{ route('coupon.store') }}" method="post">
             @csrf
-            <div class=" flex">
+            <div class=" flex flex-col lg:flex-row px-6 ">
                 <div class=" flex-1">
                     <label for="coupon_code" class="text-base font-medium leading-5 text-gray-700">
                         Coupon Code</label>

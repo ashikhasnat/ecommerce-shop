@@ -52,6 +52,8 @@ class ProductController extends Controller
             'slug' => ['nullable'],
             'title' => ['required', 'string', 'max:255', 'min:3'],
             'price' => ['numeric', 'required'],
+            'old_price' => ['nullable', 'numeric'],
+            'discount' => ['numeric', 'nullable'],
             'thumbnail' => ['nullable'],
             // 'images' => ['nullable'],
             'brand_id' => ['nullable', 'required'],
@@ -65,6 +67,14 @@ class ProductController extends Controller
             'best_dealer' => [''],
             'main_slider' => [''],
         ]);
+
+        if (request()->has('discount')) {
+            $discount = request('discount') / 100;
+            $discountPrice = request('price') - request('price') * $discount;
+            $old_price = request('price');
+        }
+        // Create Thumbnail
+
         if (request()->hasFile('thumbnail')) {
             $thumbnail_path =
                 'app/public/thumbnail/' . $newProduct['thumbnail']->hashName();
@@ -81,6 +91,8 @@ class ProductController extends Controller
             array_merge($newProduct, [
                 'sku' => Str::upper(Str::random(3)) . '-' . rand(0, 4000),
                 'slug' => Str::slug($newProduct['title']),
+                'price' => $discountPrice ?? request('price'),
+                'old_price' => $old_price,
                 'weekly_deal' => $newProduct['weekly_deal'] ?? 0,
                 'top_rated' => $newProduct['top_rated'] ?? 0,
                 'best_seller' => $newProduct['best_seller'] ?? 0,
@@ -88,6 +100,9 @@ class ProductController extends Controller
                 'thumbnail' => $replacePath,
             ])
         );
+
+        // Create Image gallery
+
         if (request()->hasFile('images')) {
             $images = request()->file('images');
             foreach ($images as $file) {

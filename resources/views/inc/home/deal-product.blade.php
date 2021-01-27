@@ -8,6 +8,7 @@
         <div class="">
             <div class="h-80 relative single-product-card">
                 <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
+                <p></p>
                 <div
                     class=" single-product-child-card absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
                     <Add-To-Cart :product_id="{{ $product->id }}" :price="{{ $product->price }}" :cart_option="false"

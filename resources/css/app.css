@@ -8,6 +8,9 @@
 #app{
     font-family: 'Rubik', sans-serif;
 }
+/* table tbody tr td{
+    background-color: red;
+} */
 .grid-auto-fit{
     grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) ); 
 }
@@ -37,4 +40,17 @@
     color: #246b13;
     z-index: 999;
     opacity: 1;
+}
+.text-teal-400{
+    color: #f56565;
+}
+.hover\:text-teal-400:hover{
+    color: #f56565;
+}
+
+.bg-teal-400{
+    background:#f56565;
+}
+.hover\:bg-teal-400:hover{
+    color: #f56565;
 }

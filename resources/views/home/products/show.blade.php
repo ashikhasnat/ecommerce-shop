@@ -57,8 +57,18 @@
             <div class=" col-span-1 mt-4 lg:mt-0">
                 <div class=" font-bold">
                     <h1 class=" text-3xl">{{ $product->title }}</h1>
+                    @if ($product->discount)
+                    <div class=" flex items-center">
+                        <p class=" text-gray-400 text-base font-semibold line-through mr-2"
+                            v-text="convertToCurrency({{ $product->old_price }})">
+                        </p>
+                        <p class=" text-teal-400 text-2xl my-2" v-text="convertToCurrency({{ $product->price }})">
+                        </p>
+                    </div>
+                    @else
                     <p class=" text-teal-400 text-2xl my-2" v-text="convertToCurrency({{ $product->price }})">
                     </p>
+                    @endif
                     <div class="flex justify-start items-center">
                         <p class="mr-1">Brand:</p>
                         <div class="">

@@ -55,7 +55,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      coupon: '',
+      coupon: null,
     }
   },
   mounted() {
@@ -63,28 +63,37 @@ export default {
   },
   methods: {
     checkCoupon() {
-      axios
-        .post('/api/set-session', {
-          coupon_code: this.coupon,
-        })
-        .then((res) => {
-          this.coupon = ''
-          this.$store.commit('setClasses', 'success')
-          this.$store.commit('setToastrMsg', res.data)
-          setTimeout(() => {
-            this.$store.commit('setToastrMsg', '')
-          }, 3000)
-          this.$store.dispatch('fetchTotalAmount')
-          location.reload()
-        })
-        .catch((e) => {
-          this.coupon = ''
-          this.$store.commit('setClasses', 'error')
-          this.$store.commit('setToastrMsg', 'Coupon No Found')
-          setTimeout(() => {
-            this.$store.commit('setToastrMsg', '')
-          }, 3000)
-        })
+      if (this.coupon != null) {
+        axios
+          .post('/api/set-session', {
+            coupon_code: this.coupon,
+          })
+          .then((res) => {
+            this.coupon = ''
+            this.$store.commit('setClasses', 'success')
+            this.$store.commit('setToastrMsg', res.data)
+            setTimeout(() => {
+              this.$store.commit('setToastrMsg', '')
+            }, 3000)
+            this.$store.dispatch('fetchTotalAmount')
+            location.reload()
+          })
+          .catch((e) => {
+            this.coupon = ''
+            this.$store.commit('setClasses', 'error')
+            this.$store.commit('setToastrMsg', 'Coupon No Found')
+            setTimeout(() => {
+              this.$store.commit('setToastrMsg', '')
+            }, 3000)
+          })
+      }
+      if (this.coupon == null) {
+        this.$store.commit('setClasses', 'error')
+        this.$store.commit('setToastrMsg', 'No Coupon Added')
+        setTimeout(() => {
+          this.$store.commit('setToastrMsg', '')
+        }, 3000)
+      }
     },
   },
   computed: {

@@ -1,8 +1,8 @@
 <x-layouts.dashboard>
-    <div class="sm:px-14 text-right flex justify-between my-4 ">
-        <h1 class=" font-semibold text-3xl">Products</h1>
+    <div class=" px-3 sm:px-14 text-right flex justify-between my-4 ">
+        <h1 class=" font-semibold text-lg sm:text-3xl">Products</h1>
         <a href="{{ route('product.create') }}"
-            class="text-indigo-600 text-base border border-indigo-600 px-6 py-2 hover:opacity-75">Create
+            class="text-indigo-600 text-xs sm:text-base border border-indigo-600 px-2 sm:px-6 py-1 sm:py-2 hover:opacity-75">Create
             New product</a>
     </div>
     @include('inc.session-msgs')
@@ -12,73 +12,29 @@
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead>
-                        <tr>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base font-bold leading-4 text-gray-800 uppercase tracking-wider">
-                                Product ID
-                            </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base font-bold leading-4 text-gray-800 uppercase tracking-wider">
-                                Title
-                            </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Avg Ratings
-                            </th>
-
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Brand
-                            </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Category
-                            </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-left text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Availability
-                            </th>
-                            <th
-                                class="px-3 py-3 bg-gray-50 text-center text-base leading-4 font-bold text-gray-800 uppercase tracking-wider">
-                                Price
-                            </th>
-                            <th class="px-3 py-3 bg-gray-50"></th>
+                        <tr class="lg:text-center">
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Avg Ratings</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Availability</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
-                    @foreach ($products as $product)
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="text-xs break-words leading-5 text-gray-900">
-                                    {{ $product->sku  }}
-                                </div>
-                            </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="text-xs leading-5 font-medium text-gray-900">
-                                        {{ $product->title }}
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-3 py-4 whitespace-no-wrap text-center">
-                                <div class="text-xs break-words leading-5 text-gray-900">
-                                    {{ $product->AvgRating }}
-                                </div>
-                            </td>
 
-                            {{-- Brand --}}
-                            <td class="px-3 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                {{ $product->brand->name }}
-                            </td>
-                            {{-- category --}}
-                            <td class="px-3 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                {{ $product->category->name }}
-                            </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                {{-- Stock --}}
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                    {{ $product->stock_status == 0 ? 'bg-red-100' : 'bg-green-100' }}
-                                     text-green-800">
+                    @foreach ($products as $product)
+                    <tbody class="">
+                        <tr class="lg:text-center">
+                            <td data-label="Product ID">{{ $product->sku  }}</td>
+                            <td data-label="Title">{{ $product->title  }}</td>
+                            <td data-label="Avg Ratings">{{ $product->AvgRating  }}</td>
+                            <td data-label="Category">{{ $product->brand->name  }}</td>
+                            <td data-label="Brand">{{ $product->category->name  }}</td>
+                            <td data-label="Availability"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                {{ $product->stock_status == 0 ? 'bg-red-100' : 'bg-green-100' }}
+                                 text-green-800">
                                     @if ($product->stock_status == 0)
                                     <p class="text-red-500"><i class="fas fa-exclamation-circle  mx-1"></i> Out Of
                                         Stock
@@ -88,19 +44,13 @@
                                         Stock</p>
                                     @endif
 
-                                </span>
+                                </span></td>
+                            <td data-label="Price">
+                                <p v-text="convertToCurrency({{ $product->price }})"></p>
                             </td>
-                            {{-- price --}}
-                            <td class="text-sm leading-5 text-gray-600 ">
-                                <p class="bg-orange-100 text-center" v-text="convertToCurrency({{ $product->price }})">
-                                </p>
-                            </td>
-
-                            <td class="px-3 py-2 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                            <td class=" flex items-center">
                                 <a href="{{ route('product.edit', $product->id) }}"
-                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            </td>
-                            <td class="px-3 py-2 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                    class="text-indigo-600 hover:text-indigo-900 mr-6">Edit</a>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -113,8 +63,8 @@
                     </tbody>
                     @endforeach
                 </table>
-                <section class="my-6 text-sm">
-                    {{ $products->links() }}
+                <section class="my-6 text-xs md:text-sm flex items-center justify-center">
+                    {{ $products->onEachSide(0)->links() }}
                 </section>
             </div>
         </div>

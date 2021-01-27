@@ -34,27 +34,21 @@
                     @foreach ($subcategories as $subCat)
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
-                            <td class="px-3 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-xs leading-5 font-medium text-gray-900">
-                                            {{ $subCat->name }}
-                                        </div>
-                                    </div>
-                                </div>
+                            <td data-label="Name" class="px-3 py-4 whitespace-no-wrap">
+                                {{ $subCat->name }}
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Category Name" class="px-3 py-4 whitespace-no-wrap">
                                 <div
                                     class="text-xs inline-flex px-2 rounded break-words bg-yellow-200 leading-5 text-gray-900">
                                     {{ $subCat->category->name }}
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Total Products" class="px-3 py-4 whitespace-no-wrap">
                                 <div class="text-xs break-words leading-5 text-gray-900">
                                     {{ $subCat->products->count() }}
                                 </div>
                             </td>
-                            <td class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Created At" class="px-3 py-4 whitespace-no-wrap">
                                 {{-- created at --}}
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

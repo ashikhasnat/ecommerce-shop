@@ -19,12 +19,10 @@
         @if ($loop->index == 0)
         <div class=" col-span-1 lg:col-span-2 h-96 lg:h-full border bg-cover bg-no-repeat bg-center"
             style="background-image: url({{ asset('imgs/category-home-banner.jpg') }})">
-            {{-- <img src="" alt="" class=" object-fill" height="100%"> --}}
         </div>
         @else
         <div class=" col-span-1 lg:col-span-2 h-96 lg:h-full border bg-cover bg-no-repeat bg-center"
             style="background-image: url({{ asset('imgs/category-banner-2.jpg') }})">
-            {{-- <img src="" alt="" class=" object-fill" height="100%"> --}}
         </div>
         @endif
         <div class=" col-span-full lg:col-span-5 mt-6 lg:mt-0 lg:ml-5">
@@ -34,6 +32,11 @@
                     style="max-height: 20rem;">
                     <div class=" h-48 w-full bg-cover bg-center bg-no-repeat single-product-card"
                         style="background-image: url({{ $product->thumbnail }});">
+                        @if (!$product->discount == null)
+                        <span
+                            class=" absolute top-3 left-3 text-sm text-red-500 py-px px-2 border border-red-500 ">-{{ $product->discount }}%</span>
+                        @endif
+                        <p></p>
                         <div
                             class=" single-product-child-card flex absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-90">
                             <Add-To-Cart :product_id="{{ $product->id }}" :price="{{ $product->price }}"

@@ -29,6 +29,8 @@ class ProductFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'price' => $this->faker->numberBetween(10000, 200000) . '.00',
+            'old_price' => $this->faker->numberBetween(10000, 200000) . '.00',
+            'discount' => rand(10, 50),
             'thumbnail' => $this->faker->imageUrl(1920, 1080),
             // 'thumbnail' =>
             //     'https://picsum.photos/1920/1080?random=' . rand(1, 50),
