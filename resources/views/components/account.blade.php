@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    My Account
+    @endsection
     <x-container>
         @if (session('msg'))
         <Toastr text_msg="{{ session('msg') }}" text_classes="success"></Toastr>

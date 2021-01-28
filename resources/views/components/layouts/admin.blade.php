@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('imgs/favicon.png') }}" type="image/x-icon">
     @yield('ckeditor-top-js')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,7 +23,7 @@
     <div id="app">
         {{ $slot }}
     </div>
-    @if (request()->is('dashboard/product/create'))
+    @if (request()->is('dashboard/product/*'))
     <script>
         setTimeout(function(){
         CKEDITOR.replace( 'short_details' ); //Your selector must match the textarea ID

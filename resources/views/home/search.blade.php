@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Search Results
+    @endsection
     <x-container>
         <div class=" flex justify-between my-6">
             <div class=" flex text-sm items-center justify-center">

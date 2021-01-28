@@ -3,9 +3,6 @@
     class="text-base sm:text-xl flex items-center justify-center ml-4 sm:ml-0"
   >
     <div class="relative">
-      <!-- <i
-      class="fas fa-search block sm:hidden absolute right-1 text-base hover:text-teal-400 transform -translate-y-2"
-    ></i> -->
       <i
         class="fas fa-user-alt cursor-pointer hover:text-teal-400"
         @click="showDropdown()"
@@ -47,14 +44,85 @@
       </span>
       <a href="/wishlist"><i class="far fa-heart hover:text-teal-400"></i></a>
     </div>
-    <a href="/cart" class="relative text-center">
+    <div class="relative">
       <span
-        class="absolute bg-teal-400 text-white font-semibold text-xs w-5 h-5 right-0 rounded-full transform -translate-y-1 translate-x-3"
+        class="text-center absolute bg-teal-400 text-white right-0 font-semibold text-xs w-5 h-5 rounded-full transform -translate-y-1 translate-x-3"
       >
         {{ CartItemLength }}
       </span>
-      <i class="fas fa-shopping-cart hover:text-teal-400"></i>
-    </a>
+      <i
+        @click="showCartDropdown()"
+        class="fas fa-shopping-cart hover:text-teal-400 cursor-pointer"
+      ></i>
+      <div
+        v-if="cartShow"
+        :class="[
+          cartShow
+            ? 'visible transform -translate-x-11/12'
+            : 'invisible transform -translate-x-10/12',
+        ]"
+        class="text-sm w-80 md:w-96 z-50 absolute left-0 bg-white px-3 box-shadow mt-2 rounded-sm"
+      >
+        <div
+          class="w-full h-full overflow-y-scroll scroll-bar-hide p-3 relative"
+          style="max-height: 18rem; min-height: 6rem;"
+        >
+          <div
+            class="flex py-3 border-b border-gray-100 relative"
+            v-for="(product, i) in AllCartItem"
+            :key="i"
+          >
+            <i
+              @click="DeleteProductFromCart(product.id)"
+              class="fas fa-trash-alt absolute right-0 top-4 hover:text-red-500 cursor-pointer"
+            ></i>
+            <div class="w-16 h-16 mr-4">
+              <img
+                class="object-cover w-full h-full"
+                :src="product.thumbnail"
+                alt=""
+              />
+            </div>
+            <div class="text-left">
+              <a :href="'/shop/' + product.slug" class="mt-1 mb-2">
+                <h1
+                  class="text-gray-700 hover:text-teal-400 text-sm sm:text-base"
+                >
+                  {{ product.title }}
+                </h1>
+              </a>
+              <small class="flex items-center">
+                <span class="text-sm mr-1">{{ product.quantity }}</span>
+                <span class="text-sm mr-1">x</span>
+                <p
+                  class="text-teal-400 font-semibold text-sm"
+                  v-text="convertToCurrency(product.sub_total)"
+                ></p>
+              </small>
+            </div>
+          </div>
+        </div>
+        <section class="h-28 mb-3 p-4">
+          <div
+            class="flex text-gray-500 items-center justify-between text-lg relative cart-line"
+          >
+            <p class="bg-white pr-2">TOTAL:</p>
+            <p
+              class="bg-white pl-2"
+              v-text="convertToCurrency(getTotalAmount)"
+            ></p>
+          </div>
+          <div class="flex mt-4 text-white font-semibold">
+            <p class="py-2 px-6 bg-teal-400 mr-4">
+              <a href="/cart">View Cart</a>
+            </p>
+            <p class="py-2 px-6 bg-gray-600 hover:bg-gray-700">
+              <a href="/checkout">CheckOut</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -65,6 +133,7 @@ export default {
   data() {
     return {
       show: false,
+      cartShow: false,
       data: '',
     }
   },
@@ -75,15 +144,32 @@ export default {
     ...mapGetters({
       wishlistDataLength: 'wishlistDataLength',
       CartItemLength: 'CartItemLength',
+      AllCartItem: 'AllCartItem',
+      getTotalAmount: 'getTotalAmount',
     }),
   },
   mounted() {
     this.$store.dispatch('fetchWishlistDataTotal')
     this.$store.dispatch('fetchCartItemTotal')
+    this.$store.dispatch('fetchTotalAmount')
   },
   methods: {
     showDropdown() {
       this.show = !this.show
+    },
+    showCartDropdown() {
+      this.cartShow = !this.cartShow
+    },
+    DeleteProductFromCart(id) {
+      axios.delete(`/api/cart/${id}`).then(() => {
+        this.$store.dispatch('fetchCartItemTotal')
+        this.$store.commit('setClasses', 'error')
+        this.$store.commit('setToastrMsg', 'Deleted From Cart')
+        this.$store.dispatch('fetchTotalAmount')
+        setTimeout(() => {
+          this.$store.commit('setToastrMsg', '')
+        }, 5000)
+      })
     },
     logout() {
       Axios.post('/logout').then(() => {
@@ -97,3 +183,20 @@ export default {
   },
 }
 </script>
+<style scoped>
+.scroll-bar-hide::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.cart-line::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  background-color: rgba(44, 44, 44, 0.146);
+  height: 1px;
+  z-index: -1;
+}
+</style>

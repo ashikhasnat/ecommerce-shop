@@ -59,6 +59,11 @@ export default {
   width: 100%;
 }
 .home-slide {
-  height: 530px;
+  height: 430px;
+}
+@media (min-width: 640px) {
+  .home-slide {
+    height: 530px;
+  }
 }
 </style>

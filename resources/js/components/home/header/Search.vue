@@ -31,7 +31,7 @@
           />
           <button
             :type="[searchString == null ? 'reset' : 'submit']"
-            class="focus:outline-none"
+            class="focus:outline-none rounded"
           >
             <i
               class="fas fa-search rounded text-base bg-teal-400 text-white hover:bg-teal-500"

@@ -125,7 +125,7 @@
                 <div class=" flex justify-evenly my-8 bg-white py-6">
                     <label class="inline-flex items-center mt-3">
                         <input type="checkbox" value="1" class="form-checkbox h-5 w-5 text-indigo-600"
-                            name="top_rated"><span class="ml-2 text-gray-700">Main Slider</span>
+                            name="main_slider"><span class="ml-2 text-gray-700">Main Slider</span>
                     </label>
                     <label class="inline-flex items-center mt-3">
                         <input type="checkbox" value="1" class="form-checkbox h-5 w-5 text-indigo-600"
@@ -163,7 +163,3 @@
     </div>
 
 </x-layouts.dashboard>
-
-@section('ckeditor-bottom-js')
-
-@endsection

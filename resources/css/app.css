@@ -4,7 +4,10 @@
 
 @import "tailwindcss/utilities";
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
-
+:root{
+    --dark-blue: #0d335d;
+    --dark-blue-200: #0d325dd2;
+}
 #app{
     font-family: 'Rubik', sans-serif;
 }
@@ -42,15 +45,27 @@
     opacity: 1;
 }
 .text-teal-400{
-    color: #f56565;
+    color: var(--dark-blue);
 }
 .hover\:text-teal-400:hover{
-    color: #f56565;
+    color: var(--dark-blue);
+}
+.text-teal-500{
+    color: var(--dark-blue-200);
+}
+.hover\:text-teal-500:hover{
+    color: var(--dark-blue-200);
 }
 
 .bg-teal-400{
-    background:#f56565;
+    background:var(--dark-blue);
 }
 .hover\:bg-teal-400:hover{
-    color: #f56565;
+    background: var(--dark-blue);
+}
+.bg-teal-500{
+    background:var(--dark-blue-200);
+}
+.hover\:bg-teal-500:hover{
+    background: var(--dark-blue-200);
 }

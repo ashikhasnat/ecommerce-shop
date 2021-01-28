@@ -1,7 +1,9 @@
 <x-layouts.app>
+    @section('title')
+    Home
+    @endsection
     <x-container>
         <div class="my-8 grid grid-cols-2 lg:grid-cols-8">
-
             @include('inc.home.slider')
             <div class=" col-span-full lg:col-span-2 lg:ml-7">
                 <div class=" border-b-2 pb-2 relative mb-4">
@@ -12,7 +14,7 @@
                 </div>
                 <div class="">
                     @foreach ($bestSeller as $product)
-                    <div class="p-3 border mx-2 flex my-4 lg:my-2 ">
+                    <div class="p-3 border mx-2 flex my-4 lg:my-4 ">
                         <div class=" w-24 h-24 lg:w-20 lg:h-20 border mr-2" style="min-width: 6rem">
                             <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
                         </div>

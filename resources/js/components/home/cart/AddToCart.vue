@@ -25,18 +25,36 @@
         </span>
       </div>
       <button
+        v-if="buttonShow"
         @click="postToCart(price)"
         class="text-white outline-none focus:outline-none bg-teal-400 py-2 px-5 text-xs sm:text-sm w-max-content uppercase"
       >
         add to cart
       </button>
+      <button
+        v-if="!buttonShow"
+        @click="updateCart(updateQuantity + quantity)"
+        class="text-white outline-none focus:outline-none bg-teal-400 py-2 px-5 text-xs sm:text-sm w-max-content uppercase"
+      >
+        add to cart
+      </button>
     </div>
-    <div
-      @click="postToCart(price)"
-      v-else
-      class="cursor-pointer bg-white flex justify-center items-center w-10 h-10 text-gray-700 hover:text-white rounded-full text-center hover:bg-red-500 mr-1"
-    >
-      <i class="fas fa-shopping-bag text-lg"></i>
+    <!-- Icon add to cart -->
+    <div class="" v-else>
+      <div
+        v-if="buttonShow"
+        @click="postToCart(price)"
+        class="cursor-pointer bg-white flex justify-center items-center w-10 h-10 text-gray-700 hover:text-white rounded-full text-center hover:bg-red-500 mr-1"
+      >
+        <i class="text-lg" :class="icon"></i>
+      </div>
+      <div
+        v-if="!buttonShow"
+        @click="updateCart(updateQuantity + 1)"
+        class="cursor-pointer bg-white flex justify-center items-center w-10 h-10 text-gray-800 hover:text-white rounded-full text-center hover:bg-red-500 mr-1"
+      >
+        <i class="text-lg" :class="icon"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +65,13 @@ export default {
   data() {
     return {
       quantity: 1,
+      updateQuantity: '',
+      updatePrice: '',
+      cart_id: '',
       msg: '',
+      data: '',
+      buttonShow: true,
+      icon: 'fas fa-shopping-bag',
     }
   },
   props: {
@@ -59,8 +83,31 @@ export default {
     price: Number,
     cart_option: Boolean,
   },
+  mounted() {
+    this.fetchCartItem()
+  },
   methods: {
+    updateCart(quantity) {
+      this.icon = 'fas fa-spinner fa-pulse'
+      axios
+        .put(`/api/cart/${this.cart_id}`, {
+          quantity: quantity,
+          price: this.updatePrice,
+        })
+        .then((res) => {
+          this.fetchCartItem()
+          this.$store.dispatch('fetchCartItemTotal')
+          this.$store.dispatch('fetchTotalAmount')
+          this.$store.commit('setClasses', 'info')
+          this.$store.commit('setToastrMsg', 'Updated the Cart')
+          this.icon = 'fas fa-shopping-bag'
+          setTimeout(() => {
+            this.$store.commit('setToastrMsg', '')
+          }, 3000)
+        })
+    },
     postToCart(price) {
+      this.icon = 'fas fa-spinner fa-pulse'
       axios
         .post(`/api/cart/${this.product_id}`, {
           product_id: this.product_id,
@@ -68,9 +115,13 @@ export default {
           price: price,
         })
         .then((res) => {
+          this.buttonShow = false
+          this.fetchCartItem()
           this.$store.dispatch('fetchCartItemTotal')
+          this.$store.dispatch('fetchTotalAmount')
           this.$store.commit('setClasses', 'success')
           this.$store.commit('setToastrMsg', 'Added Cart')
+          this.icon = 'fas fa-shopping-bag'
           setTimeout(() => {
             this.$store.commit('setToastrMsg', '')
           }, 3000)
@@ -88,6 +139,7 @@ export default {
           }
         })
     },
+    
     increment() {
       this.quantity++
       this.msg = ''
@@ -99,6 +151,19 @@ export default {
         this.msg = ''
         this.quantity--
       }
+    },
+    fetchCartItem() {
+      axios.get('/api/cart').then((res) => {
+        this.data = res.data
+        this.data.forEach((element) => {
+          if (element.product_id == this.product_id) {
+            this.updateQuantity = element.quantity
+            this.cart_id = element.id
+            this.updatePrice = element.price
+            return (this.buttonShow = false)
+          }
+        })
+      })
     },
   },
 }

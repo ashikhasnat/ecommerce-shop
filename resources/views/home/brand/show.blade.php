@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Products
+    @endsection
     <x-container>
         <main class=" container mx-auto">
             <div class=" flex justify-between my-6">

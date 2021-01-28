@@ -53,7 +53,7 @@ const getters = {
   getTotalAmount: (state) => {
     return state.totalAmount
   },
-
+  
 }
 
 export default {

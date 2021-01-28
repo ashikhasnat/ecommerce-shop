@@ -31,7 +31,7 @@
             name="sub_category_id"
             class="mt-1 mr-1 py-2 px-3 border w-full border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5"
           >
-            <option value="" disabled selected>Select Category</option>
+            <option value="" disabled selected>Select SubCategory</option>
             <option
               :value="subcategory.id"
               v-for="subcategory in subcategories"

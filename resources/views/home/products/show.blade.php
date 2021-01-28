@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    {{ Str::limit( $product->title, 12, '...') }}
+    @endsection
     <x-container>
         <div class=" flex my-5">
             <div class=" flex text-sm items-center justify-center">
@@ -71,8 +74,8 @@
                     @endif
                     <div class="flex justify-start items-center">
                         <p class="mr-1">Brand:</p>
-                        <div class="">
-                            <img src="{{ $product->brand->brand_logo }}" alt="">
+                        <div class=" w-32 h-16 bg-cover bg-center bg-no-repeat"
+                            style="background-image: url({{ $product->brand->brand_logo }});">
                         </div>
                     </div>
                     <div class="text-sm font-medium text-gray-500 my-4">

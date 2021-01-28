@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Checkout
+    @endsection
     <x-container>
         <Check-Out>
             @if (session()->has('coupon_code'))

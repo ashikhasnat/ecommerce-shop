@@ -57,7 +57,7 @@
             >
               <p class="px-4">
                 <quantity
-                  :product_id="product.id"
+                  :cart_id="product.id"
                   :product_price="product.price"
                   :product_quantity="product.quantity"
                 ></quantity>
@@ -128,7 +128,6 @@ export default {
     },
     deleteCoupon() {
       axios.delete('/api/destroy-session').then((res) => {
-        this.$store.dispatch('fetchTotalAmount')
         this.$store.commit('setClasses', 'error')
         this.$store.commit('setToastrMsg', res.data)
         this.$store.dispatch('fetchTotalAmount')

@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Orders
+    @endsection
     <x-container>
         <div class=" w-full py-3 border-2 border-dashed text-center my-8 border-red-500 text-red-500 font-semibold ">
             <h1>Thank You , Your order has been received.</h1>

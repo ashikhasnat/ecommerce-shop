@@ -1,6 +1,6 @@
 <template>
-  <div class="grid grid-cols-8 gap-x-6 mt-10 mb-20">
-    <div class="col-span-5">
+  <div class="grid grid-cols-1 md:grid-cols-8 gap-x-6 mt-10 mb-20">
+    <div class="col-span-1 md:col-span-5">
       <div class="flex flex-col px-8" v-if="customer != null">
         <h1 class="text-xl uppercase mb-6 font-bold">Billing Address</h1>
         <div class="mb-3">
@@ -238,7 +238,8 @@
         </div>
       </div>
     </div>
-    <div class="col-span-3">
+    <!-- Total amount and [payment] -->
+    <div class="col-span-1 md:col-span-3">
       <div class="bg-gray-100 w-full p-6 flex justify-center items-center">
         <div class="bg-white w-full p-2">
           <div class="flex font-semibold py-4 text-sm border-b border-gray-200">

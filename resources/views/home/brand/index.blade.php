@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Brands
+    @endsection
     <x-container>
         <div class="grid grid-cols-5 justify-items-center gap-6 mt-8 text-center">
             @foreach ($brands as $brand)

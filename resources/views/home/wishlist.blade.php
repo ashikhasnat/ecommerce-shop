@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Wishlist
+    @endsection
     <x-container>
         <div class=" flex justify-between my-6">
             <div class=" flex text-sm items-center justify-center">
@@ -11,7 +14,7 @@
             </div>
             <p class="text-xl font-extrabold uppercase">Wishlist</p>
         </div>
-        
+
         <Wishlist-Show>
         </Wishlist-Show>
     </x-container>

@@ -1,5 +1,5 @@
 <nav
-    class=" {{ request()->is('/') ? 'bg-teal-400 h-15 sm:h-14' : 'bg-gray-800' }} flex items-center text-white relative">
+    class=" {{ request()->is('/') ? 'bg-teal-400 h-11 sm:h-14' : 'bg-gray-800' }} rounded flex items-center text-white relative">
     <Dropdown>
         <ul slot="menu" class=" hidden md:flex font-semibold uppercase text-sm text-white">
             <li class="py-5 px-6 hover:text-gray-100"><a href="/">Home</a></li>

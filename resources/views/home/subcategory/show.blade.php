@@ -24,14 +24,6 @@
             </div>
             <div class="">
                 <Sort-By>
-                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?sort=asc">Sort By Name: A-Z</a>
-                    </li>
-                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?sort=desc">Sort By Name: Z-A</a>
-                    </li>
-                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?price=asc">Sort By Price: Low To
-                            High</a></li>
-                    <li class=" py-1 hover:text-teal-400" slot="sort-item"><a href="?price=desc">Sort By Price: High To
-                            Low</a></li>
                 </Sort-By>
             </div>
         </div>

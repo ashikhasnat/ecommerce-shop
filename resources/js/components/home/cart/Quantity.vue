@@ -27,7 +27,7 @@
 <script>
 export default {
   props: {
-    product_id: Number,
+    cart_id: Number,
     product_price: Number,
     product_quantity: Number,
   },
@@ -50,7 +50,7 @@ export default {
         this.quantity++
         this.msg = ''
         this.$store.dispatch('updateCartItems', {
-          id: this.product_id,
+          id: this.cart_id,
           value: this.quantity,
           price: this.product_price,
         })
@@ -65,7 +65,7 @@ export default {
         this.msg = ''
         this.quantity--
         this.$store.dispatch('updateCartItems', {
-          id: this.product_id,
+          id: this.cart_id,
           value: this.quantity,
           price: this.product_price,
         })

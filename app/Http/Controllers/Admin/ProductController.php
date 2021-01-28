@@ -6,9 +6,15 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Intervention\Image\Facades\Image;
+
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isTrue;
+
 class ProductController extends Controller
 {
     /**
@@ -79,7 +85,7 @@ class ProductController extends Controller
             $thumbnail_path =
                 'app/public/thumbnail/' . $newProduct['thumbnail']->hashName();
             Image::make($newProduct['thumbnail'])
-                ->fit(620, 620)
+                ->fit(720, 720)
                 ->save(storage_path($thumbnail_path));
             $replacePath = str_replace(
                 'app/public',
@@ -123,7 +129,7 @@ class ProductController extends Controller
                     hash('ripemd160', $product->id) .
                     $sample_images;
                 Image::make($storage_path_0f_imgs)
-                    ->fit(620, 620)
+                    ->fit(720, 720)
                     ->save(storage_path($path_with_new_name));
                 unlink($storage_path_0f_imgs);
                 $replacePath = str_replace(
@@ -151,9 +157,8 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Brand $brand)
     {
-        //
     }
 
     /**
@@ -162,9 +167,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Brand $brand, Product $product)
     {
-        //
+        $brands = $brand->all('id', 'name');
+        $categories = Category::latest()->get(['id', 'name']);
+        $subcategories = SubCategory::latest()->get(['id', 'name']);
+        // dd($brands);
+        return view(
+            'dashboard.product.edit',
+            compact('brands', 'product', 'categories', 'subcategories')
+        );
     }
 
     /**
@@ -174,8 +186,25 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update($id)
     {
+        $product = Product::findOrFail($id);
+        if (!empty(request('discount'))) {
+            $discount = request('discount') / 100;
+            $discountPrice = request('price') - request('price') * $discount;
+            $old_price = request('price');
+        }
+        $product->update(
+            array_merge(request()->all(), [
+                'price' => $discountPrice ?? request('price'),
+                'old_price' => $old_price ?? request('price'),
+                'weekly_deal' => request('weekly_deal') ?? 0,
+                'top_rated' => request('top_rated') ?? 0,
+                'best_seller' => request('best_seller') ?? 0,
+                'main_slider' => request('main_slider') ?? 0,
+            ])
+        );
+        return redirect(route('product.index'))->with('msg', 'Updated');
     }
 
     /**

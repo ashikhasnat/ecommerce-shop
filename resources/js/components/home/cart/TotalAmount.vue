@@ -79,15 +79,15 @@ export default {
             location.reload()
           })
           .catch((e) => {
-            this.coupon = ''
+            this.coupon = null
             this.$store.commit('setClasses', 'error')
-            this.$store.commit('setToastrMsg', 'Coupon No Found')
+            this.$store.commit('setToastrMsg', 'Coupon Not Found')
             setTimeout(() => {
               this.$store.commit('setToastrMsg', '')
             }, 3000)
           })
       }
-      if (this.coupon == null) {
+      if (this.coupon == null || this.coupon == '') {
         this.$store.commit('setClasses', 'error')
         this.$store.commit('setToastrMsg', 'No Coupon Added')
         setTimeout(() => {
