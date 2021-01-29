@@ -2,8 +2,8 @@
     <div class="px-12 text-right flex items-center justify-between mb-4 mt-4">
         <h1 class=" font-semibold text-3xl">Brands</h1>
         <a href="{{ route('brand.create') }}"
-            class="text-base border text-indigo-600 border-indigo-600 px-6 py-2 hover:opacity-75">Create
-            New brand</a>
+            class="text-base border text-indigo-600 border-indigo-600 px-2 sm:px-6 py-2 hover:opacity-75">Add
+            Brand</a>
     </div>
     @include('inc.session-msgs')
     <div class="flex flex-col mb-6">
@@ -44,7 +44,8 @@
                                 {{ $brand->name }}
                             </td>
 
-                            <td data-label="Total Product" class="px-3 py-4 whitespace-no-wrap">
+                            <td data-label="Total Product"
+                                class="px-3 py-4 whitespace-no-wrap text-right lg:text-center">
                                 {{ $brand->products->count() }}
 
                             </td>

@@ -2,6 +2,9 @@
     <main class="">
         <admin-nav>
             <nav slot="col-1" class="text-white text-sm lg:text-xl mt-20 overflow-hidden">
+                <small class=" text-white absolute top-5 left-1/12 hover:underline">
+                    <a href="/" target="_blank">Visit Site</a>
+                </small>
                 <ul>
                     <li class="pl-4 mb-1 py-2 w-60
                         @if (request()->is('dashboard'))

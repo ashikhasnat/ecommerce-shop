@@ -2467,15 +2467,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.sortBy();
@@ -2484,29 +2475,39 @@ __webpack_require__.r(__webpack_exports__);
     return {
       SortShow: false,
       textToShow: '',
-      SortText: ['Sort By Name: A-Z', 'Sort By Name: Z-A', 'Sort By Price: Low To High', 'Sort By Price: High To Low']
+      sorts: [{
+        text: 'Sort By Name: A-Z',
+        link: '?sort=asc'
+      }, {
+        text: 'Sort By Name: Z-A',
+        link: '?sort=desc'
+      }, {
+        text: 'Sort By Price: Low To High',
+        link: '?price=asc'
+      }, {
+        text: 'Sort By Price: High To Low',
+        link: '?price=desc'
+      }]
     };
   },
   methods: {
     showSortBy: function showSortBy() {
       this.SortShow = !this.SortShow;
     },
-    selectSortText: function selectSortText() {
-      console.log(this.$refs);
+    queryString: function queryString(string) {
+      return window.location.search.includes(string);
     },
     sortBy: function sortBy() {
-      var queryString = window.location.search;
-
-      if (queryString == '?sort=asc') {
-        this.textToShow = this.SortText[0];
-      } else if (queryString == '?sort=desc') {
-        this.textToShow = this.SortText[1];
-      } else if (queryString == '?price=asc') {
-        this.textToShow = this.SortText[2];
-      } else if (queryString == '?price=desc') {
-        this.textToShow = this.SortText[3];
+      if (this.queryString(this.sorts[0].link)) {
+        return this.textToShow = this.sorts[0].text;
+      } else if (this.queryString(this.sorts[1].link)) {
+        return this.textToShow = this.sorts[1].text;
+      } else if (this.queryString(this.sorts[2].link)) {
+        return this.textToShow = this.sorts[2].text;
+      } else if (this.queryString(this.sorts[3].link)) {
+        return this.textToShow = this.sorts[3].text;
       } else {
-        this.textToShow = 'Default Sorting';
+        return this.textToShow = 'Default Sorting';
       }
     }
   }
@@ -2666,7 +2667,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$store.commit('setToastrMsg', 'Updated the Cart');
 
-        _this.icon = 'fas fa-shopping-bag';
+        _this.icon = 'fas fa-shopping-basket';
         setTimeout(function () {
           _this.$store.commit('setToastrMsg', '');
         }, 3000);
@@ -2693,7 +2694,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$store.commit('setToastrMsg', 'Added Cart');
 
-        _this2.icon = 'fas fa-shopping-bag';
+        _this2.icon = 'fas fa-shopping-basket';
         setTimeout(function () {
           _this2.$store.commit('setToastrMsg', '');
         }, 3000); // this.data = res.data
@@ -2734,7 +2735,8 @@ __webpack_require__.r(__webpack_exports__);
             _this3.updateQuantity = element.quantity;
             _this3.cart_id = element.id;
             _this3.updatePrice = element.price;
-            return _this3.buttonShow = false;
+            _this3.buttonShow = false;
+            _this3.icon = 'fas fa-shopping-basket';
           }
         });
       });
@@ -3653,6 +3655,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -29324,31 +29330,14 @@ var render = function() {
           "absolute top-8 shadow-md bg-white z-50 border transition-all duration-200 ease-linear w-max-content p-3 right-0",
         class: [_vm.SortShow ? "visible opacity-100" : "invisible opacity-0"]
       },
-      [
-        _c("li", { staticClass: "py-1 hover:text-teal-400" }, [
-          _c("a", { attrs: { href: "?sort=asc" } }, [
-            _vm._v("\n        " + _vm._s(_vm.SortText[0]) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "py-1 hover:text-teal-400" }, [
-          _c("a", { attrs: { href: "?sort=desc" } }, [
-            _vm._v(_vm._s(_vm.SortText[1]))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "py-1 hover:text-teal-400" }, [
-          _c("a", { attrs: { href: "?price=asc" } }, [
-            _vm._v(_vm._s(_vm.SortText[2]))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "py-1 hover:text-teal-400" }, [
-          _c("a", { attrs: { href: "?price=desc" } }, [
-            _vm._v(_vm._s(_vm.SortText[3]))
+      _vm._l(_vm.sorts, function(sort, i) {
+        return _c("li", { key: i, staticClass: "py-1 hover:text-teal-400" }, [
+          _c("a", { attrs: { href: sort.link } }, [
+            _vm._v("\n        " + _vm._s(sort.text) + "\n      ")
           ])
         ])
-      ]
+      }),
+      0
     )
   ])
 }
@@ -30855,89 +30844,102 @@ var render = function() {
                 ]
               },
               [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "w-full h-full overflow-y-scroll scroll-bar-hide p-3 relative",
-                    staticStyle: { "max-height": "18rem", "min-height": "6rem" }
-                  },
-                  _vm._l(_vm.AllCartItem, function(product, i) {
-                    return _c(
+                _vm.CartItemLength != 0
+                  ? _c(
                       "div",
                       {
-                        key: i,
                         staticClass:
-                          "flex py-3 border-b border-gray-100 relative"
+                          "w-full h-full overflow-y-scroll scroll-bar-hide p-3 relative",
+                        staticStyle: {
+                          "max-height": "18rem",
+                          "min-height": "6rem"
+                        }
                       },
-                      [
-                        _c("i", {
-                          staticClass:
-                            "fas fa-trash-alt absolute right-0 top-4 hover:text-red-500 cursor-pointer",
-                          on: {
-                            click: function($event) {
-                              return _vm.DeleteProductFromCart(product.id)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "w-16 h-16 mr-4" }, [
-                          _c("img", {
-                            staticClass: "object-cover w-full h-full",
-                            attrs: { src: product.thumbnail, alt: "" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-left" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "mt-1 mb-2",
-                              attrs: { href: "/shop/" + product.slug }
-                            },
-                            [
+                      _vm._l(_vm.AllCartItem, function(product, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: i,
+                            staticClass:
+                              "flex py-3 border-b border-gray-100 relative"
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-trash-alt absolute right-0 top-4 hover:text-red-500 cursor-pointer",
+                              on: {
+                                click: function($event) {
+                                  return _vm.DeleteProductFromCart(product.id)
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "w-16 h-16 mr-4" }, [
+                              _c("img", {
+                                staticClass: "object-cover w-full h-full",
+                                attrs: { src: product.thumbnail, alt: "" }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "text-left" }, [
                               _c(
-                                "h1",
+                                "a",
                                 {
-                                  staticClass:
-                                    "text-gray-700 hover:text-teal-400 text-sm sm:text-base"
+                                  staticClass: "mt-1 mb-2",
+                                  attrs: { href: "/shop/" + product.slug }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                " +
-                                      _vm._s(product.title) +
-                                      "\n              "
+                                  _c(
+                                    "h1",
+                                    {
+                                      staticClass:
+                                        "text-gray-700 hover:text-teal-400 text-sm sm:text-base"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                " +
+                                          _vm._s(product.title) +
+                                          "\n              "
+                                      )
+                                    ]
                                   )
                                 ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "flex items-center" },
+                                [
+                                  _c("span", { staticClass: "text-sm mr-1" }, [
+                                    _vm._v(_vm._s(product.quantity))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "text-sm mr-1" }, [
+                                    _vm._v("x")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", {
+                                    staticClass:
+                                      "text-teal-400 font-semibold text-sm",
+                                    domProps: {
+                                      textContent: _vm._s(
+                                        _vm.convertToCurrency(product.sub_total)
+                                      )
+                                    }
+                                  })
+                                ]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("small", { staticClass: "flex items-center" }, [
-                            _c("span", { staticClass: "text-sm mr-1" }, [
-                              _vm._v(_vm._s(product.quantity))
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "text-sm mr-1" }, [
-                              _vm._v("x")
-                            ]),
-                            _vm._v(" "),
-                            _c("p", {
-                              staticClass:
-                                "text-teal-400 font-semibold text-sm",
-                              domProps: {
-                                textContent: _vm._s(
-                                  _vm.convertToCurrency(product.sub_total)
-                                )
-                              }
-                            })
-                          ])
-                        ])
-                      ]
+                            ])
+                          ]
+                        )
+                      }),
+                      0
                     )
-                  }),
-                  0
-                ),
+                  : _c(
+                      "div",
+                      { staticClass: "text-center py-6 font-semibold text-lg" },
+                      [_c("p", [_vm._v("No Products")])]
+                    ),
                 _vm._v(" "),
                 _c("section", { staticClass: "h-28 mb-3 p-4" }, [
                   _c(

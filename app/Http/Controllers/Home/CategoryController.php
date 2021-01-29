@@ -13,43 +13,28 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $brands = Brand::all('name', 'id');
+        $list = [
+            'id',
+            'title',
+            'price',
+            'old_price',
+            'discount',
+            'slug',
+            'thumbnail',
+        ];
         if (request()->has('sort')) {
             $products = Product::where('category_id', $category->id)
                 ->orderBy('title', request('sort'))
-                ->paginate(12, [
-                    'id',
-                    'title',
-                    'price',
-                    'old_price',
-                    'discount',
-                    'slug',
-                    'thumbnail',
-                ])
+                ->paginate(12, $list)
                 ->withQueryString();
         } elseif (request()->has('price')) {
             $products = Product::where('category_id', $category->id)
                 ->orderBy('price', request('price'))
-                ->paginate(12, [
-                    'id',
-                    'title',
-                    'price',
-                    'old_price',
-                    'discount',
-                    'slug',
-                    'thumbnail',
-                ])
+                ->paginate(12, $list)
                 ->withQueryString();
         } else {
             $products = Product::where('category_id', $category->id)
-                ->paginate(12, [
-                    'id',
-                    'title',
-                    'price',
-                    'old_price',
-                    'discount',
-                    'slug',
-                    'thumbnail',
-                ])
+                ->paginate(12, $list)
                 ->withQueryString();
         }
         return view(

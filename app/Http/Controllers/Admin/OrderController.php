@@ -30,7 +30,7 @@ class OrderController extends Controller
             ->where('billing_addresses.user_id', $orderedProducts->user->id)
             ->get()
             ->first();
-        // dd($orderedProducts->user->billing_address->first_name);
+        // dd($orderedProducts);
         return view(
             'dashboard.order.show',
             compact('orderedProducts', 'billing_address')

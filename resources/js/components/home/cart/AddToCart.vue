@@ -100,7 +100,7 @@ export default {
           this.$store.dispatch('fetchTotalAmount')
           this.$store.commit('setClasses', 'info')
           this.$store.commit('setToastrMsg', 'Updated the Cart')
-          this.icon = 'fas fa-shopping-bag'
+          this.icon = 'fas fa-shopping-basket'
           setTimeout(() => {
             this.$store.commit('setToastrMsg', '')
           }, 3000)
@@ -121,7 +121,7 @@ export default {
           this.$store.dispatch('fetchTotalAmount')
           this.$store.commit('setClasses', 'success')
           this.$store.commit('setToastrMsg', 'Added Cart')
-          this.icon = 'fas fa-shopping-bag'
+          this.icon = 'fas fa-shopping-basket'
           setTimeout(() => {
             this.$store.commit('setToastrMsg', '')
           }, 3000)
@@ -139,7 +139,7 @@ export default {
           }
         })
     },
-    
+
     increment() {
       this.quantity++
       this.msg = ''
@@ -160,7 +160,8 @@ export default {
             this.updateQuantity = element.quantity
             this.cart_id = element.id
             this.updatePrice = element.price
-            return (this.buttonShow = false)
+            this.buttonShow = false
+            this.icon = 'fas fa-shopping-basket'
           }
         })
       })

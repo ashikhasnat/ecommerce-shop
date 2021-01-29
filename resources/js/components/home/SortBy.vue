@@ -11,19 +11,10 @@
       class="absolute top-8 shadow-md bg-white z-50 border transition-all duration-200 ease-linear w-max-content p-3 right-0"
       :class="[SortShow ? 'visible opacity-100' : 'invisible opacity-0']"
     >
-      <li class="py-1 hover:text-teal-400">
-        <a href="?sort=asc">
-          {{ SortText[0] }}
+      <li class="py-1 hover:text-teal-400" v-for="(sort, i) in sorts" :key="i">
+        <a :href="sort.link">
+          {{ sort.text }}
         </a>
-      </li>
-      <li class="py-1 hover:text-teal-400">
-        <a href="?sort=desc">{{ SortText[1] }}</a>
-      </li>
-      <li class="py-1 hover:text-teal-400">
-        <a href="?price=asc">{{ SortText[2] }}</a>
-      </li>
-      <li class="py-1 hover:text-teal-400">
-        <a href="?price=desc">{{ SortText[3] }}</a>
       </li>
     </ul>
   </div>
@@ -38,11 +29,11 @@ export default {
     return {
       SortShow: false,
       textToShow: '',
-      SortText: [
-        'Sort By Name: A-Z',
-        'Sort By Name: Z-A',
-        'Sort By Price: Low To High',
-        'Sort By Price: High To Low',
+      sorts: [
+        { text: 'Sort By Name: A-Z', link: '?sort=asc' },
+        { text: 'Sort By Name: Z-A', link: '?sort=desc' },
+        { text: 'Sort By Price: Low To High', link: '?price=asc' },
+        { text: 'Sort By Price: High To Low', link: '?price=desc' },
       ],
     }
   },
@@ -50,21 +41,20 @@ export default {
     showSortBy() {
       this.SortShow = !this.SortShow
     },
-    selectSortText() {
-      console.log(this.$refs)
+    queryString(string) {
+      return window.location.search.includes(string)
     },
     sortBy() {
-      const queryString = window.location.search
-      if (queryString == '?sort=asc') {
-        this.textToShow = this.SortText[0]
-      } else if (queryString == '?sort=desc') {
-        this.textToShow = this.SortText[1]
-      } else if (queryString == '?price=asc') {
-        this.textToShow = this.SortText[2]
-      } else if (queryString == '?price=desc') {
-        this.textToShow = this.SortText[3]
+      if (this.queryString(this.sorts[0].link)) {
+        return (this.textToShow = this.sorts[0].text)
+      } else if (this.queryString(this.sorts[1].link)) {
+        return (this.textToShow = this.sorts[1].text)
+      } else if (this.queryString(this.sorts[2].link)) {
+        return (this.textToShow = this.sorts[2].text)
+      } else if (this.queryString(this.sorts[3].link)) {
+        return (this.textToShow = this.sorts[3].text)
       } else {
-        this.textToShow = 'Default Sorting'
+        return (this.textToShow = 'Default Sorting')
       }
     },
   },

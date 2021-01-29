@@ -1,10 +1,13 @@
 <x-layouts.dashboard>
     <div class=" sm:mx-20 sm:mt-20">
-        <div class="">
-            <p class="ml-2 my-4">Order # <span class=" bg-yellow-100 px-px">{{ $orderedProducts->id }}</span> was placed
+        <div class=" ml-2">
+            <p class="my-4">Order # <span class=" bg-yellow-100 px-px">{{ $orderedProducts->id }}</span> was placed
                 on
                 <span class=" bg-yellow-100 px-px">{{ $orderedProducts->created_at->format('F j, Y') }}</span></p>
-            <h1 class=" font-bold text-xl mb-4 ml-2 uppercase">Order details</h1>
+            <p class="">Transaction ID :
+                <span class="bg-gray-200 py-1 px-2 rounded w-max-content">{{ $orderedProducts->transaction_id }}</span>
+            </p>
+            <h1 class=" font-bold text-xl my-4 uppercase">Order details</h1>
         </div>
         <div class="w-full p-6 flex justify-center items-center box-shadow mb-10">
             <div class="bg-white w-full p-2">

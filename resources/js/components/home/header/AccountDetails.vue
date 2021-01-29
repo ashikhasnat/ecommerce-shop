@@ -64,6 +64,7 @@
         class="text-sm w-80 md:w-96 z-50 absolute left-0 bg-white px-3 box-shadow mt-2 rounded-sm"
       >
         <div
+          v-if="CartItemLength != 0"
           class="w-full h-full overflow-y-scroll scroll-bar-hide p-3 relative"
           style="max-height: 18rem; min-height: 6rem;"
         >
@@ -101,6 +102,9 @@
               </small>
             </div>
           </div>
+        </div>
+        <div class="text-center py-6 font-semibold text-lg" v-else>
+          <p>No Products</p>
         </div>
         <section class="h-28 mb-3 p-4">
           <div
