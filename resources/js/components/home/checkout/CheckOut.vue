@@ -298,9 +298,7 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
   async mounted() {
-    this.stripe = await loadStripe(
-      'pk_test_51IAEgyCC6q7ktBxPr5mBGI5m8jNY92WRsUSCTzurN3TfdycJRozcQ8OzjDKgrlSHv6VgLpjLxy35SJ6E3MkbIvrm00dCoExPDK',
-    )
+    this.stripe = await loadStripe(process.env.MIX_STRIPE_KEY)
 
     const elements = this.stripe.elements()
     this.cardElement = elements.create('card', {

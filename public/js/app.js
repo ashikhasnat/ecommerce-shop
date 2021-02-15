@@ -3489,7 +3489,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__["loadStripe"])('pk_test_51IAEgyCC6q7ktBxPr5mBGI5m8jNY92WRsUSCTzurN3TfdycJRozcQ8OzjDKgrlSHv6VgLpjLxy35SJ6E3MkbIvrm00dCoExPDK');
+              return Object(_stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__["loadStripe"])("pk_test_51IAEgyCC6q7ktBxPr5mBGI5m8jNY92WRsUSCTzurN3TfdycJRozcQ8OzjDKgrlSHv6VgLpjLxy35SJ6E3MkbIvrm00dCoExPDK");
 
             case 2:
               _this.stripe = _context.sent;
