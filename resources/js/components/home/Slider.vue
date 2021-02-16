@@ -54,8 +54,8 @@ export default {
 
 .slide {
   display: block;
-  -o-object-fit: cover;
-  object-fit: cover;
+  /* -o-object-fit: cover;
+  object-fit: cover; */
   width: 100%;
 }
 .home-slide {

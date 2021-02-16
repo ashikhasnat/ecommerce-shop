@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  beforeMount() {
+  created() {
     const time = Math.round(performance.now())
     setTimeout(() => {
       return (this.loader = false)

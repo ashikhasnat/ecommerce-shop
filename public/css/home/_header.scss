@@ -1,3 +1,7 @@
+:root{
+    --dark-blue: #0d335d;
+    --dark-blue-200: #0d325dd2;
+}
 .subcategory{
     transform: translateX(110%);
     opacity: 0;
@@ -10,15 +14,17 @@
     li{
         color: black;
         &:hover{
-            color: rgb(22, 189, 202);
+            color: var(--dark-blue-200);
+        background: #0d325d0e;
         }
     }
 }
 .category{
     &:hover{
-        color: rgb(22, 189, 202);
+        color: var(--dark-blue-200);
+        background: #0d325d0e;
         i{
-            color: rgb(22, 189, 202);
+            color: var(--dark-blue-200);
         }
         .subcategory{
             // display: block;

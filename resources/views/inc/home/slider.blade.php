@@ -2,8 +2,8 @@
     <slider>
         @foreach ($mainSlider as $product)
         <div slot="slide" class="slide bg-white home-slide">
-            <section class="w-full h-full relative" style="background-image: url({{ $product->thumbnail }});       background-position: center;
-                background-size: cover;background-repeat: no-repeat;">
+            <section class="w-full h-full relative bg-no-repeat bg-center bg-cover"
+                style="background-image: url({{ $product->thumbnail }});">
                 <div class=" flex flex-col justify-center h-full w-full ml-4 sm:ml-20">
                     <h2 class=" font-semibold text-base sm:text-2xl text-gray-400">{{ $product->category->name }}</h2>
                     <h1

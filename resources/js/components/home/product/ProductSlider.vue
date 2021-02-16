@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 import { VueAgile } from 'vue-agile'
 export default {
   props: {
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .main {
   margin-bottom: 30px;
 }

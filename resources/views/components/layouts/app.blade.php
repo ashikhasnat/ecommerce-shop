@@ -19,7 +19,7 @@
 </head>
 
 <body class="bg-white antialiased">
-    <div id="app" class="">
+    <div id="app">
         <App></App>
         <Toastr text_msg="" text_classes=""></Toastr>
         @include('inc.home.header')

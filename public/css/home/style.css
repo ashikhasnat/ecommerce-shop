@@ -1,3 +1,8 @@
+:root {
+  --dark-blue: #0d335d;
+  --dark-blue-200: #0d325dd2;
+}
+
 .subcategory {
   transform: translateX(110%);
   opacity: 0;
@@ -14,15 +19,17 @@
 }
 
 .subcategory li:hover {
-  color: #16bdca;
+  color: var(--dark-blue-200);
+  background: #0d325d0e;
 }
 
 .category:hover {
-  color: #16bdca;
+  color: var(--dark-blue-200);
+  background: #0d325d0e;
 }
 
 .category:hover i {
-  color: #16bdca;
+  color: var(--dark-blue-200);
 }
 
 .category:hover .subcategory {

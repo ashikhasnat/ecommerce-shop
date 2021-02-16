@@ -6,38 +6,42 @@
         v-if="statusType !== 'expired'"
       >
         <div class="product-day flex flex-col items-center">
-          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+          <div class="w-14 h-14 border border-dark-blue rounded-full relative">
             <span
               class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
-              >{{ days }}</span
             >
+              {{ days }}
+            </span>
           </div>
           <div class="product-format">{{ wordString.day }}</div>
         </div>
         <div class="product-hour flex flex-col items-center">
-          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+          <div class="w-14 h-14 border border-dark-blue rounded-full relative">
             <span
               class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
-              >{{ hours }}</span
             >
+              {{ hours }}
+            </span>
           </div>
           <div class="product-format">{{ wordString.hours }}</div>
         </div>
         <div class="product-min flex flex-col items-center">
-          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+          <div class="w-14 h-14 border border-dark-blue rounded-full relative">
             <span
               class="product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
-              >{{ minutes }}</span
             >
+              {{ minutes }}
+            </span>
           </div>
           <div class="product-format">{{ wordString.minutes }}</div>
         </div>
         <div class="product-sec flex flex-col items-center">
-          <div class="w-14 h-14 border border-teal-400 rounded-full relative">
+          <div class="w-14 h-14 border border-dark-blue rounded-full relative">
             <span
               class="product-number product-number absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
-              >{{ seconds }}</span
             >
+              {{ seconds }}
+            </span>
           </div>
           <div class="product-format">{{ wordString.seconds }}</div>
         </div>
@@ -52,75 +56,71 @@
 </template>
 
 <script>
-    export default {
-        props: ['starttime','endtime','trans'] ,
-  data(){
-  	return{
-    	timer:"",
+export default {
+  props: ['starttime', 'endtime', 'trans'],
+  data() {
+    return {
+      timer: '',
       wordString: {},
-      start: "",
-      end: "",
-      interval: "",
-      days:"",
-      minutes:"",
-      hours:"",
-      seconds:"",
-      message:"",
-      statusType:"",
-      statusText: "",
-    
-    };
+      start: '',
+      end: '',
+      interval: '',
+      days: '',
+      minutes: '',
+      hours: '',
+      seconds: '',
+      message: '',
+      statusType: '',
+      statusText: '',
+    }
   },
-  created () {
-        this.wordString = JSON.parse(this.trans);
-    },
-  mounted(){
-    this.start = new Date(this.starttime).getTime();
-    this.end = new Date(this.endtime).getTime();
+  created() {
+    this.wordString = JSON.parse(this.trans)
+  },
+  mounted() {
+    this.start = new Date(this.starttime).getTime()
+    this.end = new Date(this.endtime).getTime()
     // Update the count down every 1 second
-    this.timerCount(this.start,this.end);
+    this.timerCount(this.start, this.end)
     this.interval = setInterval(() => {
-        this.timerCount(this.start,this.end);
-    }, 1000);
+      this.timerCount(this.start, this.end)
+    }, 1000)
   },
   methods: {
-    timerCount: function(start,end){
-        // Get todays date and time
-        var now = new Date().getTime();
+    timerCount: function (start, end) {
+      // Get todays date and time
+      var now = new Date().getTime()
 
-        // Find the distance between now an the count down date
-        var distance = start - now;
-        var passTime =  end - now;
+      // Find the distance between now an the count down date
+      var distance = start - now
+      var passTime = end - now
 
-        if(distance < 0 && passTime < 0){
-            this.message = this.wordString.expired;
-            this.statusType = "expired";
-            this.statusText = this.wordString.status.expired;
-            clearInterval(this.interval);
-            return;
-
-        }else if(distance < 0 && passTime > 0){
-            this.calcTime(passTime);
-            this.message = this.wordString.running;
-            this.statusType = "running";
-            this.statusText = this.wordString.status.running;
-
-        } else if( distance > 0 && passTime > 0 ){
-            this.calcTime(distance); 
-            this.message = this.wordString.upcoming;
-            this.statusType = "upcoming";
-            this.statusText = this.wordString.status.upcoming;
-        }
+      if (distance < 0 && passTime < 0) {
+        this.message = this.wordString.expired
+        this.statusType = 'expired'
+        this.statusText = this.wordString.status.expired
+        clearInterval(this.interval)
+        return
+      } else if (distance < 0 && passTime > 0) {
+        this.calcTime(passTime)
+        this.message = this.wordString.running
+        this.statusType = 'running'
+        this.statusText = this.wordString.status.running
+      } else if (distance > 0 && passTime > 0) {
+        this.calcTime(distance)
+        this.message = this.wordString.upcoming
+        this.statusType = 'upcoming'
+        this.statusText = this.wordString.status.upcoming
+      }
     },
-    calcTime: function(dist){
+    calcTime: function (dist) {
       // Time calculations for days, hours, minutes and seconds
-        this.days = Math.floor(dist / (1000 * 60 * 60 * 24));
-        this.hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        this.minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-        this.seconds = Math.floor((dist % (1000 * 60)) / 1000);
-    }
-    
-  }
+      this.days = Math.floor(dist / (1000 * 60 * 60 * 24))
+      this.hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      this.minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))
+      this.seconds = Math.floor((dist % (1000 * 60)) / 1000)
+    },
+  },
 }
 </script>
 
@@ -147,5 +147,8 @@
 }
 .product-timer .status-tag.expired {
   color: turquoise;
+}
+.border-dark-blue {
+  border: 1px solid #0d335d;
 }
 </style>

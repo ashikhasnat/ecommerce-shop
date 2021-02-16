@@ -35,12 +35,12 @@
 
             <ul
               v-if="category.subcategories.length > 0"
-              class="subcategory absolute w-full right-0 top-0 px-2 py-1 bg-white"
+              class="subcategory absolute w-full right-0 top-0 bg-white"
             >
               <li
                 v-for="(subcategory, i) in category.subcategories"
                 :key="i"
-                class="my-3 transition-colors duration-150 ease-linear"
+                class="py-2 px-2 transition-colors duration-150 ease-linear"
               >
                 <a :href="'/shop/subcategory/' + subcategory.slug">
                   {{ subcategory.name }}

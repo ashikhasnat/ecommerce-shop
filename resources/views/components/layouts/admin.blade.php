@@ -21,6 +21,7 @@
 
 <body class="bg-gray-100 h-screen antialiased font-sans">
     <div id="app">
+        <App></App>
         {{ $slot }}
     </div>
     @if (request()->is('dashboard/product/*'))
