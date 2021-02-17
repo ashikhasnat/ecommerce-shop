@@ -70,7 +70,7 @@ class ProductController extends Controller
             'long_details' => ['required', 'max:2000', 'min:100'],
             'top_rated' => [''],
             'weekly_deal' => [''],
-            'best_dealer' => [''],
+            'best_seller' => [''],
             'main_slider' => [''],
         ]);
 

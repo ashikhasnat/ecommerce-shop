@@ -56,7 +56,8 @@ class HomeController extends Controller
                 'thumbnail',
             ]) //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
             ->random(6);
-        $latestProducts = Product::latest()
+        $latestProducts = Product::whereNotBetween('id', [7, 9])
+            ->orderByDesc('created_at')
             ->take(6)
             ->get([
                 'id',
@@ -67,7 +68,6 @@ class HomeController extends Controller
                 'slug',
                 'thumbnail',
             ]);
-        // dd($products);
         return view(
             'home.index',
             compact(

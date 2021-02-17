@@ -33,8 +33,8 @@
           >
             <option value="" disabled selected>Select SubCategory</option>
             <option
-              :value="subcategory.id"
               v-for="subcategory in subcategories"
+              :value="subcategory.id"
               :key="subcategory.id"
             >
               {{ subcategory.name }}

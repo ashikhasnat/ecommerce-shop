@@ -22,17 +22,21 @@ class ShopController extends Controller
             'thumbnail',
         ];
         if (request()->has('sort')) {
-            $products = Product::orderBy('title', request('sort'))
+            $products = Product::whereNotBetween('id', [7, 9])
+                ->orderBy('title', request('sort'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } elseif (request()->has('price')) {
-            $products = Product::orderBy('price', request('price'))
+            $products = Product::whereNotBetween('id', [7, 9])
+                ->orderBy('price', request('price'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } else {
-            $products = Product::latest()
+            $products = Product::whereNotBetween('id', [7, 9])
+                ->orderByDesc('created_at')
                 ->paginate(12, $list)
                 ->withQueryString();
+            // dd($products);
         }
         return view('home.shop.index', compact('brands', 'products'));
     }

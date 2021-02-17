@@ -24,16 +24,19 @@ class CategoryController extends Controller
         ];
         if (request()->has('sort')) {
             $products = Product::where('category_id', $category->id)
+                ->whereNotBetween('id', [7, 9])
                 ->orderBy('title', request('sort'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } elseif (request()->has('price')) {
             $products = Product::where('category_id', $category->id)
+                ->whereNotBetween('id', [7, 9])
                 ->orderBy('price', request('price'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } else {
             $products = Product::where('category_id', $category->id)
+                ->whereNotBetween('id', [7, 9])
                 ->paginate(12, $list)
                 ->withQueryString();
         }

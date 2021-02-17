@@ -15,6 +15,9 @@
         ]"
         class="text-sm z-50 absolute left-0 bg-white w-36 px-3 box-shadow mt-2 transition-all duration-200 ease-linear rounded-sm"
       >
+        <li v-if="super_admin" class="py-2 hover:text-teal-400 cursor-pointer">
+          <a href="/dashboard" target="_blank">Dashboard</a>
+        </li>
         <li class="py-2 hover:text-teal-400">
           <a href="/shop/my-account">My Account</a>
         </li>
@@ -143,6 +146,7 @@ export default {
   },
   props: {
     auth_id: Boolean,
+    super_admin: Boolean,
   },
   computed: {
     ...mapGetters({

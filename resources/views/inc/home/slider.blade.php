@@ -10,7 +10,7 @@
                         class=" w-1/2 leading-tight my-5 uppercase text-white text-2xl sm:text-5xl font-bold border-l-4 border-teal-400 pl-4">
                         {{ $product->title }}</h1>
                     <p class=" font-semibold text-base sm:text-2xl text-gray-400">{{ $product->brand->name }}</p>
-                    <a href=""
+                    <a href="{{ route('home-product.show', $product->slug) }}" target="_blank"
                         class=" text-sm uppercase py-2 px-4 mt-6 border w-max-content text-white hover:border-teal-400 hover:bg-teal-400 transition-colors duration-300 ease-linear">shop
                         now</a>
                 </div>

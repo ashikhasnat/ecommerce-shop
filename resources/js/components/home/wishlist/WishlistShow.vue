@@ -31,7 +31,11 @@
             class="w-24 h-24 lg:w-20 lg:h-20 border mr-6 hidden sm:block"
             style="min-width: 6rem;"
           >
-            <img :src="product.thumbnail" alt="" class="object-cover h-full" />
+            <img
+              :src="product.thumbnail"
+              alt=""
+              class="object-cover w-full h-full"
+            />
           </div>
           <a
             :href="'shop/' + product.slug"

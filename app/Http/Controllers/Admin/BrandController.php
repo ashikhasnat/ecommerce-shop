@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
@@ -23,17 +24,27 @@ class BrandController extends Controller
         $brands = $brand->all();
         return view('dashboard.brand.create', compact('brands'));
     }
-    public function store(Request $request, Brand $brand)
+    public function store(Request $request)
     {
         $newBrand = $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:100'],
-            'brand_logo' => ['nullable'],
+            'name' => ['required', 'string', 'min:2', 'max:100'],
+            'brand_logo' => ['required', 'image'],
             'slug' => ['nullable'],
         ]);
-        $brand->create([
+        if (request()->file('brand_logo')) {
+            // dd(request('brand_logo'));
+            $brand_path =
+                'app/public/brand/' . $newBrand['brand_logo']->hashName();
+            Image::make($newBrand['brand_logo'])
+                ->fit(200, 160)
+                ->save(storage_path($brand_path));
+            $replacePath = str_replace('app/public', '/storage', $brand_path);
+        }
+        // dd($replacePath);
+        Brand::create([
             'name' => $newBrand['name'],
             'slug' => Str::slug($newBrand['name']),
-            'brand_logo' => 'Logo',
+            'brand_logo' => $replacePath,
         ]);
         return redirect(route('brand.index'))->with(
             'msg',

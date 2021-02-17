@@ -16,7 +16,7 @@
                     @foreach ($bestSeller as $product)
                     <div class="p-3 border mx-2 flex my-4 lg:my-4 ">
                         <div class=" w-24 h-24 lg:w-20 lg:h-20 border mr-2" style="min-width: 6rem">
-                            <img src="{{ $product->thumbnail }}" alt="" class=" object-cover h-full">
+                            <img src="{{ $product->thumbnail }}" alt="thumbnail" class=" object-cover h-full w-full">
                         </div>
                         <div class=" overflow-x-hidden">
                             @include('inc.home.product-details-home')

@@ -6,7 +6,14 @@
             </a>
         </div>
         <Search-Bar></Search-Bar>
-        <account-details @auth :auth_id="true" @endauth>
+        @auth
+        @php
+        $role = auth()
+        ->user()
+        ->roles->first();
+        @endphp
+        @endauth
+        <account-details @auth :auth_id="true" :super_admin="{{ $role->id == 1 ? "true" : "false" }}" @endauth>
         </account-details>
     </div>
 </x-container>

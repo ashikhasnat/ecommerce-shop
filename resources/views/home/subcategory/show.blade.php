@@ -1,4 +1,7 @@
 <x-layouts.app>
+    @section('title')
+    Sub-Category
+    @endsection
     <x-container>
         <div class=" flex justify-between my-6">
             <div class=" flex text-sm items-center justify-center">
@@ -41,11 +44,13 @@
             </div>
             <div class=" col-span-full lg:col-span-3 lg:ml-6">
                 <div class="grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-8 mb-16">
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                     <div class="col-span-full sm:col-span-1">
                         @include('inc.home.product-details')
                     </div>
-                    @endforeach
+                    @empty
+                    <h1 class=" text-center font-semibold text-2xl">No Products...</h1>
+                    @endforelse
                 </div>
                 <span class=" mb-8 flex justify-center">{{ $products->links() }}</span>
             </div>

@@ -4,7 +4,7 @@
       class="profile col-span-2 lg:col-span-1 bg-gray-800 px-2"
       :class="[show ? '' : 'hidden']"
     >
-      <slot v-if="show" name="col-1"> </slot>
+      <slot v-if="show" name="col-1"></slot>
     </div>
     <i
       @click="showSidebar()"
@@ -22,16 +22,26 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                show: true,
-            }
-        },
-        methods: {
-            showSidebar() {
-                this.show = !this.show
-            }
-        },
+export default {
+  created() {
+    if (localStorage.getItem('adminNav') == 'true') {
+      return (this.show = true)
+    } else if (localStorage.getItem('adminNav') == 'false') {
+      return (this.show = false)
+    } else {
+      return (this.show = true)
     }
+  },
+  data() {
+    return {
+      show: null,
+    }
+  },
+  methods: {
+    showSidebar() {
+      this.show = !this.show
+      localStorage.setItem('adminNav', this.show)
+    },
+  },
+}
 </script>

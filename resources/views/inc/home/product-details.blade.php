@@ -1,4 +1,4 @@
-<div class=" h-60 w-full bg-cover bg-center bg-no-repeat relative single-product-card"
+<div class=" h-60 w-full bg-cover bg-center bg-no-repeat relative single-product-card border border-gray-100 border-b-0"
     style="background-image: url({{ $product->thumbnail }});">
     @if (!$product->discount == null)
     <span

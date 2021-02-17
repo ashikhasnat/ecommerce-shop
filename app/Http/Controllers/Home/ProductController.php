@@ -14,7 +14,7 @@ class ProductController extends Controller
         $relatedProducts = Product::where('category_id', $catId)
             ->with('reviews')
             ->get()
-            ->random(3);
+            ->random(1);
         // dd($relatedProducts);
         return view(
             'home.products.show',

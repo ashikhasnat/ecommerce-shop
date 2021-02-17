@@ -23,17 +23,17 @@ class SubCategoryController extends Controller
             'thumbnail',
         ];
         if (request()->has('sort')) {
-            $products = Product::where('category_id', $subCategory->id)
+            $products = Product::where('sub_category_id', $subCategory->id)
                 ->orderBy('title', request('sort'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } elseif (request()->has('price')) {
-            $products = Product::where('category_id', $subCategory->id)
+            $products = Product::where('sub_category_id', $subCategory->id)
                 ->orderBy('price', request('price'))
                 ->paginate(12, $list)
                 ->withQueryString();
         } else {
-            $products = Product::where('category_id', $subCategory->id)
+            $products = Product::where('sub_category_id', $subCategory->id)
                 ->paginate(12, $list)
                 ->withQueryString();
         }

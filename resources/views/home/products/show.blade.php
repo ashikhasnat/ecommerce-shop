@@ -73,7 +73,7 @@
                     </p>
                     @endif
                     <div class="flex justify-start items-center">
-                        <p class="mr-1">Brand:</p>
+                        <p class="mr-3">Brand:</p>
                         <div class=" w-32 h-16 bg-cover bg-center bg-no-repeat"
                             style="background-image: url({{ $product->brand->brand_logo }});">
                         </div>
@@ -131,9 +131,9 @@
         <div class="my-20">
             <Other-Product-Info>
                 <div slot="description" class="">
-                    <p class="trix-content">
+                    <main class="long-details" style="list-style-type: disc;">
                         {!! $product->long_details !!}
-                    </p>
+                    </main>
                 </div>
                 <div class="" slot="info"> info </div>
                 <div class="" slot="review">
