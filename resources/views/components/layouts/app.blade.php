@@ -27,7 +27,9 @@
         @include('inc.footer-section.footer-nav')
         @include('inc.footer-section.footer')
     </div>
-
+    <script>
+        // nothing
+    </script>
 </body>
 
 </html>

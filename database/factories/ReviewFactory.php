@@ -24,7 +24,7 @@ class ReviewFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'product_id' => rand(1, 200),
+            'product_id' => rand(1, 25),
             'review_text' => $this->faker->sentence(15),
             'ratings' => $this->faker->numberBetween(1, 5),
         ];
