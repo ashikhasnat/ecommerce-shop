@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -39,10 +40,15 @@ class HomeController extends Controller
                 'thumbnail',
             ])
             ->random(4);
-        $mainSlider = Product::where('main_slider', 1)
+        // $mainSlider = Product::where('main_slider', 1)
+        //     ->with('brand')
+        //     ->with('category')
+        //     ->latest()
+        //     ->take(4)
+        //     ->get();
+        $mainSlider = Slider::latest()
             ->with('brand')
             ->with('category')
-            ->latest()
             ->take(4)
             ->get();
         $topProducts = Product::where('top_rated', 1)
@@ -56,8 +62,7 @@ class HomeController extends Controller
                 'thumbnail',
             ]) //['id', 'title', 'price', 'slug', 'thumbnail', 'category_id']
             ->random(6);
-        $latestProducts = Product::whereNotBetween('id', [7, 9])
-            ->orderByDesc('created_at')
+        $latestProducts = Product::latest()
             ->take(6)
             ->get([
                 'id',

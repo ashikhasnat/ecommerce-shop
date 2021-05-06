@@ -13,6 +13,10 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class);
+    }
     public function subcategories()
     {
         return $this->hasMany(SubCategory::class);

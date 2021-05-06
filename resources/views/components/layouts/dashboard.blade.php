@@ -24,6 +24,12 @@
                          @endif
                         "><a href="{{ route('product.index') }}"><i class="fas fa-box mr-2"></i>Product</a>
                     </li>
+                    <li class="pl-4 mb-1 py-2 w-60
+                        @if (request()->is('dashboard/slider*'))
+                         bg-gray-600 rounded
+                         @endif
+                        "><a href="{{ route('slider.index') }}"><i class="fas fa-photo-video mr-2"></i>Slider</a>
+                    </li>
                     <li class="pl-4 py-2 w-60
                         @if (request()->is('dashboard/category*'))
                         bg-gray-600 rounded

@@ -24,14 +24,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Product::factory(200)->create();
-        // Category::factory(10)->create();
-        // SubCategory::factory(20)->create();
-        // Brand::factory(10)->create();
-        // Image::factory(1250)->create();
-        // Review::factory(500)->create();
-        // Wishlist::factory(5)->create();
-        // Cart::factory(5)->create();
+        Product::factory(200)->create();
+        Category::factory(10)->create();
+        SubCategory::factory(20)->create();
+        Brand::factory(10)->create();
+        Image::factory(1250)->create();
+        Review::factory(500)->create();
+        Wishlist::factory(5)->create();
+        Cart::factory(5)->create();
         BillingAddress::factory()->create();
         ShippingAddress::factory()->create();
         $this->call(CountrySeeder::class);

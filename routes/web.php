@@ -21,6 +21,7 @@ use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\ReviewController;
 use App\Http\Controllers\Home\SearchController;
 use App\Http\Controllers\Home\ShopController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
 use App\Http\Controllers\Home\WishListController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::group(
             'dashboard'
         );
         Route::resource('/product', ProductController::class);
+        Route::resource('/slider', SliderController::class);
         Route::resource('/category', CategoryController::class)->except([
             'show',
             'destroy',
