@@ -19,7 +19,7 @@
                         class="bg-white rounded-full flex justify-center items-center  text-center w-10 h-10 ml-1 hover:bg-red-500 hover:text-white"><i
                             class="fas fa-long-arrow-alt-right text-lg"></i></a>
                 </div>
-                <count-down starttime="Nov 5, 2018 15:37:25" endtime="Nov 8, 2021 16:37:25" trans='{  
+                <count-down starttime="May 10, 2021 16:37:25" endtime="May 17, 2021 16:37:25" trans='{  
                     "day":"Days",
                     "hours":"Hours",
                     "minutes":"Minute",

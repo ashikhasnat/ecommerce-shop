@@ -258,7 +258,14 @@
               </p>
             </div>
             <div class="col-span-1 ml-4 my-2 text-gray-900">
-              <p class="" v-text="convertToCurrency(product.sub_total)"></p>
+              <p
+                class=""
+                v-text="
+                  showSslPayment
+                    ? convertToCurrency(product.sub_total)
+                    : convertToCurrency(product.sub_total, 'es-US', 'USD')
+                "
+              ></p>
             </div>
           </div>
           <div class="">
@@ -268,19 +275,55 @@
             <p class="flex-1 ml-4">Total :</p>
             <p
               class="flex-1 ml-4 text-teal-500 font-semibold"
-              v-text="convertToCurrency(getTotalAmount)"
+              v-text="
+                showSslPayment
+                  ? convertToCurrency(getTotalAmount)
+                  : convertToCurrency(getTotalAmount, 'es-US', 'USD')
+              "
             ></p>
           </div>
         </div>
       </div>
+
       <div class="bg-gray-100 p-4">
-        <div class="">
+        <section
+          @click="togglePaymentOption"
+          class="p-1 mb-3 bg-white cursor-pointer"
+          :class="showSslPayment ? 'text-green-500' : ''"
+        >
+          <i v-show="showSslPayment" class="far fa-check-circle"></i>
+          Pay With Ssl Commerz
+        </section>
+        <button
+          v-show="showSslPayment"
+          @click="ssl_newCustomer"
+          class="btn btn-primary btn-lg btn-block"
+          id="sslczPayBtn"
+          token="if you have any token validation"
+          postdata="your javascript arrays or objects which requires in backend"
+          order="If you already have the transaction generated for current order"
+          endpoint="/pay-via-ajax"
+        >
+          Pay Now
+        </button>
+        <!-- <slot name="ssl_button"></slot> -->
+      </div>
+      <div class="bg-gray-100 p-4">
+        <section
+          @click="togglePaymentOption"
+          class="p-1 mb-3 bg-white cursor-pointer"
+          :class="showStripePayment ? ' text-green-500' : ''"
+        >
+          <i v-show="showStripePayment" class="far fa-check-circle"></i>
+          Pay With Stripe
+        </section>
+        <div class="" v-show="showStripePayment">
           <div class="">
             <label for="card-element">Credit Card Information</label>
             <div id="card-element"></div>
           </div>
         </div>
-        <div class="mt-4">
+        <div class="mt-4" v-show="showStripePayment">
           <button
             @click="processPayment"
             class="focus:outline-none py-2 px-6 bg-gray-700 text-white hover:bg-gray-800"
@@ -317,6 +360,8 @@ export default {
       cardElement: {},
       countries: [],
       customer: null,
+      showStripePayment: false,
+      showSslPayment: true,
       newCustomer: {
         first_name: '',
         last_name: '',
@@ -426,6 +471,29 @@ export default {
         this.customer = res.data[0]
         this.countries = res.data[1]
       })
+    },
+
+    ssl_newCustomer() {
+      if (this.customer === null) {
+        axios
+          .post('/shop/my-account/address/billing', this.newCustomer)
+          .then((res) => {
+            this.$store.commit('setClasses', 'success')
+            this.$store.commit('setToastrMsg', 'Payment Received')
+            setTimeout(() => {
+              this.$store.commit('setToastrMsg', '')
+            }, 5000)
+            // location.replace('/order-summary')
+            console.log(res)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }
+    },
+    togglePaymentOption() {
+      this.showStripePayment = !this.showStripePayment
+      this.showSslPayment = !this.showSslPayment
     },
   },
 }

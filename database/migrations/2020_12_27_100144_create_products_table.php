@@ -30,7 +30,6 @@ class CreateProductsTable extends Migration
                 ->default(0);
             $table->tinyInteger('stock_status')->default(0);
             $table->tinyInteger('top_rated')->default(0);
-            $table->tinyInteger('main_slider')->default(0);
             $table->tinyInteger('best_seller')->default(0);
             $table->tinyInteger('weekly_deal')->default(0);
             $table->mediumText('short_details');

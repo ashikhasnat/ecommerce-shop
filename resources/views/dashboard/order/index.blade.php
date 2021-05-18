@@ -46,8 +46,14 @@
                             {{ $order->user->name }}
                         </td>
                         <td data-label="Order Total" class="px-3 py-4 whitespace-no-wrap">
+
+                            @if ($order->currency == "USD")
                             <p class="text-xs break-words leading-5 text-gray-900"
-                                v-text="convertToCurrency({{ $order->total}})"></p>
+                                v-text="convertToCurrency({{ $order->total}},'es-US', 'USD')"></p>
+                            @else
+                            <p class="text-xs break-words leading-5 text-gray-900"
+                                v-text="convertToCurrency({{ $order->total  }})"></p>
+                            @endif
                         </td>
 
                         {{-- category --}}

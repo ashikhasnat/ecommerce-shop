@@ -4,6 +4,7 @@ import App from './components/App.vue'
 import AdminNav from './components/admin/AdminNav.vue'
 import SearchBar from './components/home/header/Search.vue'
 import SelectCategory from './components/admin/product/SelectCategory.vue'
+import EditSelectCategory from './components/admin/product/EditSelectCategory.vue'
 import Dropdown from './components/home/header/Dropdown.vue'
 import SortBy from './components/home/SortBy.vue'
 import AccountDetails from './components/home/header/AccountDetails.vue'
@@ -18,17 +19,18 @@ import AddToWishlistHome from './components/home/wishlist/AddToWishlistHome.vue'
 import WishlistShow from './components/home/wishlist/WishlistShow.vue'
 import TopRatedAndSeller from './components/home/TopRatedAndLatest.vue'
 import CartShow from './components/home/cart/CartShow.vue'
+import CartClear from './components/home/cart/ClearCart.vue'
 import AddToCart from './components/home/cart/AddToCart.vue'
 import CheckOut from './components/home/checkout/CheckOut.vue'
 import Toastr from './components/home/header/Toastr.vue'
 require('./bootstrap')
 Vue.mixin({
   methods: {
-    convertToCurrency(price) {
+    convertToCurrency(price, type = 'bn-BD', currency = 'BDT') {
       price = price / 100
-      return price.toLocaleString('es-US', {
+      return price.toLocaleString(type, {
         style: 'currency',
-        currency: 'USD',
+        currency: currency,
       })
     },
   },
@@ -41,6 +43,7 @@ const app = new Vue({
     AdminNav,
     SearchBar,
     SelectCategory,
+    EditSelectCategory,
     Dropdown,
     SortBy,
     AccountDetails,
@@ -57,6 +60,7 @@ const app = new Vue({
     CartShow,
     CheckOut,
     AddToCart,
+    CartClear,
   },
   store,
 })

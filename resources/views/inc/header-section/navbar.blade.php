@@ -7,7 +7,8 @@
                     href="{{ route('shop.index') }}">Shop</a></li>
             <li class="py-5 px-6 hover:text-gray-100 {{ request()->is('shop/brands*') ? 'bg-teal-400' : '' }}"><a
                     href="{{ route('home-brand.index') }}">Brands</a></li>
-            <li class="py-5 px-6 hover:text-gray-100"><a href="">Contact Us</a></li>
+            <li class="py-5 px-6 hover:text-gray-100 {{ request()->is('contact-us/*') ? 'bg-teal-400' : '' }}"><a
+                    href="{{ route('contact-us.create') }}">Contact Us</a></li>
         </ul>
     </Dropdown>
 </nav>

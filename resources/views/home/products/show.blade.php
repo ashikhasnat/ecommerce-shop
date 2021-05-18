@@ -98,7 +98,7 @@
                         <p class=" text-red-400 ml-2 text-lg my-1"><i class="far fa-clock mr-2"></i>Hungry up ! Deal end
                             in :
                         </p>
-                        <product-count-down starttime="Nov 5, 2018 15:37:25" endtime="Nov 8, 2021 16:37:25" trans='{  
+                        <product-count-down starttime="May 10, 2021 16:37:25" endtime="May 17, 2021 16:37:25" trans='{  
                                 "day":"Days",
                                 "hours":"Hours",
                                 "minutes":"Minute",

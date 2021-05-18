@@ -27,15 +27,26 @@
                     $sub_total = $products->quantity * $products->price
                     @endphp
                     <div class="col-span-1 ml-4 my-2 text-gray-900">
+                        @if ($orderedProducts->currency == "USD")
+                        <p class="" v-text="convertToCurrency({{ $sub_total }},'es-US', 'USD')"></p>
+                        @else
                         <p class="" v-text="convertToCurrency({{ $sub_total }})"></p>
+                        @endif
+
                     </div>
                 </div>
                 @endforeach
                 <div class="flex text-xl mt-20 mb-2">
                     <p class="flex-1 ml-4">Total :</p>
+                    @if ($orderedProducts->currency == "USD")
                     <p class="flex-1 ml-4 text-teal-500 font-semibold"
-                        v-text="convertToCurrency({{ $orderedProducts->total }})">
+                        v-text="convertToCurrency({{ $orderedProducts->total }},'es-US', 'USD')">
                     </p>
+                    @else
+                    <p class="flex-1 ml-4 text-teal-500 font-semibold"
+                        v-text="convertToCurrency({{ $orderedProducts->total }})"></p>
+                    @endif
+
                 </div>
             </div>
         </div>

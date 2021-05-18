@@ -125,4 +125,8 @@ class CartController extends Controller
         $cartItem = Cart::findOrFail($id);
         return $cartItem->delete();
     }
+    public function apiClearCart()
+    {
+        return Cart::where('user_id', auth()->id())->delete();
+    }
 }

@@ -71,7 +71,6 @@ class ProductController extends Controller
             'top_rated' => [''],
             'weekly_deal' => [''],
             'best_seller' => [''],
-            'main_slider' => [''],
         ]);
 
         if (request()->has('discount')) {
@@ -102,7 +101,6 @@ class ProductController extends Controller
                 'weekly_deal' => $newProduct['weekly_deal'] ?? 0,
                 'top_rated' => $newProduct['top_rated'] ?? 0,
                 'best_seller' => $newProduct['best_seller'] ?? 0,
-                'main_slider' => $newProduct['main_slider'] ?? 0,
                 'thumbnail' => $replacePath,
             ])
         );
@@ -170,12 +168,12 @@ class ProductController extends Controller
     public function edit(Brand $brand, Product $product)
     {
         $brands = $brand->all('id', 'name');
-        $categories = Category::latest()->get(['id', 'name']);
-        $subcategories = SubCategory::latest()->get(['id', 'name']);
-        // dd($brands);
+        $categories = Category::latest()->with('subcategories')->get(['id', 'name']);
+        // $subcategories = SubCategory::where('category_id')->get(['id', 'name']);
+        // dd($product->subcategory->id);
         return view(
             'dashboard.product.edit',
-            compact('brands', 'product', 'categories', 'subcategories')
+            compact('brands', 'product', 'categories')
         );
     }
 
@@ -201,7 +199,6 @@ class ProductController extends Controller
                 'weekly_deal' => request('weekly_deal') ?? 0,
                 'top_rated' => request('top_rated') ?? 0,
                 'best_seller' => request('best_seller') ?? 0,
-                'main_slider' => request('main_slider') ?? 0,
             ])
         );
         return redirect(route('product.index'))->with('msg', 'Updated');

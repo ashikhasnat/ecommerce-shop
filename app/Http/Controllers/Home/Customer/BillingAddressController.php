@@ -27,7 +27,7 @@ class BillingAddressController extends Controller
             'first_name' => ['string', 'required', 'min:3', 'max:50'],
             'last_name' => ['string', 'required', 'min:3', 'max:50'],
             'company_name' => ['string', 'min:3', 'max:50'],
-            'country_id' => ['string'],
+            'country_id' => [''],
             'street_address' => ['string', 'required', 'min:3', 'max:50'],
             'city' => ['string', 'required', 'min:3', 'max:50'],
             'post_code' => ['string', 'required', 'min:3', 'max:50'],

@@ -18,12 +18,14 @@ use App\Http\Controllers\Home\Customer\ShippingAddressController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\OrderController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
+use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
 use App\Http\Controllers\Home\ReviewController;
 use App\Http\Controllers\Home\SearchController;
 use App\Http\Controllers\Home\ShopController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Home\SubCategoryController as HomeSubCategoryController;
+use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\WishListController;
+use App\Http\Controllers\Home\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +63,11 @@ Route::group(
             'destroy',
         ]);
         Route::resource('/coupon', CouponController::class);
+
+        // Contact US
+
+        Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us.index');
+        Route::get('/contact-us/{contact}', [ContactController::class, 'show'])->name('contact-us.show');
         Route::get('/orders', [AdminOrderController::class, 'index'])->name(
             'admin-order.index'
         );
@@ -81,6 +88,25 @@ Route::get('/checkout', [CheckoutController::class, 'index'])
 Route::get('/order-summary', [OrderController::class, 'index'])
     ->name('order-summary.index')
     ->middleware('auth');
+
+// Contact US
+
+Route::get('/contact-us', [ContactController::class, 'create'])->name('contact-us.create');
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contact-us.store');
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
 
 // Api Routes
 Route::group(['prefix' => '/api'], function () {
@@ -104,6 +130,7 @@ Route::group(['prefix' => '/api'], function () {
         'purchase'
     );
     Route::delete('/cart/{id}', [CartController::class, 'apiDestroy']);
+    Route::delete('/clear-cart', [CartController::class, 'apiClearCart']);
     Route::delete('/wishlist/{id}', [WishListController::class, 'apiDestroy']);
 });
 
@@ -162,11 +189,11 @@ Route::group(['prefix' => 'shop'], function () {
         ReviewController::class,
         'store',
     ])->name('review.store');
+
+    // Category
     Route::get('/category', function () {
         return redirect('/shop');
     });
-
-    // Category
     Route::get('/category/{category:slug}', [
         HomeCategoryController::class,
         'show',

@@ -22,7 +22,11 @@ class SliderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(2),
+            'brand_id' => rand(1, 10),
+            'category_id' => rand(1, 10),
+            'thumbnail' => $this->faker->imageUrl(960, 560),
+            'custom_product_link' => $this->faker->sentence(2)
         ];
     }
 }

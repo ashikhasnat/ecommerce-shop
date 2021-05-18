@@ -23,7 +23,12 @@
                 <p>{{ $product->created_at->format('F j, Y') }}</p>
             </div>
             <div class=" col-span-1 pl-3 text-sm capitalize flex">
+                @if ($product->currency == "USD")
                 <p class=" mr-1" v-text="convertToCurrency({{ $product->total }})"> </p>
+                @else
+                <p class=" mr-1" v-text="convertToCurrency({{ $product->total * 84 }},'bn-BD', 'BDT')"> </p>
+                @endif
+
             </div>
             <div class=" col-span-1 pl-3 text-sm capitalize flex">
                 <a class=" hover:text-teal-400" href="{{ route('account_orders_details', $product->id ) }}"> View</a>

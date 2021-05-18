@@ -48,6 +48,7 @@ class CheckoutController extends Controller
                 $order = $user->orders()->create([
                     'transaction_id' => $payment->charges->data[0]->id,
                     'total' => $payment->charges->data[0]->amount,
+                    'currency' => "USD"
                 ]);
                 $cartsProduct = Cart::join(
                     'products',
@@ -103,6 +104,7 @@ class CheckoutController extends Controller
                 $order = $user->orders()->create([
                     'transaction_id' => $payment->charges->data[0]->id,
                     'total' => $payment->charges->data[0]->amount,
+                    'currency' => "USD"
                 ]);
                 $cartsProduct = Cart::join(
                     'products',

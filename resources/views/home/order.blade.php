@@ -2,6 +2,7 @@
     @section('title')
     Orders
     @endsection
+    <Cart-Clear></Cart-Clear>
     <x-container>
         <div class=" w-full py-3 border-2 border-dashed text-center my-8 border-red-500 text-red-500 font-semibold ">
             <h1>Thank You , Your order has been received.</h1>
@@ -11,9 +12,15 @@
             <p>Date: <span class=" text-gray-600 font-semibold">{{ $userOrder->created_at->format('F j, Y') }}</span>
             </p>
             <p>Email: <span class=" text-gray-600 font-semibold">{{ auth()->user()->email}}</span></p>
+            @if ($userOrder->currency === "USD")
+            <p>Total: <span class=" text-gray-600 font-semibold"
+                    v-text="convertToCurrency({{ $userOrder->total}},'es-US', 'USD')"></span>
+            </p>
+            @else
             <p>Total: <span class=" text-gray-600 font-semibold"
                     v-text="convertToCurrency({{ $userOrder->total }})"></span>
             </p>
+            @endif
             <p>Payment Transaction ID: <span class=" text-gray-600 font-semibold">{{ $userOrder->transaction_id}}</span>
             </p>
         </div>
@@ -36,14 +43,23 @@
                     $sub_total = $products->quantity * $products->price
                     @endphp
                     <div class="col-span-1 ml-4 my-2 text-gray-900">
+                        @if ($userOrder->currency == "USD")
+                        <p class="" v-text="convertToCurrency({{ $sub_total }},'es-US', 'USD')"></p>
+                        @else
                         <p class="" v-text="convertToCurrency({{ $sub_total }})"></p>
+                        @endif
                     </div>
                 </div>
                 @endforeach
                 <div class="flex text-xl mt-20 mb-2">
                     <p class="flex-1 ml-4">Total :</p>
+                    @if ($userOrder->currency == "USD")
+                    <p class="flex-1 ml-4 text-teal-500 font-semibold"
+                        v-text="convertToCurrency({{ $userOrder->total }},'es-US', 'USD')"></p>
+                    @else
                     <p class="flex-1 ml-4 text-teal-500 font-semibold"
                         v-text="convertToCurrency({{ $userOrder->total }})"></p>
+                    @endif
                 </div>
             </div>
         </div>

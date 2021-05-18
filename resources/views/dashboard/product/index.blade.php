@@ -30,8 +30,8 @@
                             <td data-label="Product ID">{{ $product->sku  }}</td>
                             <td data-label="Title">{{ $product->title  }}</td>
                             <td data-label="Avg Ratings">{{ $product->AvgRating  }}</td>
-                            <td data-label="Category">{{ $product->brand->name  }}</td>
-                            <td data-label="Brand">{{ $product->category->name  }}</td>
+                            <td data-label="Category">{{ $product->category->name  }}</td>
+                            <td data-label="Brand">{{ $product->brand->name  }}</td>
                             <td data-label="Availability"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                 {{ $product->stock_status == 0 ? 'bg-red-100' : 'bg-green-100' }}
                                  text-green-800">

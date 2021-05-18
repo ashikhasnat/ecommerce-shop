@@ -45,6 +45,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        {{-- <Edit-Select-Category sub-cat-id="{{ $product->sub_category_id }}"
+                        cat-id="{{ $product->category_id }}">
+                        </Edit-Select-Category> --}}
                         <div class="flex flex-col">
                             <div class="">
                                 <label for="category_id"
@@ -60,19 +63,22 @@
                                     @endforeach
                                 </select>
                             </div>
-
+                            @if ($product->subcategory->id)
                             <div class="">
                                 <h1 class="font-semibold my-1 p2">Select SubCategory</h1>
                                 <select id="sub_category_id" name="sub_category_id"
                                     class="mt-1 mr-1 py-2 px-3 border w-full border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5">
-                                    @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}" @if ($product->subcategory_id ==
+                                    <option value="null" disabled>SubCategory</option>
+                                    @foreach ($product->category->subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}" @if ($product->subcategory->id ==
                                         $subcategory->id)
                                         selected
                                         @endif>{{ $subcategory->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            @endif
+
                         </div>
                         <div class="my-3">
                             <div class="">
@@ -108,13 +114,6 @@
                 </div>
             </div>
             <div class=" flex justify-evenly my-8 bg-white py-6">
-                <label class="inline-flex items-center mt-3">
-                    <input type="checkbox" @if ($product->main_slider == 1)
-                    checked
-                    @endif value="1" class="form-checkbox h-5 w-5 text-indigo-600"
-                    name="main_slider"><span class="ml-2 text-gray-700">Main
-                        Slider</span>
-                </label>
                 <label class="inline-flex items-center mt-3">
                     <input type="checkbox" @if ($product->top_rated == 1)
                     checked

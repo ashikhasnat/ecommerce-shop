@@ -51,6 +51,11 @@
                          bg-gray-600 rounded 
                          @endif
                         "><a href="{{ route('coupon.index') }}"><i class="fas fa-receipt mr-2"></i>Coupon</a></li>
+                    <li class="pl-4 py-2 mb-1 w-60
+                        @if (request()->is('dashboard/contact-us*'))
+                         bg-gray-600 rounded 
+                         @endif
+                        "><a href="{{ route('contact-us.index') }}"><i class="fas fa-inbox mr-2"></i>Inbox</a></li>
                 </ul>
 
             </nav>
