@@ -63,7 +63,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @if ($product->subcategory->id)
+                            {{-- @if ($product->subcategory->id === null) --}}
                             <div class="">
                                 <h1 class="font-semibold my-1 p2">Select SubCategory</h1>
                                 <select id="sub_category_id" name="sub_category_id"
@@ -77,7 +77,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @endif
+                            {{-- @endif --}}
 
                         </div>
                         <div class="my-3">
