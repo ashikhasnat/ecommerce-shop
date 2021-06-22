@@ -22,9 +22,9 @@
             </div>
         </div>
         <hr class=" mb-5 w-full h-px bg-gray-100 opacity-50">
-        <section class=" grid grid-cols-1 lg:grid-cols-2 gap-x-4">
-            <div class=" col-span-1">
-                @if ($product->images)
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
+            <div class="col-span-1">
+                @if ($product->images->count() > 0)
                 <product-slider inline-template :slider_image_to_show="{{ $product->images->count() }}">
                     <div class="">
                         <agile class="main" ref="main" :options="options1" :as-nav-for="asNavFor1">
@@ -45,11 +45,11 @@
                     </div>
                 </product-slider>
                 @else
-                <div class=" flex flex-col">
+                <div class="flex flex-col">
                     <div class=" bg-cover bg-center bg-no-repeat "
                         style="background-image: url({{ $product->thumbnail }}) ; height: 450px;">
                     </div>
-                    <div class=" bg-cover bg-center bg-no-repeat w-32 border-2 border-teal-400 h-20 mt-4"
+                    <div class="bg-cover bg-center bg-no-repeat w-32 border-2 border-teal-400 h-20 mt-4"
                         style="background-image: url({{ $product->thumbnail }}) ;">
                     </div>
 

@@ -70,7 +70,7 @@
                                     class="mt-1 mr-1 py-2 px-3 border w-full border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5">
                                     <option value="null" disabled>SubCategory</option>
                                     @foreach ($product->category->subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}" @if ($product->subcategory->id ==
+                                    <option value="{{ $subcategory->id }}" @if ($product->sub_category->id ==
                                         $subcategory->id)
                                         selected
                                         @endif>{{ $subcategory->name }}</option>
