@@ -1,4 +1,4 @@
-<x-layouts.admin>
+<x-layouts.app>
     <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
         <div class="flex">
             <div class="w-full">
@@ -46,8 +46,8 @@
 
                         <div class="flex items-center">
                             <label class="inline-flex items-center text-sm text-gray-700" for="remember">
-                                <input type="checkbox" name="remember" id="remember" class="form-checkbox"
-                                    {{ old('remember') ? 'checked' : '' }}>
+                                <input type="checkbox" name="remember" id="remember" class="form-checkbox" {{
+                                    old('remember') ? 'checked' : '' }}>
                                 <span class="ml-2">{{ __('Remember Me') }}</span>
                             </label>
 
@@ -81,4 +81,4 @@
             </div>
         </div>
     </main>
-</x-layouts.admin>
+</x-layouts.app>

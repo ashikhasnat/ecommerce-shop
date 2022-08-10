@@ -40,15 +40,8 @@ class HomeController extends Controller
                 'thumbnail',
             ])
             ->random(4);
-        // $mainSlider = Product::where('main_slider', 1)
-        //     ->with('brand')
-        //     ->with('category')
-        //     ->latest()
-        //     ->take(4)
-        //     ->get();
         $mainSlider = Slider::latest()
-            ->with('brand')
-            ->with('category')
+            ->with(['brand', 'category'])
             ->take(4)
             ->get();
         $topProducts = Product::where('top_rated', 1)

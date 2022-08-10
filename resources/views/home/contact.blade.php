@@ -11,17 +11,16 @@
             <div class=" grid grid-cols-3 mb-10 mt-6">
                 <div class="">
                     <h1 class=" font-semibold mb-2">Address</h1>
-                    <h3> 60, 29th Street, San Francisco,</h3>
-                    <p>CA 94110, United States.</p>
+                    <p>{{ $companyInfo->address }}</p>
                 </div>
                 <div class="">
                     <h1 class=" font-semibold mb-2">Phone</h1>
-                    <h3><a href="tel:+ 1 001 234 5678">+ 1 001 234 5678</a></h3>
+                    <h3><a href="tel:{{ $companyInfo->phone }}">{{ $companyInfo->phone }}</a></h3>
                     <p>Call us anytime</p>
                 </div>
                 <div class="">
                     <h1 class=" font-semibold mb-2">Email</h1>
-                    <h3><a href="mailto:support@domain.com"> support@domain.com</a></h3>
+                    <h3><a href="mailto:{{ $companyInfo->email }}">{{ $companyInfo->email }}</a></h3>
                     <p>Send us your query anytime!</p>
                 </div>
             </div>

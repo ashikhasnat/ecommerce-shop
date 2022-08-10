@@ -66,14 +66,14 @@ class ProductController extends Controller
             'category_id' => ['required'],
             'sub_category_id' => ['nullable'],
             'stock_status' => ['required'],
-            'short_details' => ['required', 'max:2000', 'min:100'],
-            'long_details' => ['required', 'max:2000', 'min:100'],
+            'short_details' => ['required', 'max:20000', 'min:10'],
+            'long_details' => ['required', 'max:20000', 'min:10'],
             'top_rated' => [''],
             'weekly_deal' => [''],
             'best_seller' => [''],
         ]);
 
-        if (request()->has('discount')) {
+        if (request()->filled('discount')) {
             $discount = request('discount') / 100;
             $discountPrice = request('price') - request('price') * $discount;
             $old_price = request('price');
@@ -104,40 +104,22 @@ class ProductController extends Controller
                 'thumbnail' => $replacePath,
             ])
         );
-
         // Create Image gallery
-
-        if (request()->hasFile('images')) {
+        if ($request->hasFile('images')) {
+            request()->validate([
+                'images.*' => 'mimes:jpeg,jpg,png,gif|max:5048',
+            ]);
             $images = request()->file('images');
             foreach ($images as $file) {
-                $sample_images = $file->getClientOriginalName();
-                // $newFile = $file->storeAs('images', $sample_images, 'public');
-                $newFile = $file->store(
-                    '/product-images/' . $product->id,
-                    'public'
-                );
-                $storage_path_0f_imgs = 'storage/' . $newFile;
-                $new_path_to_save = 'app/public/product-images/' . $product->id;
-                if (!file_exists($new_path_to_save)) {
-                    mkdir($new_path_to_save, 0777, true);
-                }
-                $path_with_new_name =
-                    $new_path_to_save .
-                    '/' .
-                    hash('ripemd160', $product->id) .
-                    $sample_images;
-                Image::make($storage_path_0f_imgs)
-                    ->fit(720, 720)
-                    ->save(storage_path($path_with_new_name));
-                unlink($storage_path_0f_imgs);
+                $image_path = Product::IMAGE_PATH . $file->hashName();
+                Image::make($file)
+                    ->fit(720)
+                    ->save(storage_path($image_path));
                 $replacePath = str_replace(
                     'app/public',
                     '/storage',
-                    $path_with_new_name
+                    $image_path
                 );
-                rmdir($new_path_to_save);
-                rmdir('app/public/product-images/');
-                rmdir('app/public/');
                 $product->images()->create([
                     'image_path' => $replacePath,
                 ]);
@@ -170,7 +152,6 @@ class ProductController extends Controller
         $brands = $brand->all('id', 'name');
         $categories = Category::latest()->with('subcategories')->get(['id', 'name']);
         // $subcategories = SubCategory::where('category_id')->get(['id', 'name']);
-        // dd($product->subcategory->id);
         return view(
             'dashboard.product.edit',
             compact('brands', 'product', 'categories')

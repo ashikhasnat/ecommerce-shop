@@ -27,8 +27,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="discount" class="text-sm font-medium leading-5 text-gray-700">Discount
-                                (Optional)</label>
-                            <input id="discount" name="discount" type="number" placeholder="$"
+                                (Optional %)</label>
+                            <input id="discount" name="discount" type="number" placeholder="%"
                                 value="{{ old('discount') }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             @error('discount')

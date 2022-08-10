@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\CompanyInfo;
 use App\Models\Contact;
 use App\Models\Customer\BillingAddress;
 use App\Models\Customer\ShippingAddress;
@@ -26,8 +27,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(200)->create();
+        CompanyInfo::factory()->create();
         Category::factory(10)->create();
+        Product::factory(200)->create();
         Slider::factory(10)->create();
         SubCategory::factory(20)->create();
         Brand::factory(10)->create();

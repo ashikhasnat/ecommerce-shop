@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Support\Str;
+
 class SubCategoryController extends Controller
 {
     /**
@@ -87,6 +88,22 @@ class SubCategoryController extends Controller
         return redirect(route('subcategory.index'))->with(
             'msg',
             'Successfully Updated'
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\SubCategory  $subCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->delete();
+        return redirect(route('subcategory.index'))->with(
+            'msg',
+            'Successfully Deleted'
         );
     }
 }

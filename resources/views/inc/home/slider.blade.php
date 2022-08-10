@@ -5,7 +5,10 @@
             <section class="w-full h-full relative bg-no-repeat bg-center bg-cover"
                 style="background-image: url({{ $product->thumbnail }});">
                 <div class=" flex flex-col justify-center h-full w-full ml-4 sm:ml-20">
-                    <h2 class=" font-semibold text-base sm:text-2xl text-gray-400">{{ $product->category->name }}</h2>
+                    @if ($product->category)
+                    <h2 class=" font-semibold text-base sm:text-2xl text-gray-400">{{ $product->category->name }}
+                    </h2>
+                    @endif
                     <h1
                         class=" w-1/2 leading-tight my-5 uppercase text-white text-2xl sm:text-5xl font-bold border-l-4 border-teal-400 pl-4">
                         {{ $product->title }}</h1>

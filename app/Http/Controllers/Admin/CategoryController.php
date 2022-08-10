@@ -99,4 +99,14 @@ class CategoryController extends Controller
             'Successfully Updated'
         );
     }
+
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect(route('category.index'))->with(
+            'msg',
+            'Successfully Deleted'
+        );
+    }
 }

@@ -23,11 +23,8 @@ class CreateProductsTable extends Migration
             $table->integer('old_price')->nullable();
             $table->text('thumbnail');
             $table->foreignId('brand_id');
-            $table->foreignId('category_id');
-            $table
-                ->foreignId('sub_category_id')
-                ->nullable()
-                ->default(0);
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sub_category_id')->nullable();
             $table->tinyInteger('stock_status')->default(0);
             $table->tinyInteger('top_rated')->default(0);
             $table->tinyInteger('best_seller')->default(0);

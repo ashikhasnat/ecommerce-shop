@@ -56,6 +56,12 @@
                          bg-gray-600 rounded 
                          @endif
                         "><a href="{{ route('contact-us.index') }}"><i class="fas fa-inbox mr-2"></i>Inbox</a></li>
+                    <li class="pl-4 py-2 mb-1 w-60
+                        @if (request()->is('dashboard/company-info*'))
+                         bg-gray-600 rounded 
+                         @endif
+                        "><a href="{{ route('company-info.index') }}"><i class="fas fa-address-card mr-2"></i>Company
+                            Info</a></li>
                 </ul>
 
             </nav>

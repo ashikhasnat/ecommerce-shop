@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ApiProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CompanyInfoController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -51,19 +52,23 @@ Route::group(
         Route::resource('/product', ProductController::class);
         Route::resource('/slider', SliderController::class);
         Route::resource('/category', CategoryController::class)->except([
-            'show',
-            'destroy',
+            'show'
         ]);
         Route::resource('/subcategory', SubCategoryController::class)->except([
             'show',
-            'destroy',
         ]);
         Route::resource('/brand', BrandController::class)->except([
             'show',
             'destroy',
         ]);
         Route::resource('/coupon', CouponController::class);
-
+        // info
+        Route::get('/company-info', [CompanyInfoController::class, 'index'])
+            ->name('company-info.index');
+        Route::get('/company-info/{id}', [CompanyInfoController::class, 'edit'])
+            ->name('company-info.edit');
+        Route::patch('/company-info/{id}', [CompanyInfoController::class, 'update'])
+            ->name('company-info.update');
         // Contact US
 
         Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us.index');
@@ -86,8 +91,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])
     ->name('checkout.index')
     ->middleware('auth');
 Route::get('/order-summary', [OrderController::class, 'index'])
-    ->name('order-summary.index')
-    ->middleware('auth');
+    ->name('order-summary.index');
 
 // Contact US
 

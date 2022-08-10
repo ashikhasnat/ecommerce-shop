@@ -184,8 +184,8 @@ export default {
         this.$store.commit('setClasses', 'error')
         this.$store.commit('setToastrMsg', 'Logged Out')
         setTimeout(() => {
-          this.$store.commit('setToastrMsg', '')
-        }, 3000)
+          window.location.reload()
+        }, 500)
       })
     },
   },

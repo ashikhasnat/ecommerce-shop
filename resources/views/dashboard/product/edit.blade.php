@@ -27,8 +27,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="discount" class="text-sm font-medium leading-5 text-gray-700">Discount
-                                (Optional)</label>
-                            <input id="discount" name="discount" type="number" placeholder="$"
+                                (Optional %)</label>
+                            <input id="discount" name="discount" type="number" placeholder="%"
                                 value="{{ $product->discount }}"
                                 class="mt-1 form-input w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             @error('discount')
@@ -46,7 +46,7 @@
                             </select>
                         </div>
                         {{-- <Edit-Select-Category sub-cat-id="{{ $product->sub_category_id }}"
-                        cat-id="{{ $product->category_id }}">
+                            cat-id="{{ $product->category_id }}">
                         </Edit-Select-Category> --}}
                         <div class="flex flex-col">
                             <div class="">
@@ -70,7 +70,8 @@
                                     class="mt-1 mr-1 py-2 px-3 border w-full border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5">
                                     <option value="null" disabled>SubCategory</option>
                                     @foreach ($product->category->subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}" @if ($product->sub_category->id ==
+                                    <option value="{{ $subcategory->id }}" @if ($product->subcategory
+                                        && $product->subcategory->id ==
                                         $subcategory->id)
                                         selected
                                         @endif>{{ $subcategory->name }}</option>

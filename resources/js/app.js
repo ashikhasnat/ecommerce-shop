@@ -27,11 +27,16 @@ require('./bootstrap')
 Vue.mixin({
   methods: {
     convertToCurrency(price, type = 'bn-BD', currency = 'BDT') {
-      price = price / 100
-      return price.toLocaleString(type, {
-        style: 'currency',
-        currency: currency,
-      })
+      price = price / 1
+      return (
+        '৳ ' +
+        price
+          .toLocaleString(type, {
+            style: 'currency',
+            currency: currency,
+          })
+          .slice(0, -4)
+      )
     },
   },
 })

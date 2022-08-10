@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\CompanyInfo;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('home.contact');
+        $companyInfo = CompanyInfo::first();
+        return view('home.contact', compact('companyInfo'));
     }
 
     /**
