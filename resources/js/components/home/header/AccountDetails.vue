@@ -184,7 +184,7 @@ export default {
         this.$store.commit('setClasses', 'error')
         this.$store.commit('setToastrMsg', 'Logged Out')
         setTimeout(() => {
-          window.location.reload()
+          window.location.href = '/'
         }, 500)
       })
     },

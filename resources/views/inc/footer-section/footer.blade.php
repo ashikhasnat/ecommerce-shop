@@ -25,7 +25,9 @@
             </div>
         </div>
         <div class="">
-            <p class=" text-sm text-gray-500">Copyright © 2020 Nafario. All rights reserved.</p>
+            <p class=" text-sm text-gray-500">Copyright © 2022 <a class="text-red-500 text-lg"
+                    href="https://aashiq.netlify.app/" target="_blank">Aashiq</a>. All rights
+                reserved.</p>
         </div>
     </x-container>
 </footer>
